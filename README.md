@@ -1,0 +1,1 @@
+# VANAYA Shopify Theme
