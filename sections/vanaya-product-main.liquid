@@ -1,0 +1,265 @@
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_form_id = 'vanaya-product-form-' | append: section.id
+  assign vanaya_product_title = product.title | downcase
+  assign is_kansa_wand = false
+  assign is_seabuckthorn_kansa_ritual = false
+  if product.handle == 'vanaya-seabuckthorn-kansa-sculpt-ritual'
+    assign is_seabuckthorn_kansa_ritual = true
+  endif
+  if vanaya_product_title contains 'kansa' or vanaya_product_title contains 'kaansa' or vanaya_product_title contains 'sculpting wand'
+    assign is_kansa_wand = true
+  endif
+%}
+
+<section class="vp-product" data-vp-product>
+  <nav class="vp-product__crumbs" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">Home</a><span>—</span>
+    <a href="{{ routes.all_products_collection_url }}">Shop</a><span>—</span>
+    <span>{{ product.title }}</span>
+  </nav>
+
+  <div class="vp-product__layout">
+    <div class="vp-gallery" data-vp-gallery>
+      <div class="vp-gallery__thumbs" aria-label="Product media">
+        {% for media in product.media %}
+          {% assign media_alt = media.alt | default: product.title %}
+          <button class="vp-gallery__thumb{% if forloop.first %} is-active{% endif %}" type="button" data-vp-thumb="{{ forloop.index0 }}" aria-label="View image {{ forloop.index }}">
+            {% if media.preview_image %}
+              {{ media.preview_image | image_url: width: 180 | image_tag: loading: 'lazy', widths: '90, 180', alt: media_alt }}
+            {% endif %}
+          </button>
+        {% else %}
+          <span class="vp-gallery__thumb is-active">{{ 'product-1' | placeholder_svg_tag }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="vp-gallery__stage">
+        <div class="vp-gallery__counter"><span data-vp-current>01</span> / <span>{{ product.media.size | at_least: 1 | prepend: '0' | slice: -2, 2 }}</span></div>
+        {% for media in product.media %}
+          {% assign media_alt = media.alt | default: product.title %}
+          <figure class="vp-gallery__media{% if forloop.first %} is-active{% endif %}" data-vp-media="{{ forloop.index0 }}">
+            {% case media.media_type %}
+              {% when 'image' %}
+                {{ media | image_url: width: 1800 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1500, 1800', sizes: '(min-width: 900px) 58vw, 100vw', alt: media_alt }}
+              {% when 'video' %}
+                {{ media | video_tag: controls: true, preload: 'metadata', image_size: '1400x' }}
+              {% when 'external_video' %}
+                {{ media | external_video_tag }}
+              {% else %}
+                {{ media.preview_image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '600, 900, 1200, 1500, 1800', alt: media_alt }}
+            {% endcase %}
+          </figure>
+        {% else %}
+          <figure class="vp-gallery__media is-active vp-gallery__placeholder">{{ 'product-1' | placeholder_svg_tag }}</figure>
+        {% endfor %}
+        {% if product.media.size > 1 %}
+          <button class="vp-gallery__arrow vp-gallery__arrow--prev vanaya-control-v20" type="button" data-vp-prev aria-label="Previous image">‹</button>
+          <button class="vp-gallery__arrow vp-gallery__arrow--next vanaya-control-v20" type="button" data-vp-next aria-label="Next image">›</button>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="vp-product__info">
+      <p class="vp-product__eyebrow">The Vanaya Ayurvedic ritual</p>
+      <h1>{{ product.title }}</h1>
+      {% if product.metafields.reviews.rating.value != blank %}
+        <p class="vp-product__rating">★★★★★ <span>{{ product.metafields.reviews.rating.value }} / 5</span></p>
+      {% endif %}
+      <div class="vp-product__price" data-vp-price>
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <span class="vp-product__mrp">
+            <span class="vp-product__mrp-label">MRP</span>
+            <s>{{ current_variant.compare_at_price | money }}</s>
+          </span>
+          <span class="vp-product__sale-price">{{ current_variant.price | money }}</span>
+        {% else %}
+          <span class="vp-product__sale-price">{{ current_variant.price | money }}</span>
+        {% endif %}
+      </div>
+
+      {% if product.description != blank %}
+        <div class="vp-product__intro{% if is_kansa_wand %} vp-product__intro--full{% endif %}">{{ product.description }}</div>
+      {% else %}
+        <p class="vp-product__intro">A considered Vanaya ritual, rooted in Ayurvedic wisdom and created for modern Indian skin.</p>
+      {% endif %}
+
+      {% form 'product', product, id: product_form_id, class: 'vp-product__form' %}
+        {% if product.variants.size > 1 %}
+          <fieldset class="vp-variant-options" data-vp-variants>
+            <legend>Select size</legend>
+            {% for variant in product.variants %}
+              {% assign variant_media_index = blank %}
+              {% if variant.featured_media != blank %}
+                {% for media in product.media %}
+                  {% if media.id == variant.featured_media.id %}
+                    {% assign variant_media_index = forloop.index0 %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+              <label class="vp-variant-option{% unless variant.available %} is-unavailable{% endunless %}">
+                <input
+                  type="radio"
+                  name="id"
+                  value="{{ variant.id }}"
+                  data-price="{{ variant.price | money | escape }}"
+                  data-compare-price="{% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money | escape }}{% endif %}"
+                  data-available="{{ variant.available }}"
+                  {% if variant_media_index != blank %}data-media-index="{{ variant_media_index }}"{% endif %}
+                  {% unless variant.available %}disabled{% endunless %}
+                  {% if variant == current_variant %}checked{% endif %}
+                >
+                <span>{{ variant.title }}</span>
+              </label>
+            {% endfor %}
+          </fieldset>
+        {% else %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+          {% render 'vanaya-related-sizes', product: product %}
+        {% endif %}
+
+        <div class="vp-product__purchase">
+          <label class="vp-quantity">
+            <span class="visually-hidden">Quantity</span>
+            <button type="button" data-vp-qty-minus aria-label="Decrease quantity">−</button>
+            <input type="number" name="quantity" value="1" min="1" aria-label="Quantity">
+            <button type="button" data-vp-qty-plus aria-label="Increase quantity">+</button>
+          </label>
+          <button class="vp-product__add" type="submit" name="add" data-vp-add{% unless current_variant.available %} disabled{% endunless %}>
+            <span>{% if current_variant.available %}Add to bag{% else %}Sold out{% endif %}</span><span>→</span>
+          </button>
+        </div>
+      {% endform %}
+
+      <button type="button" class="v293-product-wishlist v293-product-wishlist--custom" data-v29-wishlist
+        data-handle="{{ product.handle }}" data-title="{{ product.title | escape }}"
+        data-url="{{ product.url }}" data-image="{{ product.featured_image | image_url: width: 900 }}"
+        data-price="{{ current_variant.price | money | escape }}" data-variant-id="{{ current_variant.id }}"
+        aria-pressed="false">
+        <span class="v293-product-wishlist__icon" data-wishlist-icon>♡</span>
+        <span data-wishlist-label>Add to Wishlist</span>
+      </button>
+      <div class="vp-product__accordions">
+        {% if is_seabuckthorn_kansa_ritual %}
+          <details>
+            <summary>How to apply</summary>
+            <div class="vp-product__detail-content">
+              <ol>
+                <li>Begin with a freshly cleansed face and neck.</li>
+                <li>Dispense 3–4 drops of Sea Buckthorn Oil onto your palm, warm gently between the fingertips and press evenly onto the skin.</li>
+                <li>Use the larger rounded end of the Kansa Wand on the neck, jawline, cheeks and forehead, gliding in gentle upward and outward strokes.</li>
+                <li>Use the smaller rounded end around the brows, sides of the nose and other delicate facial contours. Apply extremely light pressure beneath the eyes and glide outwards.</li>
+                <li>Massage for 5–7 minutes, keeping the wand in comfortable contact with the skin. Allow the remaining oil to absorb; there is no need to rinse.</li>
+              </ol>
+              <p>Use during your evening skincare ritual 3–4 times a week, gradually increasing the frequency according to your skin's comfort. Always avoid pulling or stretching the skin.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Delivery & care</summary>
+            <div class="vp-product__detail-content">
+              <p>Orders are generally dispatched within 1–2 working days. Final delivery time depends on your location and is displayed during checkout.</p>
+              <p>Store the Sea Buckthorn Oil tightly closed in a cool, dry place away from direct sunlight. After every use, wipe the Kansa ends with a soft, slightly damp cloth and dry immediately. Do not soak the wand or use abrasive or harsh chemical cleansers. Keep the wooden handle away from prolonged moisture and store the complete ritual in a clean, dry place.</p>
+              <p><strong>Precaution:</strong> For external use only. Patch test the oil before regular use. Avoid direct contact with the eyes and do not massage over broken, irritated or actively inflamed skin. Discontinue use if irritation occurs. Keep out of reach of children.</p>
+            </div>
+          </details>
+        {% else %}
+          <details><summary>How to use</summary><p>{% if is_kansa_wand %}Apply a few drops of facial oil or serum to cleansed skin. Using gentle, upward and outward strokes, glide the larger end across the neck, jawline, cheeks and forehead. Use the smaller end around the eyes, temples and other delicate areas. Massage for 5–10 minutes and wipe the metal heads clean after every use.{% else %}Follow the directions on the product packaging. Introduce gradually and patch test before regular use.{% endif %}</p></details>
+          <details><summary>Delivery & care</summary><p>Orders are generally dispatched within 1–2 working days. Store the product in a cool, dry place away from direct sunlight.{% if is_kansa_wand %} Clean the Kansa ends with a soft, slightly damp cloth after use and dry immediately. Avoid soaking the wand or using harsh cleansers. Store in a clean, dry place.{% endif %}</p></details>
+        {% endif %}
+        {% render 'vanaya-product-details', product: product %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-vp-product]').forEach(function(root){
+    var slides=[].slice.call(root.querySelectorAll('[data-vp-media]'));
+    var thumbs=[].slice.call(root.querySelectorAll('[data-vp-thumb]'));
+    var current=0;
+    function show(index){
+      if(!slides.length)return;
+      current=(index+slides.length)%slides.length;
+      slides.forEach(function(el,i){el.classList.toggle('is-active',i===current)});
+      thumbs.forEach(function(el,i){el.classList.toggle('is-active',i===current)});
+      var count=root.querySelector('[data-vp-current]'); if(count)count.textContent=String(current+1).padStart(2,'0');
+    }
+    thumbs.forEach(function(el){el.addEventListener('click',function(){show(Number(el.dataset.vpThumb))})});
+    var prev=root.querySelector('[data-vp-prev]'),next=root.querySelector('[data-vp-next]');
+    if(prev)prev.addEventListener('click',function(){show(current-1)});
+    if(next)next.addEventListener('click',function(){show(current+1)});
+    var variants=root.querySelector('[data-vp-variants]'),price=root.querySelector('[data-vp-price]');
+    if(variants&&price)variants.addEventListener('change',function(event){
+      var option=event.target.closest('input[name="id"]');
+      if(!option)return;
+      var selling=option.dataset.price||'';
+      var compare=option.dataset.comparePrice||'';
+      if(compare){
+        price.innerHTML='<span class="vp-product__mrp"><span class="vp-product__mrp-label">MRP</span><s>'+compare+'</s></span><span class="vp-product__sale-price">'+selling+'</span>';
+      }else{
+        price.innerHTML='<span class="vp-product__sale-price">'+selling+'</span>';
+      }
+      var add=root.querySelector('[data-vp-add]');
+      if(add){
+        var available=option.dataset.available==='true';
+        add.disabled=!available;
+        var label=add.querySelector('span');
+        if(label)label.textContent=available?'Add to bag':'Sold out';
+      }
+      if(option.dataset.mediaIndex!==undefined)show(Number(option.dataset.mediaIndex));
+      if(window.history&&window.history.replaceState){
+        var url=new URL(window.location.href);
+        url.searchParams.set('variant',option.value);
+        window.history.replaceState({},'',url.toString());
+      }
+    });
+    var selectedVariant=root.querySelector('[data-vp-variants] input[name="id"]:checked');
+    if(selectedVariant&&selectedVariant.dataset.mediaIndex!==undefined){
+      show(Number(selectedVariant.dataset.mediaIndex));
+    }
+    var qty=root.querySelector('input[name="quantity"]');
+    var minus=root.querySelector('[data-vp-qty-minus]'),plus=root.querySelector('[data-vp-qty-plus]');
+    if(minus&&qty)minus.addEventListener('click',function(){qty.value=Math.max(1,Number(qty.value||1)-1)});
+    if(plus&&qty)plus.addEventListener('click',function(){qty.value=Number(qty.value||1)+1});
+  });
+});
+</script>
+
+
+<style>
+  .template-product .vp-product__price{
+    display:flex;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:10px 14px;
+  }
+  .template-product .vp-product__mrp{
+    display:inline-flex;
+    align-items:baseline;
+    gap:6px;
+    color:#8a8176;
+    font-size:15px;
+    font-weight:500;
+  }
+  .template-product .vp-product__mrp-label{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .template-product .vp-product__mrp s{
+    text-decoration-thickness:1.5px;
+    text-decoration-color:#8a8176;
+  }
+  .template-product .vp-product__sale-price{
+    color:#6d5336;
+    font-size:22px;
+    font-weight:700;
+  }
+</style>
+
+{% schema %}
+{"name":"Vanaya product experience","settings":[],"presets":[{"name":"Vanaya product experience"}]}
+{% endschema %}

@@ -1,0 +1,295 @@
+{% comment %}
+  Product-specific Ingredients and Benefits supplied in the Vanaya Product
+  Specifications dossier. Matching is title-based so every size of the same
+  formula receives identical content, even when sizes are separate products.
+{% endcomment %}
+{% assign vanaya_product_name = product.title | downcase %}
+{% assign is_seabuckthorn_kansa_ritual = false %}
+{% if product.handle == 'vanaya-seabuckthorn-kansa-sculpt-ritual' %}
+  {% assign is_seabuckthorn_kansa_ritual = true %}
+{% endif %}
+
+{% if is_seabuckthorn_kansa_ritual %}
+  <details>
+    <summary>Ingredients</summary>
+    <div class="vp-product__detail-content">
+      <p><strong>What's inside:</strong> Vanaya Sea Buckthorn Oil (30 ml) and a dual-ended Kansa Wand (1 unit).</p>
+      <p><strong>Sea Buckthorn Oil:</strong> Seabuckthorn-Grapeseed Oil (60%), Raspberry Seed Oil (20%), Seabuckthorn Oil (15%), Jojoba Oil (4%), Rosemary Essential Oil (0.5%), Carrot Seed Essential Oil (0.5%).</p>
+    </div>
+  </details>
+  <details class="vp-product__hero-ingredient">
+    <summary>Hero Ingredient <span>Sea Buckthorn Oil</span></summary>
+    <div class="vp-product__detail-content">
+      <p><strong>Why it works:</strong> Sea Buckthorn is one of the few plant oils containing all four omega fatty acids (3, 6, 7 and 9). Omega-7 closely mirrors the skin's own lipids, helping support the moisture barrier. Its Vitamin C and Vitamin E content provides antioxidant support for elasticity and dullness.</p>
+      <p><strong>The ritual pairing:</strong> The lightweight oil provides a smooth glide for the dual-ended Kansa Wand, helping you massage the natural contours of the face and neck without pulling the skin.</p>
+      <p><strong>Best suited for:</strong> Dry, dull, dehydrated and mature-looking skin, or anyone seeking a calming facial massage ritual.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Benefits</summary>
+    <div class="vp-product__detail-content">
+      <ul>
+        <li>Deeply nourishes and helps support the skin's natural moisture barrier.</li>
+        <li>Helps improve the appearance of elasticity and firmness with regular use.</li>
+        <li>Revives dull, tired-looking skin for a naturally radiant appearance.</li>
+        <li>Gentle Kansa massage helps reduce the appearance of temporary puffiness.</li>
+        <li>Helps release facial tension around the jawline, forehead and brows.</li>
+        <li>Creates a calming, sensorial self-care ritual for the face and neck.</li>
+      </ul>
+    </div>
+  </details>
+
+{% elsif vanaya_product_name contains 'sea buckthorn' %}
+  <details>
+    <summary>Ingredients</summary>
+    <div class="vp-product__detail-content">
+      <p>Seabuckthorn-Grapeseed Oil (60%), Raspberry Seed Oil (20%), Seabuckthorn Oil (15%), Jojoba Oil (4%), Rosemary Essential Oil (0.5%), Carrot Seed Essential Oil (0.5%).</p>
+    </div>
+  </details>
+  <details class="vp-product__hero-ingredient">
+    <summary>Hero Ingredient <span>Sea Buckthorn Oil</span></summary>
+    <div class="vp-product__detail-content">
+      <p><strong>Why it works:</strong> Sea Buckthorn is one of the few plant oils containing all four omega fatty acids (3, 6, 7 and 9). Omega-7 closely mirrors the skin's own lipids, helping rebuild the moisture barrier. Its Vitamin C and Vitamin E content provides antioxidant support for elasticity and dullness.</p>
+      <p><strong>Best suited for:</strong> Dry, dull and mature skin, as well as sensitive or barrier-compromised skin needing hydration and repair.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Benefits</summary>
+    <div class="vp-product__detail-content">
+      <ul>
+        <li>Deeply nourishes and helps rebuild the skin's natural moisture barrier.</li>
+        <li>Rich in Vitamin C and E for antioxidant, free-radical protection.</li>
+        <li>Improves skin elasticity and firmness over regular use.</li>
+        <li>Revives dull, tired-looking skin for a healthier glow.</li>
+        <li>Gentle enough for sensitive or barrier-compromised skin.</li>
+      </ul>
+    </div>
+  </details>
+
+{% elsif vanaya_product_name contains 'kumkumadi tailam' %}
+  <details>
+    <summary>Ingredients</summary>
+    <div class="vp-product__detail-content">
+      <p>Red Sandalwood, Manjistha, Yasthumadhu (Licorice), Daruhaldi, Ushira, Padmaka, Nilotpala, Pilkhan, Kamal Kesar, Cold Pressed Sesame Oil, Rose Water, Goat Milk, Khus, Laksha, Saffron (Kesar), Dashmool (a combination of ten herbs).</p>
+    </div>
+  </details>
+  <details class="vp-product__hero-ingredient">
+    <summary>Hero Ingredient <span>Saffron (Kesar)</span></summary>
+    <div class="vp-product__detail-content">
+      <p><strong>Why it works:</strong> Saffron is the namesake and defining ingredient of Kumkumadi Tailam. Its active compound, crocin, helps inhibit the enzyme responsible for melanin overproduction, supporting a more even-looking skin tone. Its antioxidant activity also supports microcirculation and natural radiance.</p>
+      <p><strong>Best suited for:</strong> All skin types, particularly dull, pigmented and prematurely ageing skin.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Benefits</summary>
+    <div class="vp-product__detail-content">
+      <ul>
+        <li>Helps fade pigmentation, dark spots and uneven skin tone.</li>
+        <li>Softens the look of fine lines and early signs of ageing.</li>
+        <li>Gives skin a natural, lit-from-within radiance.</li>
+        <li>Helps reduce the appearance of dark circles.</li>
+        <li>Nourishes with time-tested Ayurvedic herbs for smoother texture.</li>
+      </ul>
+    </div>
+  </details>
+
+{% elsif vanaya_product_name contains 'haridra' %}
+  <details>
+    <summary>Ingredients</summary>
+    <div class="vp-product__detail-content">
+      <p>Turmeric (Haridra), Daruhaldi, Mulethi (Licorice), Kaliyakksasht, Red Sandalwood, Pundariya, Manjishta, Lotus Flower, Padmaka, Saffron, Feronia, Limonia, Tinduk, Pilkhan, Vat, Cold Pressed Sesame Oil.</p>
+    </div>
+  </details>
+  <details class="vp-product__hero-ingredient">
+    <summary>Hero Ingredient <span>Turmeric (Haridra)</span></summary>
+    <div class="vp-product__detail-content">
+      <p><strong>Why it works:</strong> Turmeric's active compound, curcumin, carries anti-inflammatory, antibacterial and antioxidant properties. It helps limit acne-causing bacteria and calm the inflammation associated with breakout redness and swelling.</p>
+      <p><strong>Best suited for:</strong> Oily, acne-prone and blemish-prone skin.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Benefits</summary>
+    <div class="vp-product__detail-content">
+      <ul>
+        <li>Helps fight acne-causing bacteria for clearer-looking skin.</li>
+        <li>Calms redness, swelling and irritation from breakouts.</li>
+        <li>Refines blemishes and improves overall skin clarity.</li>
+        <li>Balances excess oil in acne-prone skin.</li>
+        <li>Antioxidant-rich formula protects against everyday skin damage.</li>
+      </ul>
+    </div>
+  </details>
+
+{% elsif vanaya_product_name contains 'kanak tailam' %}
+  <details>
+    <summary>Ingredients</summary>
+    <div class="vp-product__detail-content">
+      <p>Mulethi (Licorice), Prayang, Manjishta, Red Sandalwood, Nilotpal, Nagkesar, Sesame Oil (base).</p>
+    </div>
+  </details>
+  <details class="vp-product__hero-ingredient">
+    <summary>Hero Ingredient <span>Manjishta (Manjistha)</span></summary>
+    <div class="vp-product__detail-content">
+      <p><strong>Why it works:</strong> Manjishta is a classical Ayurvedic botanical rich in anthraquinones and tannins, which provide anti-inflammatory and antioxidant activity. Purpurin, a compound found in Manjishta, helps inhibit tyrosinase to support the appearance of pigmentation and dark spots while calming redness.</p>
+      <p><strong>Best suited for:</strong> Combination and ageing skin dealing with pigmentation, uneven tone and tired under-eyes.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Benefits</summary>
+    <div class="vp-product__detail-content">
+      <ul>
+        <li>Multi-corrective formula that targets several ageing concerns at once.</li>
+        <li>Helps fade hyperpigmentation and dark spots.</li>
+        <li>Smooths the look of fine lines and other ageing signs.</li>
+        <li>Revives tired, dull under-eyes.</li>
+        <li>Calms redness for a more even-toned complexion.</li>
+      </ul>
+    </div>
+  </details>
+
+{% elsif vanaya_product_name contains 'nayan tara' or vanaya_product_name contains 'dark circle repair' %}
+  <details>
+    <summary>Ingredients</summary>
+    <div class="vp-product__detail-content">
+      <p>DM Water (57.50%), Aloe Vera Extract (8.00%), Glycerin (4.00%), PG (3.00%), Xanthan Gum (0.25%), CCTG (6.00%), Sweet Almond Oil (3.00%), Jojoba Oil (2.00%), Kumkumadi Taila (0.50%), E-Wax (4.00%), Cetyl Alcohol (1.50%), Saffron Extract (0.20%), Manjistha Extract (0.50%), Licorice Extract/Mulethi (0.50%), Gotu Kola Extract/Mandukaparni (0.30%), Green Tea Extract (0.30%), Caffeine (0.30%), Phenoxyethanol (0.80%), EDTA (0.10%), Fragrance (q.s.), Citric Acid (q.s.).</p>
+    </div>
+  </details>
+  <details class="vp-product__hero-ingredient">
+    <summary>Hero Ingredient <span>Caffeine</span></summary>
+    <div class="vp-product__detail-content">
+      <p><strong>Why it works:</strong> Caffeine is a vasoconstrictor that temporarily narrows blood vessels beneath the delicate under-eye skin, visibly helping with puffiness and the pooling that causes vascular dark circles. Its antioxidant activity also supports circulation and a brighter-looking eye area.</p>
+      <p><strong>Best suited for:</strong> All skin types, especially tired, puffy eyes and vascular-type dark circles.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Benefits</summary>
+    <div class="vp-product__detail-content">
+      <ul>
+        <li>Visibly reduces puffiness around the eyes.</li>
+        <li>Helps fade the look of vascular-type dark circles.</li>
+        <li>De-tires and refreshes the delicate eye area.</li>
+        <li>Hydrates and soothes with green tea and Gotu Kola extracts.</li>
+        <li>Ayurvedic saffron and Kumkumadi finish brighten the under-eye area.</li>
+      </ul>
+    </div>
+  </details>
+
+{% elsif vanaya_product_name contains 'ratri glow' %}
+  <details>
+    <summary>Ingredients</summary>
+    <div class="vp-product__detail-content">
+      <p>DM Water (65%), Kumkumadi Oil (2%), Saffron Extract (0.02%), Avocado Oil (1.3%), Olive Oil (2.5%), Wheatgerm Oil (1.5%), Cocoa Butter (2%), LLP (3%), IPM (4.5%), Emulsifying Wax (1.5%), GMS (2%), Stearic Acid (1.5%), Ginol 16 (1.5%), Aloe Vera Extract (4%), Glycerin (2%), Propylene Glycol (2.5%), Beetroot Extract (2%), Soya Protein Extract (1%), Rose Water (2%), Carbopol (0.25%), EDTA (0.1%), Phenoxyethanol (0.35%), DMDM Hydantoin (0.1%), Fragrance (0.3%).</p>
+    </div>
+  </details>
+  <details class="vp-product__hero-ingredient">
+    <summary>Hero Ingredient <span>Kumkumadi Oil (Saffron-infused)</span></summary>
+    <div class="vp-product__detail-content">
+      <p><strong>Why it works:</strong> Kumkumadi Oil concentrates saffron's brightening activity into a nourishing overnight base. Used while the skin's natural repair processes are most active, it supports radiance while avocado, olive and wheatgerm oils reinforce barrier renewal and moisture retention.</p>
+      <p><strong>Best suited for:</strong> Normal to dry skin seeking overnight renewal, hydration and a brighter complexion.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Benefits</summary>
+    <div class="vp-product__detail-content">
+      <ul>
+        <li>Supports overnight skin renewal while you sleep.</li>
+        <li>Deeply moisturizes with avocado, olive and wheatgerm oils.</li>
+        <li>Helps fade pigmentation and brighten complexion over time.</li>
+        <li>Restores softness and suppleness with cocoa butter.</li>
+        <li>Wakes skin up looking rested, nourished and glowing.</li>
+      </ul>
+    </div>
+  </details>
+
+{% elsif vanaya_product_name contains 'tara sitara' or vanaya_product_name contains 'exfoliating cream' %}
+  <details>
+    <summary>Ingredients</summary>
+    <div class="vp-product__detail-content">
+      <p>DM Water (0.66%), Kumkumadi Oil (0.02%), Ginol 1618 (0.02%), Ginol 16 (0.014%), Stearic Acid (0.09%), Emulgade 165 (0.012%), IPM (0.08%), LLP (0.02%), Sodium Gluconate (0.001%), Titanium Dioxide (0.01%), T.E.A (0.0016%), Phenoxyethanol (0.003%), DMDMH (0.001%), Glycerine (0.07%), Finely Milled Walnut Granules.</p>
+    </div>
+  </details>
+  <details class="vp-product__hero-ingredient">
+    <summary>Hero Ingredient <span>Finely Milled Walnut Granules</span></summary>
+    <div class="vp-product__detail-content">
+      <p><strong>Why it works:</strong> Finely milled walnut granules manually lift away dead skin cells and surface debris, helping smooth texture and unclog pores. Paired with Kumkumadi Oil's saffron-led brightening, the formula combines mechanical resurfacing with an Ayurvedic glow ritual.</p>
+      <p><strong>Best suited for:</strong> Normal to oily skin with rough or dull texture. Patch testing is advised for sensitive or actively inflamed skin.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Benefits</summary>
+    <div class="vp-product__detail-content">
+      <ul>
+        <li>Gently lifts away dead skin cells for instantly smoother texture.</li>
+        <li>Unclogs pores to help prevent congestion and dullness.</li>
+        <li>Kumkumadi and saffron infusion adds a brightening finish.</li>
+        <li>Dual-action polish: mechanical exfoliation plus Ayurvedic glow.</li>
+        <li>Leaves skin refined and radiant with regular (not daily) use.</li>
+      </ul>
+    </div>
+  </details>
+
+{% elsif vanaya_product_name contains 'chamak damak' or vanaya_product_name contains 'resurfacing mask' %}
+  <details>
+    <summary>Ingredients</summary>
+    <div class="vp-product__detail-content">
+      <p>Kumkumadi Tailam (8.00%), Shea Butter (3.00%), Saffron Extract (0.20%), Sweet Almond Oil (5.00%), DM Water (47.00%), Aloe Vera Juice (10.00%), Glycerin (4.00%), Manjistha Extract (1.00%), Xanthan Gum (0.30%), EDTA (0.20%), Emulsifying Wax (5.00%), Cetyl Alcohol (12.00%), Licorice Extract (1.00%), Phenoxyethanol (0.80%), Perfume and Citric Acid (q.s.).</p>
+    </div>
+  </details>
+  <details class="vp-product__hero-ingredient">
+    <summary>Hero Ingredient <span>Saffron (Kesar) Extract</span></summary>
+    <div class="vp-product__detail-content">
+      <p><strong>Why it works:</strong> Saffron's crocin content helps inhibit melanin overproduction, while its antioxidant load supports circulation for a visible glow. Shea Butter and Sweet Almond Oil add nourishment to help prevent the dryness that resurfacing treatments can cause.</p>
+      <p><strong>Best suited for:</strong> All skin types, especially dull, tired skin in need of a resurfacing radiance boost.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Benefits</summary>
+    <div class="vp-product__detail-content">
+      <ul>
+        <li>Delivers an immediate, visible glow boost.</li>
+        <li>Helps fade dullness and even out skin tone.</li>
+        <li>Deeply nourishes with shea butter and sweet almond oil.</li>
+        <li>Resurfaces without stripping or drying out skin.</li>
+        <li>Suitable for all skin types as a weekly glow ritual.</li>
+      </ul>
+    </div>
+  </details>
+
+{% elsif vanaya_product_name contains 'complete ritual' or vanaya_product_name contains 'raksha bandhan gifting' %}
+  <details>
+    <summary>Ingredients</summary>
+    <div class="vp-product__detail-content">
+      <p><strong>What's inside:</strong> Sea Buckthorn Oil (5 ml), Kumkumadi Tailam (5 ml), Ratri Glow Night Cream (12 gm), Chamak Damak Glow Ubtan (12 gm), Tara Sitara Exfoliating Scrub (12 gm), Nayan Tara Under Eye Cream (12 gm).</p>
+    </div>
+  </details>
+  <details>
+    <summary>Benefits</summary>
+    <div class="vp-product__detail-content">
+      <ul>
+        <li>A complete Ayurvedic face-and-eye ritual in one box.</li>
+        <li>Supports hydration, overnight repair, exfoliation and glow.</li>
+        <li>Pairs Vanaya's hero Sea Buckthorn and Kumkumadi oils with four complementary creams.</li>
+        <li>Gift-ready for festive, corporate and celebration gifting.</li>
+      </ul>
+    </div>
+  </details>
+
+{% elsif vanaya_product_name contains 'glow essentials' %}
+  <details>
+    <summary>Ingredients</summary>
+    <div class="vp-product__detail-content">
+      <p><strong>What's inside:</strong> Sea Buckthorn Oil (5 ml), Kumkumadi Tailam (5 ml), Ratri Glow Night Cream (12 gm), Chamak Damak Glow Ubtan (12 gm), Kaansa Wand (1 unit).</p>
+    </div>
+  </details>
+  <details>
+    <summary>Benefits</summary>
+    <div class="vp-product__detail-content">
+      <ul>
+        <li>A focused starter ritual featuring Vanaya's hero oils and glow creams.</li>
+        <li>Supports hydration, overnight renewal and a brighter-looking complexion.</li>
+        <li>Includes a traditional Kaansa wand for an at-home facial ritual.</li>
+        <li>Gift-ready for festive, corporate and celebration gifting.</li>
+      </ul>
+    </div>
+  </details>
+{% endif %}

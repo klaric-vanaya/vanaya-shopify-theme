@@ -1,0 +1,114 @@
+/* v11 — tighter editorial rhythm and refined customer-story presentation. */
+.vanaya-video-copy h2 {
+  font-size: clamp(25px, 2.94vw, 43px) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -.025em !important;
+}
+
+.vanaya-video-copy { width: min(455px, calc(100vw - 48px)); }
+
+.template-index .vanaya-products,
+.template-index .vanaya-gifting,
+.template-index .vanaya-bloggers,
+.template-index .vanaya-faq,
+.template-index .vanaya-values,
+.template-index .vanaya-journal,
+.template-index .vanaya-testimonials {
+  padding-top: 42px !important;
+  padding-bottom: 42px !important;
+}
+
+.template-index .vanaya-seabuckthorn {
+  padding-top: 48px !important;
+  padding-bottom: 48px !important;
+}
+
+.template-index .vanaya-heading { margin-bottom: 22px !important; }
+
+.vanaya-testimonials {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #28392e 0%, #405442 52%, #69755f 100%) !important;
+  color: #fbf7ea !important;
+}
+
+.vanaya-testimonials::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: .42;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(212,210,180,.42), transparent 27%),
+    radial-gradient(circle at 92% 94%, rgba(206,178,111,.25), transparent 32%);
+}
+
+.vanaya-testimonial-orbit {
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(244,233,197,.13);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.vanaya-testimonial-orbit--one { width: 330px; height: 330px; top: -190px; right: 8%; }
+.vanaya-testimonial-orbit--two { width: 210px; height: 210px; bottom: -130px; left: 3%; }
+
+.vanaya-testimonials .vanaya-heading { justify-content: center; text-align: center; }
+.vanaya-testimonials .vanaya-heading > div { max-width: 720px; }
+.vanaya-testimonials .vanaya-kicker { color: #ddd6b8 !important; }
+.vanaya-testimonials .vanaya-heading h2 { color: #fffaf0 !important; }
+.vanaya-testimonial-intro { max-width: 610px; margin: 12px auto 0; color: rgba(255,250,240,.76); font: 15px/1.65 Georgia, serif; }
+
+.vanaya-testimonial-viewport { padding: 10px 2px 16px; }
+.vanaya-testimonial-card {
+  position: relative;
+  min-height: 360px;
+  padding: 28px 28px 25px;
+  overflow: hidden;
+  border: 1px solid rgba(255,248,228,.22) !important;
+  border-radius: 2px 42px 2px 2px !important;
+  background: linear-gradient(145deg, rgba(255,255,255,.97), rgba(244,239,218,.94)) !important;
+  color: #2f372e;
+  box-shadow: 0 24px 55px rgba(12,20,14,.24) !important;
+}
+
+.vanaya-testimonial-card::after {
+  content: "";
+  position: absolute;
+  width: 105px; height: 105px;
+  right: -52px; bottom: -52px;
+  border: 1px solid rgba(98,111,84,.22);
+  border-radius: 50%;
+}
+
+.vanaya-testimonial-card-top { display: flex; align-items: center; justify-content: space-between; }
+.vanaya-testimonial-stars { margin: 0 !important; color: #a77b29 !important; font-size: 15px !important; }
+.vanaya-testimonial-number { color: #79826f; font: italic 14px Georgia, serif; }
+.vanaya-testimonial-quote { display: block; height: 57px; margin-top: 16px; color: #9a6b20; font: 76px/.9 Georgia, serif; opacity: .82; }
+.vanaya-testimonial-card blockquote { margin: 0 0 26px !important; color: #333b31; font: 16px/1.72 Georgia, "Times New Roman", serif !important; }
+
+.vanaya-testimonial-author { display: flex; align-items: center; gap: 12px; padding-top: 17px; border-top: 1px solid rgba(65,79,62,.15); }
+.vanaya-testimonial-monogram { display: grid; flex: 0 0 38px; height: 38px; place-items: center; border-radius: 50%; background: #4e624d; color: #fff9e9; font: 17px Georgia, serif; }
+.vanaya-testimonial-name { display: block; color: #30392f; font-size: 14px; letter-spacing: .02em; }
+.vanaya-testimonial-product { display: block; margin-top: 3px; color: #657060; font-size: 12px; }
+.vanaya-testimonial-preview { color: #586355; font-size: 9px !important; }
+
+.vanaya-testimonial-controls { margin-top: 18px !important; }
+.vanaya-testimonial-controls button { border-color: rgba(255,248,228,.55) !important; color: #fff9e9 !important; transition: background .25s, color .25s, transform .25s; }
+.vanaya-testimonial-controls button:hover { background: #fff9e9 !important; color: #344638 !important; transform: translateY(-2px); }
+
+@media (max-width: 600px) {
+  .vanaya-video-copy h2 { font-size: clamp(22px, 6.65vw, 31px) !important; }
+  .vanaya-video-copy { width: auto; }
+  .template-index .vanaya-products,
+  .template-index .vanaya-gifting,
+  .template-index .vanaya-bloggers,
+  .template-index .vanaya-faq,
+  .template-index .vanaya-values,
+  .template-index .vanaya-journal,
+  .template-index .vanaya-testimonials { padding-top: 30px !important; padding-bottom: 30px !important; }
+  .template-index .vanaya-seabuckthorn { padding-top: 36px !important; padding-bottom: 36px !important; }
+  .template-index .vanaya-heading { margin-bottom: 18px !important; }
+  .vanaya-testimonial-card { min-height: 330px; padding: 24px 22px 22px; }
+  .vanaya-testimonial-intro { font-size: 13px; }
+}

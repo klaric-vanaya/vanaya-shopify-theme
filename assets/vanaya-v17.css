@@ -1,0 +1,48 @@
+/* Vanaya v17 unified action palette */
+:root{--vanaya-action-bg:#d4d2b4;--vanaya-action-fg:#4b4136}
+
+.vanaya-journal__form button,
+.vanaya-global-footer__journal button,
+.vanaya-journal__form button:hover,
+.vanaya-journal__form button:focus,
+.vanaya-global-footer__journal button:hover,
+.vanaya-global-footer__journal button:focus{
+  min-height:42px!important;
+  margin:4px 0 4px 12px!important;
+  padding:8px 18px!important;
+  border:1px solid var(--vanaya-action-fg)!important;
+  border-radius:999px!important;
+  background:var(--vanaya-action-bg)!important;
+  color:var(--vanaya-action-fg)!important;
+  font-weight:700!important;
+  box-shadow:none!important;
+}
+
+.vanaya-product-edge-arrow,
+.vanaya-testimonial-side,
+.vanaya-banner-arrow,
+.vanaya-carousel-tools button,
+.vp-gallery__arrow,
+.swiper-button-prev,
+.swiper-button-next,
+.vanaya-product-edge-arrow:hover,
+.vanaya-testimonial-side:hover,
+.vanaya-banner-arrow:hover,
+.vanaya-carousel-tools button:hover,
+.vp-gallery__arrow:hover,
+.swiper-button-prev:hover,
+.swiper-button-next:hover,
+.vanaya-product-edge-arrow:focus,
+.vanaya-testimonial-side:focus,
+.vanaya-banner-arrow:focus,
+.vanaya-carousel-tools button:focus,
+.vp-gallery__arrow:focus,
+.swiper-button-prev:focus,
+.swiper-button-next:focus{
+  border-color:var(--vanaya-action-fg)!important;
+  background:var(--vanaya-action-bg)!important;
+  color:var(--vanaya-action-fg)!important;
+  box-shadow:0 8px 22px rgba(75,65,54,.16)!important;
+}
+
+.swiper-button-prev:after,.swiper-button-next:after{color:var(--vanaya-action-fg)!important}

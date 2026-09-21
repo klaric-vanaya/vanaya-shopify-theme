@@ -1,0 +1,27 @@
+<section class="vanaya-section vanaya-video-hero" data-vanaya-video-hero>
+  {% if section.settings.video != blank %}
+    {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata' }}
+  {% else %}
+    <video src="{{ 'vanaya-brand-film.mp4' | asset_url }}" autoplay muted loop playsinline preload="metadata"></video>
+  {% endif %}
+  <div class="vanaya-video-shade" aria-hidden="true"></div>
+  <div class="vanaya-checker" aria-hidden="true">
+    {% for i in (0..23) %}<span style="--tile:{{ i }}"></span>{% endfor %}
+  </div>
+  <div class="vanaya-video-loading" aria-live="polite"><span class="vanaya-loading-mark">✣</span><span>{{ section.settings.loading_text }}</span></div>
+  <div class="vanaya-video-copy">
+    <p class="vanaya-kicker">{{ section.settings.eyebrow }}</p>
+    <h2><span>{{ section.settings.heading_line_1 }}</span><span>{{ section.settings.heading_line_2 }}</span></h2>
+    <p>{{ section.settings.text }}</p>
+  </div>
+</section>
+{% schema %}
+{"name":"Vanaya video hero","settings":[
+{"type":"video","id":"video","label":"Shopify-hosted video","info":"Optional. The included Vanaya film is used until another video is selected."},
+{"type":"text","id":"loading_text","label":"Loading text","default":"Preparing your ritual"},
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"The Vanaya ritual film"},
+{"type":"text","id":"heading_line_1","label":"Heading line 1","default":"Ancient wisdom."},
+{"type":"text","id":"heading_line_2","label":"Heading line 2","default":"Modern radiance."},
+{"type":"textarea","id":"text","label":"Text","default":"Skincare becomes more meaningful when every touch is intentional."}
+],"presets":[{"name":"Vanaya video hero"}]}
+{% endschema %}

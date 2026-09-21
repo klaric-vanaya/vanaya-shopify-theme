@@ -1,0 +1,249 @@
+/* Vanaya v27 — cart width and recently-viewed card reconstruction */
+:root{--v27-green:#d4d2b4;--v27-brown:#4b4136;--v27-cream:#fffaf0;--v27-line:rgba(75,65,54,.20)}
+
+/* Keep the cart within the viewport and use the available page width. */
+.template-cart #root,.template-cart #content,.template-cart main{max-width:100%!important;overflow-x:clip!important}
+.template-cart .form-cart{
+  width:min(1560px,calc(100% - 48px))!important;
+  max-width:1560px!important;
+  margin-inline:auto!important;
+  padding:46px 0 72px!important;
+}
+.template-cart .form-cart .cols.aside{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(360px,430px)!important;
+  gap:36px!important;
+  align-items:start!important;
+  width:100%!important;
+  max-width:100%!important;
+}
+.template-cart .form-cart .cols.aside>article,
+.template-cart .form-cart .cols.aside>aside{min-width:0!important;max-width:100%!important}
+
+/* Stable cart-item placement: image / details / price, controls below details. */
+.template-cart .form-cart ul.l4ca>li:not(.has-l4ca){
+  grid-template-columns:160px minmax(0,1fr) max-content!important;
+  grid-template-areas:"image details price" "image controls controls"!important;
+  align-items:center!important;
+  column-gap:24px!important;
+  row-gap:14px!important;
+  overflow:hidden!important;
+}
+.template-cart .form-cart ul.l4ca>li:not(.has-l4ca)>figure{grid-area:image!important}
+.template-cart .form-cart ul.l4ca>li:not(.has-l4ca)>section{grid-area:details!important;align-self:center!important}
+.template-cart .form-cart ul.l4ca>li:not(.has-l4ca)>.price{grid-area:price!important;align-self:center!important}
+.template-cart .form-cart ul.l4ca>li:not(.has-l4ca)>footer{grid-area:controls!important;justify-self:start!important}
+.template-cart .form-cart ul.l4ca>li h2,.template-cart .form-cart ul.l4ca>li h2 a{overflow-wrap:anywhere!important;word-break:normal!important}
+.template-cart .form-cart .input-amount{flex:0 0 106px!important;min-width:106px!important}
+.template-cart .form-cart .cols.aside>aside{width:100%!important;max-width:430px!important;justify-self:end!important}
+
+/* Four balanced recently-viewed cards. This also neutralises slider/card width rules. */
+.template-cart .recently-viewed-products{overflow:hidden!important}
+.template-cart .recently-viewed-products>.l4cl,
+.template-cart .recently-viewed-products .l4cl:not(.slider){
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:22px!important;
+  width:min(1560px,100%)!important;
+  max-width:1560px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+.template-cart .recently-viewed-products .l4cl>li{
+  display:flex!important;
+  flex-direction:column!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  height:100%!important;
+  margin:0!important;
+  padding:11px 11px 22px!important;
+  white-space:normal!important;
+}
+.template-cart .recently-viewed-products .l4cl>li>*{box-sizing:border-box!important;max-width:100%!important}
+.template-cart .recently-viewed-products .l4cl>li figure{
+  width:100%!important;
+  min-width:0!important;
+  margin:0 0 18px!important;
+}
+.template-cart .recently-viewed-products .l4cl>li figure a,
+.template-cart .recently-viewed-products .l4cl>li figure picture{display:block!important;width:100%!important}
+.template-cart .recently-viewed-products .l4cl>li figure img{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:1/1!important;
+  object-fit:cover!important;
+}
+.template-cart .recently-viewed-products .l4cl>li section,
+.template-cart .recently-viewed-products .l4cl>li header,
+.template-cart .recently-viewed-products .l4cl>li footer{width:100%!important;min-width:0!important}
+.template-cart .recently-viewed-products .l4cl>li h2,
+.template-cart .recently-viewed-products .l4cl>li h3,
+.template-cart .recently-viewed-products .l4cl>li h2 a,
+.template-cart .recently-viewed-products .l4cl>li h3 a{
+  display:block!important;
+  width:100%!important;
+  margin:0!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+  white-space:normal!important;
+}
+.template-cart .recently-viewed-products .l4cl>li .price{margin-top:auto!important;padding-top:10px!important;white-space:normal!important}
+
+@media(max-width:1100px){
+  .template-cart .form-cart{width:min(100% - 32px,1180px)!important}
+  .template-cart .form-cart .cols.aside{grid-template-columns:minmax(0,1fr) minmax(320px,380px)!important;gap:24px!important}
+  .template-cart .form-cart ul.l4ca>li:not(.has-l4ca){grid-template-columns:125px minmax(0,1fr)!important;grid-template-areas:"image details" "image controls"!important}
+  .template-cart .form-cart ul.l4ca>li:not(.has-l4ca)>.price{display:none!important}
+  .template-cart .form-cart ul.l4ca>li>figure{width:125px!important;height:135px!important}
+  .template-cart .recently-viewed-products>.l4cl,.template-cart .recently-viewed-products .l4cl:not(.slider){grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important}
+}
+
+@media(max-width:760px){
+  .template-cart .form-cart{width:100%!important;padding:28px 12px 52px!important}
+  .template-cart .form-cart .cols.aside{grid-template-columns:minmax(0,1fr)!important;gap:22px!important}
+  .template-cart .form-cart .cols.aside>aside{max-width:none!important;justify-self:stretch!important}
+  .template-cart .form-cart ul.l4ca>li:not(.has-l4ca){
+    grid-template-columns:96px minmax(0,1fr)!important;
+    grid-template-areas:"image details" "image controls"!important;
+    column-gap:13px!important;
+    row-gap:10px!important;
+    padding:10px!important;
+  }
+  .template-cart .form-cart ul.l4ca>li>figure{width:96px!important;height:108px!important}
+  .template-cart .form-cart ul.l4ca>li:not(.has-l4ca)>footer{max-width:100%!important;flex-wrap:wrap!important}
+  .template-cart .recently-viewed-products{padding:48px 12px 58px!important}
+  .template-cart .recently-viewed-products>.l4cl,
+  .template-cart .recently-viewed-products .l4cl:not(.slider){grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+  .template-cart .recently-viewed-products .l4cl>li{padding:7px 7px 16px!important}
+  .template-cart .recently-viewed-products .l4cl>li figure{margin-bottom:13px!important}
+  .template-cart .recently-viewed-products .l4cl>li h2,
+  .template-cart .recently-viewed-products .l4cl>li h3{font-size:14px!important;line-height:1.35!important}
+}
+
+/* v27.1 — remove the theme section-width ceiling from the main cart layout. */
+.template-cart .shopify-section:has(> .form-cart),
+.template-cart .shopify-section:has(> article.form-cart){
+  width:100%!important;
+  max-width:none!important;
+  margin-inline:0!important;
+  padding-inline:0!important;
+}
+.template-cart .form-cart[class*="section-width-"]{
+  width:min(1680px,calc(100vw - 80px))!important;
+  max-width:none!important;
+  margin-inline:auto!important;
+}
+.template-cart .form-cart .cols.aside.b50{
+  grid-template-columns:minmax(0,1.38fr) minmax(460px,1fr)!important;
+  gap:42px!important;
+}
+.template-cart .form-cart .cols.aside.b50>article,
+.template-cart .form-cart .cols.aside.b50>aside{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+}
+.template-cart .form-cart .cols.aside.b50>aside{
+  justify-self:stretch!important;
+}
+.template-cart .form-cart ul.l4ca,
+.template-cart .form-cart ul.l4ca>li{
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+}
+
+@media(max-width:1200px){
+  .template-cart .form-cart[class*="section-width-"]{width:calc(100vw - 40px)!important}
+  .template-cart .form-cart .cols.aside.b50{grid-template-columns:minmax(0,1.25fr) minmax(360px,.85fr)!important;gap:26px!important}
+}
+@media(max-width:760px){
+  .template-cart .form-cart[class*="section-width-"]{width:100%!important}
+  .template-cart .form-cart .cols.aside.b50{grid-template-columns:minmax(0,1fr)!important;gap:22px!important}
+}
+
+/* v27.2 — definitive viewport-width cart fix.
+   Xtra/Calm constrains #content with var(--glw); release that constraint on cart only. */
+body.template-cart #root > #content,
+body.template-cart #root #content{
+  box-sizing:border-box!important;
+  width:100vw!important;
+  max-width:100vw!important;
+  margin-left:calc(50% - 50vw)!important;
+  margin-right:calc(50% - 50vw)!important;
+  padding-left:0!important;
+  padding-right:0!important;
+  overflow-x:visible!important;
+}
+body.template-cart #content > .shopify-section,
+body.template-cart #content > [id*="shopify-section"]{
+  box-sizing:border-box!important;
+  width:100%!important;
+  max-width:none!important;
+}
+body.template-cart #content .form-cart[class*="section-width-"]{
+  box-sizing:border-box!important;
+  width:calc(100vw - 72px)!important;
+  max-width:1720px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+body.template-cart #content .form-cart .cols.aside.b50{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.48fr) minmax(480px,.92fr)!important;
+  column-gap:38px!important;
+  width:100%!important;
+  max-width:none!important;
+  padding-right:0!important;
+}
+body.template-cart #content .form-cart .cols.aside.b50>article,
+body.template-cart #content .form-cart .cols.aside.b50>aside{
+  box-sizing:border-box!important;
+  min-width:0!important;
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+body.template-cart #content .form-cart .cols.aside.b50>aside{
+  justify-self:stretch!important;
+}
+body.template-cart #content .form-cart ul.l4ca,
+body.template-cart #content .form-cart ul.l4ca>li{
+  width:100%!important;
+  max-width:none!important;
+}
+
+@media (min-width:761px) and (max-width:1250px){
+  body.template-cart #content .form-cart[class*="section-width-"]{
+    width:calc(100vw - 40px)!important;
+  }
+  body.template-cart #content .form-cart .cols.aside.b50{
+    grid-template-columns:minmax(0,1.2fr) minmax(360px,.8fr)!important;
+    column-gap:26px!important;
+  }
+}
+@media (max-width:760px){
+  body.template-cart #root #content{
+    width:100%!important;
+    max-width:100%!important;
+    margin-left:0!important;
+    margin-right:0!important;
+  }
+  body.template-cart #content .form-cart[class*="section-width-"]{
+    width:100%!important;
+    max-width:100%!important;
+    padding-left:12px!important;
+    padding-right:12px!important;
+  }
+  body.template-cart #content .form-cart .cols.aside.b50{
+    grid-template-columns:minmax(0,1fr)!important;
+    row-gap:22px!important;
+  }
+}

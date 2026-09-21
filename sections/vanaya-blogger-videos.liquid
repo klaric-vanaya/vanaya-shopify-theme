@@ -1,0 +1,179 @@
+<section class="vanaya-section vanaya-bloggers" data-vanaya-bloggers>
+  <div class="vanaya-heading">
+    <div>
+      <p class="vanaya-kicker">{{ section.settings.eyebrow }}</p>
+      <h2>As Seen on <a class="vanaya-instagram-link" href="https://www.instagram.com/vanayaveda" target="_blank" rel="noopener noreferrer">@vanayaveda</a></h2>
+    </div>
+  </div>
+
+  <div class="vanaya-blog-grid">
+    <article
+      data-vanaya-video-card
+      tabindex="0"
+      role="button"
+      aria-label="Play Vanaya creator video 1 with sound"
+    >
+      <video
+        class="vanaya-blog-preview-video"
+        src="https://cdn.shopify.com/videos/c/o/v/5426c64ecf8d4133aec565ab4c7a835a.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label="Vanaya creator video 1"
+      ></video>
+      <span class="vanaya-blog-video-hint">▶ Play with sound</span>
+    </article>
+    <article
+      data-vanaya-video-card
+      tabindex="0"
+      role="button"
+      aria-label="Play Vanaya creator video 2 with sound"
+    >
+      <video
+        class="vanaya-blog-preview-video"
+        src="https://cdn.shopify.com/videos/c/o/v/a8bc644b3fc2426f865202dc5b64daf6.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label="Vanaya creator video 2"
+      ></video>
+      <span class="vanaya-blog-video-hint">▶ Play with sound</span>
+    </article>
+    <article
+      data-vanaya-video-card
+      tabindex="0"
+      role="button"
+      aria-label="Play Vanaya creator video 3 with sound"
+    >
+      <video
+        class="vanaya-blog-preview-video"
+        src="https://cdn.shopify.com/videos/c/o/v/e91a23ab717a47ed9a1e1f695289b5e8.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label="Vanaya creator video 3"
+      ></video>
+      <span class="vanaya-blog-video-hint">▶ Play with sound</span>
+    </article>
+    <article
+      data-vanaya-video-card
+      tabindex="0"
+      role="button"
+      aria-label="Play Vanaya creator video 4 with sound"
+    >
+      <video
+        class="vanaya-blog-preview-video"
+        src="https://cdn.shopify.com/videos/c/o/v/e4bde69316074a989c13395577e7de5d.mov"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label="Vanaya creator video 4"
+      ></video>
+      <span class="vanaya-blog-video-hint">▶ Play with sound</span>
+    </article>
+  </div>
+
+  <div class="vanaya-video-lightbox" data-vanaya-video-lightbox aria-hidden="true">
+    <div class="vanaya-video-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Vanaya creator video">
+      <button type="button" class="vanaya-video-lightbox__close" data-vanaya-video-close aria-label="Close video"><span aria-hidden="true">×</span></button>
+      <div data-vanaya-video-stage></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(() => {
+  const root = document.currentScript.previousElementSibling;
+  if (!root || !root.matches('[data-vanaya-bloggers]')) return;
+
+  const lightbox = root.querySelector('[data-vanaya-video-lightbox]');
+  const stage = root.querySelector('[data-vanaya-video-stage]');
+  const close = root.querySelector('[data-vanaya-video-close]');
+  const cards = root.querySelectorAll('[data-vanaya-video-card]');
+
+  const closeModal = () => {
+    const video = stage.querySelector('video');
+    if (video) {
+      video.pause();
+      video.removeAttribute('src');
+      video.load?.();
+    }
+    stage.innerHTML = '';
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.documentElement.style.overflow = '';
+  };
+
+  const openModal = (card) => {
+    const sourceVideo = card.querySelector('video');
+    if (!sourceVideo) return;
+
+    const src = sourceVideo.currentSrc || sourceVideo.getAttribute('src');
+    if (!src) return;
+
+    const video = document.createElement('video');
+    video.src = src;
+    video.controls = true;
+    video.autoplay = false;
+    video.loop = false;
+    video.muted = false;
+    video.defaultMuted = false;
+    video.volume = 1;
+    video.playsInline = true;
+    video.preload = 'auto';
+    video.className = 'vanaya-blog-modal-video';
+
+    stage.innerHTML = '';
+    stage.appendChild(video);
+
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.documentElement.style.overflow = 'hidden';
+
+    video.currentTime = 0;
+    video.muted = false;
+    video.defaultMuted = false;
+    video.volume = 1;
+
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {
+        video.controls = true;
+      });
+    }
+  };
+
+  cards.forEach((card) => {
+    card.addEventListener('click', () => openModal(card));
+    card.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openModal(card);
+      }
+    });
+  });
+
+  close?.addEventListener('click', closeModal);
+  lightbox?.addEventListener('click', (event) => {
+    if (event.target === lightbox) closeModal();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && lightbox?.classList.contains('is-open')) closeModal();
+  });
+})();
+</script>
+
+{% schema %}
+{"name":"Vanaya blogger videos","max_blocks":4,"settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Seen in their rituals"},
+{"type":"text","id":"heading","label":"Heading","default":"Beauty Rituals by Creators"}
+],"blocks":[{"type":"video","name":"Blogger video","settings":[{"type":"video","id":"video","label":"Shopify-hosted video"},{"type":"text","id":"fallback_asset","label":"Included asset filename"}]}],"presets":[{"name":"Vanaya blogger videos"}]}
+{% endschema %}

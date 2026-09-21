@@ -1,0 +1,15 @@
+<section class="vanaya-section vanaya-faq" id="having-doubts">
+  <div><p class="vanaya-kicker">{{ section.settings.eyebrow }}</p><h2>{{ section.settings.heading }}</h2><p>{{ section.settings.text }}</p></div>
+  <div class="vanaya-faq-list">
+    {% for block in section.blocks %}
+      <details {{ block.shopify_attributes }}><summary><span>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>{{ block.settings.question }}<b aria-hidden="true">+</b></summary><p>{{ block.settings.answer }}</p></details>
+    {% endfor %}
+  </div>
+</section>
+{% schema %}
+{"name":"Vanaya FAQ","settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Everything you may want to know"},
+{"type":"text","id":"heading","label":"Heading","default":"Having Doubts"},
+{"type":"textarea","id":"text","label":"Text","default":"Find simple answers about Vanaya products, rituals, gifting and delivery."}
+],"blocks":[{"type":"question","name":"Question","settings":[{"type":"text","id":"question","label":"Question","default":"Are Vanaya products suitable for Indian skin?"},{"type":"textarea","id":"answer","label":"Answer","default":"Vanaya rituals are thoughtfully created around Indian skin, our climate and common concerns."}]}],"presets":[{"name":"Vanaya FAQ"}]}
+{% endschema %}

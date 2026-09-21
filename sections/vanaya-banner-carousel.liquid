@@ -1,0 +1,19 @@
+<section class="vanaya-section vanaya-banners" aria-label="Vanaya campaigns" data-vanaya-banners>
+  {% for block in section.blocks %}
+    {% if block.settings.image != blank %}
+      <img class="vanaya-banner-slide{% if forloop.first %} active{% endif %}" src="{{ block.settings.image | image_url: width: 2200 }}" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" loading="eager" alt="{{ block.settings.alt | escape }}" data-banner-slide>
+    {% else %}
+      <img class="vanaya-banner-slide{% if forloop.first %} active{% endif %}" src="{{ block.settings.fallback_asset | asset_url }}" width="1800" height="760" loading="eager" alt="{{ block.settings.alt | escape }}" data-banner-slide>
+    {% endif %}
+  {% endfor %}
+  <button class="vanaya-banner-arrow prev vanaya-control-v20" type="button" data-banner-move="-1" aria-label="Previous banner">‹</button>
+  <button class="vanaya-banner-arrow next vanaya-control-v20" type="button" data-banner-move="1" aria-label="Next banner">›</button>
+  <div class="vanaya-banner-dots">{% for block in section.blocks %}<button type="button" data-banner-dot{% if forloop.first %} class="active"{% endif %} aria-label="Show banner {{ forloop.index }}"></button>{% endfor %}</div>
+</section>
+{% schema %}
+{"name":"Vanaya banner carousel","max_blocks":10,"settings":[],"blocks":[{"type":"banner","name":"Banner","settings":[
+{"type":"image_picker","id":"image","label":"Custom banner"},
+{"type":"text","id":"fallback_asset","label":"Included asset filename"},
+{"type":"text","id":"alt","label":"Alternative text","default":"Vanaya campaign"}
+]}],"presets":[{"name":"Vanaya banner carousel"}]}
+{% endschema %}

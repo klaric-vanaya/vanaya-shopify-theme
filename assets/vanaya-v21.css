@@ -1,0 +1,53 @@
+/* Vanaya v21: mobile footer repair and collection experience */
+:root{--v21-green:#d4d2b4;--v21-brown:#4b4136;--v21-cream:#fffaf0}
+
+.vanaya-shop{background:var(--v21-cream);color:var(--v21-brown)}
+.vanaya-shop__hero{position:relative;width:100%;aspect-ratio:2048/822;min-height:300px;overflow:hidden;background:#5c3527}
+.vanaya-shop__hero>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.vanaya-shop__hero-copy{position:absolute;inset:50% auto auto 50%;width:min(88%,650px);padding:26px 38px;transform:translate(-50%,-50%);border:1px solid rgba(255,250,240,.55);background:rgba(255,250,240,.68);color:var(--v21-brown);text-align:center;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.vanaya-shop__hero-copy p{margin:0 0 9px;font:700 10px/1.2 "Avenir Next",Avenir,Arial,sans-serif;letter-spacing:.19em;text-transform:uppercase}
+.vanaya-shop__hero-copy h1{margin:0;font:700 clamp(32px,4.2vw,64px)/1.02 "Avenir Next",Avenir,Arial,sans-serif;letter-spacing:-.025em;color:inherit}
+.vanaya-shop__body{padding:58px max(20px,4vw) 76px}
+.vanaya-shop__intro{max-width:720px;margin:0 auto 38px;text-align:center}
+.vanaya-shop__intro h2{margin:8px 0 13px;font:700 clamp(31px,3.5vw,52px)/1.08 "Avenir Next",Avenir,Arial,sans-serif;color:var(--v21-brown)}
+.vanaya-shop__intro>p:last-child{margin:0;font:400 15px/1.7 "Avenir Next",Avenir,Arial,sans-serif}
+.vanaya-shop__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;max-width:1500px;margin:auto}
+.vanaya-shop-card{border:1px solid rgba(75,65,54,.25)!important;border-radius:18px!important;background:#fff!important;box-shadow:0 14px 36px rgba(67,49,27,.07)!important}
+.vanaya-shop-card .vanaya-card-media{display:block;aspect-ratio:1;overflow:hidden;background:#f3ead9}
+.vanaya-shop-card .vanaya-card-media img,.vanaya-shop-card .vanaya-card-media svg{display:block;width:100%;height:100%;object-fit:cover;transition:transform .55s ease}
+.vanaya-shop-card:hover .vanaya-card-media img{transform:scale(1.025)}
+.vanaya-shop-card .vanaya-card-copy{display:flex;min-height:218px;flex-direction:column;padding:20px}
+.vanaya-shop-card .vanaya-card-copy small{min-height:18px;color:#7b6d59;font-weight:700}
+.vanaya-shop-card h3{min-height:53px;margin:8px 0 12px;font:700 19px/1.32 "Avenir Next",Avenir,Arial,sans-serif;color:var(--v21-brown)}
+.vanaya-shop-card h3 a{color:inherit;text-decoration:none}
+.vanaya-shop-card .vanaya-price{margin-top:auto;margin-bottom:17px;font-weight:700}
+.vanaya-shop-card .vanaya-price s{margin-left:7px;opacity:.55;font-size:.88em}
+.vanaya-shop__pagination{display:flex;align-items:center;justify-content:center;gap:16px;margin:38px auto 0}.vanaya-shop__pagination span{font-size:12px;font-weight:700;letter-spacing:.12em}
+.vanaya-shop__empty{text-align:center}
+
+/* Footer newsletter stays legible and aligned on every viewport. */
+#root .vanaya-global-footer__journal form>label{
+  position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important
+}
+#root .vanaya-global-footer__journal form>div{display:flex!important;align-items:center!important;gap:10px!important}
+#root .vanaya-global-footer__journal form input{width:auto!important;min-width:0!important;flex:1 1 auto!important}
+#root .vanaya-global-footer__journal button.vanaya-button-v20{display:flex!important;visibility:visible!important;flex:0 0 auto!important;width:auto!important;min-width:88px!important;min-height:42px!important;margin:4px 0!important;padding:0 18px!important;color:var(--v21-brown)!important;background:var(--v21-green)!important}
+#root .vanaya-global-footer__journal button.vanaya-button-v20 span{display:block!important;visibility:visible!important;opacity:1!important;color:var(--v21-brown)!important;font-size:11px!important;font-weight:800!important;line-height:1!important}
+
+@media(max-width:900px){.vanaya-shop__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
+@media(max-width:600px){
+  .template-index #root .vanaya-products--loved article.vanaya-card--double{border:1px solid rgba(75,65,54,.25)!important;outline:0!important;box-shadow:0 10px 24px rgba(67,49,27,.07)!important}
+  .template-index #root .vanaya-products--loved article.vanaya-card--double::before{content:none!important;display:none!important}
+  .vanaya-shop__hero{aspect-ratio:4/3;min-height:0}
+  .vanaya-shop__hero>img{object-position:center center}
+  .vanaya-shop__hero-copy{width:82%;padding:18px 15px;background:rgba(255,250,240,.62)}
+  .vanaya-shop__hero-copy p{font-size:8px}.vanaya-shop__hero-copy h1{font-size:31px}
+  .vanaya-shop__body{padding:38px 12px 54px}.vanaya-shop__intro{margin-bottom:26px;padding:0 10px}
+  .vanaya-shop__intro h2{font-size:30px}.vanaya-shop__intro>p:last-child{font-size:13px}
+  .vanaya-shop__grid{gap:10px}.vanaya-shop-card{border-radius:10px!important}
+  .vanaya-shop-card .vanaya-card-copy{min-height:190px;padding:13px 10px}
+  .vanaya-shop-card h3{min-height:48px;font-size:15px;line-height:1.3}
+  .vanaya-shop-card .vanaya-card-button{min-height:40px!important;font-size:9px!important}
+  #root .vanaya-global-footer__journal form>div{display:grid!important;grid-template-columns:minmax(0,1fr) 88px!important;gap:8px!important}
+  #root .vanaya-global-footer__journal button.vanaya-button-v20{min-width:88px!important;width:88px!important;padding:0 10px!important}
+}

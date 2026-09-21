@@ -1,0 +1,152 @@
+/* ==========================================================
+   Vanaya v29.19 — isolated refinements
+   ========================================================== */
+
+/* 1. Our Story: From Source to Skin -> Vanaya green */
+.vstory__journey{
+  background:#a2a880!important;
+  color:#6a4738!important;
+}
+.vstory__journey .vstory__kicker,
+.vstory__journey h2,
+.vstory__journey h3,
+.vstory__journey p,
+.vstory__journey b{
+  color:#6a4738!important;
+}
+.vstory__journey>div{
+  background:rgba(106,71,56,.18)!important;
+}
+.vstory__journey article{
+  background:#a2a880!important;
+}
+
+/* 3. Our Story editorial image must fill the entire left 50% cell */
+.vstory__belief-image--editorial{
+  position:relative!important;
+  min-height:720px!important;
+  overflow:hidden!important;
+  background:transparent!important;
+}
+.vstory__belief-image--editorial img{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+}
+@media(max-width:650px){
+  .vstory__belief-image--editorial{
+    min-height:0!important;
+    aspect-ratio:1/1!important;
+  }
+}
+
+/* 4. Contact button -> Vanaya green + brown */
+.vanaya-contact-page .vanaya-contact-submit{
+  background:#a2a880!important;
+  background-image:none!important;
+  color:#6a4738!important;
+  border-color:#6a4738!important;
+  box-shadow:none!important;
+}
+.vanaya-contact-page .vanaya-contact-submit:hover{
+  background:#b2b696!important;
+  color:#6a4738!important;
+}
+
+/* 5. Creator videos: clickable / refined hover */
+.vanaya-blog-grid article{
+  position:relative!important;
+  cursor:pointer!important;
+  overflow:hidden!important;
+}
+.vanaya-blog-grid article video{
+  transition:transform .32s ease,filter .32s ease!important;
+}
+@media(hover:hover) and (pointer:fine){
+  .vanaya-blog-grid article:hover video{
+    transform:scale(1.018)!important;
+    filter:brightness(.96)!important;
+  }
+}
+.vanaya-blog-video-hint{
+  position:absolute;
+  z-index:4;
+  right:12px;
+  bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(162,168,128,.9);
+  color:#6a4738;
+  font:700 9px/1 "Avenir Next",Avenir,Arial,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  pointer-events:none;
+  backdrop-filter:blur(5px);
+}
+
+/* Video lightbox */
+.vanaya-video-lightbox{
+  position:fixed;
+  z-index:999999;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  background:rgba(28,25,21,.72);
+  backdrop-filter:blur(7px);
+}
+.vanaya-video-lightbox.is-open{display:flex}
+.vanaya-video-lightbox__dialog{
+  position:relative;
+  width:min(460px,88vw);
+  max-height:84vh;
+  overflow:hidden;
+  border:1px solid rgba(162,168,128,.75);
+  border-radius:4px 34px 4px 4px;
+  background:#171512;
+  box-shadow:0 28px 80px rgba(0,0,0,.35);
+}
+.vanaya-video-lightbox__dialog video{
+  display:block;
+  width:100%;
+  max-height:84vh;
+  object-fit:contain;
+  background:#000;
+}
+.vanaya-video-lightbox__close{
+  position:absolute;
+  z-index:10;
+  top:10px;
+  right:10px;
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border:1px solid #6a4738;
+  border-radius:50%;
+  background:#a2a880;
+  color:#6a4738;
+  font:400 23px/1 Arial,sans-serif;
+  cursor:pointer;
+}
+
+/* 6. Instagram link in heading */
+.vanaya-bloggers .vanaya-instagram-link{
+  color:inherit!important;
+  text-decoration:none!important;
+  border-bottom:1px solid rgba(106,71,56,.35);
+  padding-bottom:2px;
+}
+.vanaya-bloggers .vanaya-instagram-link:hover{
+  color:#6a4738!important;
+  border-bottom-color:#6a4738;
+}

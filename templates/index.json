@@ -1,0 +1,371 @@
+{
+  "sections": {
+    "vanaya_video": {
+      "type": "vanaya-video-hero",
+      "settings": {
+        "loading_text": "Preparing your ritual",
+        "eyebrow": "",
+        "heading_line_1": "Not Reinventing Skincare,",
+        "heading_line_2": "Simply Remembering It.",
+        "text": ""
+      }
+    },
+    "vanaya_new": {
+      "type": "vanaya-product-carousel",
+      "blocks": {
+        "p1": {
+          "type": "product",
+          "settings": {
+            "product": "the-glow-essentials-gift-box",
+            "fallback_asset": "",
+            "fallback_hover_asset": "",
+            "badge": "The Edit",
+            "subtitle": "Glow · Sculpt · Restore",
+            "title": "The Glow Essentials Gift Box",
+            "measurement": "",
+            "price": "₹2,349"
+          }
+        },
+        "p2": {
+          "type": "product",
+          "settings": {
+            "product": "kesar-kumkumadi-resurfacing-mask",
+            "fallback_asset": "vanaya-product-resurfacing.webp",
+            "fallback_hover_asset": "",
+            "badge": "The Edit",
+            "subtitle": "Brighten · Refine · Renew",
+            "title": "Kesar Kumkumadi Resurfacing Mask",
+            "measurement": "",
+            "price": "₹1,699"
+          }
+        },
+        "p3": {
+          "type": "product",
+          "settings": {
+            "product": "ratri-glow-night-cream",
+            "fallback_asset": "vanaya-product-ratri.webp",
+            "fallback_hover_asset": "",
+            "badge": "Bestseller",
+            "subtitle": "Repair · Nourish · Glow",
+            "title": "Ratri Glow Night Cream",
+            "measurement": "",
+            "price": "₹1,799"
+          }
+        },
+        "p4": {
+          "type": "product",
+          "settings": {
+            "product": "sea-buckthorn-oil-30ml",
+            "fallback_asset": "vanaya-product-sea-buckthorn.webp",
+            "fallback_hover_asset": "",
+            "badge": "The Edit",
+            "subtitle": "Replenish · Support · Revive",
+            "title": "Sea Buckthorn Oil",
+            "measurement": "",
+            "price": "₹1,599"
+          }
+        },
+        "p5": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "fallback_asset": "vanaya-product-dark-circle.webp",
+            "fallback_hover_asset": "",
+            "badge": "The Edit",
+            "subtitle": "Smooth · Brighten · Restore",
+            "title": "Dark Circle Repair Cream",
+            "measurement": "",
+            "price": "₹1,299"
+          }
+        },
+        "p6": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "fallback_asset": "vanaya-product-haridradyam.webp",
+            "fallback_hover_asset": "",
+            "badge": "The Edit",
+            "subtitle": "Balance · Clarify · Refine",
+            "title": "Haridradyam Tailam",
+            "measurement": "",
+            "price": "₹1,599"
+          }
+        },
+        "p7": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "fallback_asset": "vanaya-product-kanak.webp",
+            "fallback_hover_asset": "",
+            "badge": "The Edit",
+            "subtitle": "Correct · Replenish · Revive",
+            "title": "Kanak Tailam",
+            "measurement": "",
+            "price": "₹1,599"
+          }
+        },
+        "p8": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "fallback_asset": "vanaya-product-kumkumadi.webp",
+            "fallback_hover_asset": "",
+            "badge": "Iconic ritual",
+            "subtitle": "Illuminate · Renew · Glow",
+            "title": "Kumkumadi Tailam",
+            "measurement": "",
+            "price": "₹1,799"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7",
+        "p8"
+      ],
+      "settings": {
+        "anchor": "the-vanaya-edit",
+        "eyebrow": "What Everyone's Buying",
+        "heading": "Most Loved"
+      }
+    },
+    "vanaya_story": {
+      "type": "vanaya-philosophy",
+      "settings": {
+        "fallback_video": "vanaya-sea-buckthorn-film.mp4",
+        "eyebrow": "",
+        "heading": "Our Hero Formula: the Sea Buckthorn Oil",
+        "text": "Vanaya Sea Buckthorn Oil is a concentrated, vitamin-rich ritual for skin that feels dry, depleted or less elastic. A few considered drops help replenish comfort, revive visible radiance and support a healthier-looking skin barrier.",
+        "link": "/collections/all",
+        "link_text": "Discover Sea Buckthorn Oil"
+      }
+    },
+    "vanaya_bloggers": {
+      "type": "vanaya-blogger-videos",
+      "blocks": {
+        "v1": {
+          "type": "video",
+          "settings": {
+            "fallback_asset": "vanaya-blogger-1.mp4"
+          }
+        },
+        "v2": {
+          "type": "video",
+          "settings": {
+            "fallback_asset": "vanaya-blogger-2.mp4"
+          }
+        },
+        "v3": {
+          "type": "video",
+          "settings": {
+            "fallback_asset": "vanaya-blogger-3.mp4"
+          }
+        },
+        "v4": {
+          "type": "video",
+          "settings": {
+            "fallback_asset": "vanaya-blogger-4.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3",
+        "v4"
+      ],
+      "settings": {
+        "eyebrow": "Our Community",
+        "heading": "As Seen on @vanayaveda"
+      }
+    },
+    "vanaya_sale": {
+      "type": "vanaya-explore-collection",
+      "settings": {
+        "eyebrow": "Discover your ritual",
+        "heading": "Explore the Range",
+        "subheading": "Ayurvedic rituals, thoughtfully made for contemporary skin.",
+        "collection": "",
+        "show_vendor": false,
+        "autoplay": true,
+        "autoplay_speed": 4,
+        "anchor": "explore-the-range"
+      }
+    },
+    "vanaya_values": {
+      "type": "vanaya-ritual-values",
+      "disabled": true,
+      "settings": {}
+    },
+    "vanaya_reviews": {
+      "type": "vanaya-testimonials",
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "Ratri Glow has become the easiest part of my night routine. The texture feels rich without sitting heavily on the skin, and I wake up with my face looking rested, comfortable and naturally refreshed.",
+            "customer": "Aryan Jindal",
+            "product": "Ratri Glow Night Cream",
+            "photo_asset": "customer-aryan-jindal.webp"
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "I like how simple the Kumkumadi Tailam ritual is—just a few drops at night and my skin feels noticeably softer by morning. It gives a healthy-looking glow without making the routine feel complicated.",
+            "customer": "Lalit Singh Bisht",
+            "product": "Kumkumadi Tailam",
+            "photo_asset": "customer-lalit-singh-bisht.webp"
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "The resurfacing mask feels like a proper at-home ritual. I use it when my skin looks tired or uneven, and afterwards it feels smoother, looks brighter and has that freshly cared-for finish I really enjoy.",
+            "customer": "Malvika Chowdhary",
+            "product": "Kesar Kumkumadi Resurfacing Mask",
+            "photo_asset": "customer-malvika-chowdhary.webp"
+          }
+        },
+        "r4": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "This exfoliating cream is gentle enough for my routine but still makes a visible difference. My skin feels polished rather than stripped, and makeup sits beautifully after I have used it.",
+            "customer": "Muskan Sharma",
+            "product": "Kumkumadi Glow Exfoliating Cream",
+            "photo_asset": "customer-muskan-sharma.webp"
+          }
+        },
+        "r5": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "Sea Buckthorn Oil has been lovely whenever my skin feels dry or stressed. A small amount makes it feel nourished and supple, and the soft glow it leaves behind is exactly what I want from an evening facial oil.",
+            "customer": "Prerna Sharma",
+            "product": "Sea Buckthorn Oil",
+            "photo_asset": "customer-prerna-sharma.webp"
+          }
+        },
+        "r6": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "I wanted something comfortable for the delicate eye area, and this fits perfectly into my evening routine. The texture is smooth, feels soothing after long days and leaves the under-eye area looking fresher.",
+            "customer": "Sakshi Sankhla",
+            "product": "Dark Circle Repair Cream",
+            "photo_asset": "customer-sakshi-sankhla.webp"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ],
+      "settings": {
+        "eyebrow": "Words from the Vanaya community",
+        "heading": "Loved Beyond the First Use",
+        "intro": "Real routines, thoughtful formulas and the little rituals our community keeps coming back to.",
+        "speed": 5
+      }
+    },
+    "vanaya_faq": {
+      "type": "vanaya-faq",
+      "blocks": {
+        "f1": {
+          "type": "question",
+          "settings": {
+            "question": "Are Vanaya products suitable for Indian skin?",
+            "answer": "Yes. Vanaya rituals are thoughtfully created around Indian skin, our climate and common concerns. Please review the individual product directions before use."
+          }
+        },
+        "f2": {
+          "type": "question",
+          "settings": {
+            "question": "How do I choose the right ritual?",
+            "answer": "Start with your primary skin concern—dullness, uneven tone, dryness or early signs of ageing. Each product page explains the recommended ritual and usage."
+          }
+        },
+        "f3": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use the oils every day?",
+            "answer": "Most facial oils can be used regularly in small quantities. Begin with two or three drops and adjust the frequency according to your skin’s comfort."
+          }
+        },
+        "f4": {
+          "type": "question",
+          "settings": {
+            "question": "Are the products made using Ayurvedic principles?",
+            "answer": "Vanaya brings time-honoured Ayurvedic ingredients and Shastrokt-inspired preparation together with a modern skincare experience."
+          }
+        },
+        "f5": {
+          "type": "question",
+          "settings": {
+            "question": "How long will delivery take?",
+            "answer": "Orders are generally dispatched within 1–2 working days. Delivery time varies by location and will be shown during checkout."
+          }
+        },
+        "f6": {
+          "type": "question",
+          "settings": {
+            "question": "Can I gift a Vanaya ritual?",
+            "answer": "Yes. Our curated gifting rituals are designed for meaningful occasions, festive moments and thoughtful everyday gestures."
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6"
+      ],
+      "settings": {
+        "eyebrow": "Everything you may want to know",
+        "heading": "Having Doubts - FAQs",
+        "text": ""
+      }
+    },
+    "vanaya_journal": {
+      "type": "vanaya-journal",
+      "settings": {}
+    },
+    "vanaya_complete_ritual_offer": {
+      "type": "vanaya-complete-ritual-offer",
+      "settings": {
+        "eyebrow": "The More You Ritual, The More You Save",
+        "heading": "Build Your Ritual. Enjoy More.",
+        "text": "Curate four or more Vanaya rituals and enjoy our highest automatic saving — thoughtfully designed to reward a more complete routine.",
+        "link": "/collections/all",
+        "link_text": "Build Your Ritual"
+      }
+    }
+  },
+  "order": [
+    "vanaya_video",
+    "vanaya_complete_ritual_offer",
+    "vanaya_new",
+    "vanaya_story",
+    "vanaya_bloggers",
+    "vanaya_sale",
+    "vanaya_values",
+    "vanaya_reviews",
+    "vanaya_faq",
+    "vanaya_journal"
+  ]
+}

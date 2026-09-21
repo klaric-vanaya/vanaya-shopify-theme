@@ -1,0 +1,19 @@
+/* v29.21 — Shopify CDN creator videos */
+.vanaya-blog-grid article{
+  background:#171512!important;
+}
+.vanaya-blog-grid article .vanaya-blog-preview-video{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  background:#171512!important;
+}
+.vanaya-video-lightbox__dialog .vanaya-blog-modal-video{
+  display:block!important;
+  width:100%!important;
+  max-height:78vh!important;
+  object-fit:contain!important;
+  background:#111!important;
+}

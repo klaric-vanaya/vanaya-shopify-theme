@@ -1,0 +1,10 @@
+/* Hero clarity refinement — preserve the original film brightness. */
+.vanaya-video-hero{background:#d4d2b4;color:#30281f}
+.vanaya-video-hero video{filter:blur(10px) saturate(1) brightness(1)!important}
+.vanaya-video-hero.is-ready video{filter:none!important}
+.vanaya-video-shade{background:transparent!important;pointer-events:none}
+.vanaya-video-copy{left:max(24px,4vw);bottom:max(28px,5vh);width:min(520px,calc(100vw - 48px));padding:26px 30px 28px;border:1px solid rgba(255,255,255,.7);border-radius:3px 54px 3px 3px;background:rgba(255,250,240,.84);color:#30281f;text-shadow:none!important;box-shadow:0 18px 44px rgba(47,38,29,.12);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.vanaya-video-copy .vanaya-kicker{margin-bottom:10px;color:#75664e!important;font-size:9px;letter-spacing:.2em}
+.vanaya-video-copy h2{color:#30281f!important;font-size:clamp(36px,4.2vw,62px)!important;line-height:.98!important;letter-spacing:-.035em}
+.vanaya-video-copy>p:last-child{max-width:430px;margin:15px 0 0;color:#5e5447;font:14px/1.55 Georgia,"Times New Roman",serif}
+@media(max-width:600px){.vanaya-video-copy{left:14px;right:14px;bottom:18px;width:auto;padding:19px 20px 21px;border-radius:2px 34px 2px 2px;background:rgba(255,250,240,.87)}.vanaya-video-copy h2{font-size:clamp(31px,9.5vw,44px)!important}.vanaya-video-copy>p:last-child{margin-top:11px;font-size:12px;line-height:1.45}}

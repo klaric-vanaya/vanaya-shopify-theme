@@ -1,0 +1,41 @@
+/* Vanaya v29.12 — Explore the Range image visibility + safe hover */
+.template-index #root .vanaya-products--explore .vanaya-card-media{
+  position:relative!important;
+  overflow:hidden!important;
+}
+.template-index #root .vanaya-products--explore .vanaya-card-image-stack{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+}
+.template-index #root .vanaya-products--explore .vanaya-card-image-primary,
+.template-index #root .vanaya-products--explore .vanaya-card-image-secondary{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+}
+.template-index #root .vanaya-products--explore .vanaya-card-image-primary{
+  z-index:1!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.template-index #root .vanaya-products--explore .vanaya-card-image-secondary{
+  z-index:2!important;
+  opacity:0!important;
+  visibility:visible!important;
+  transition:opacity .4s ease!important;
+}
+@media(hover:hover) and (pointer:fine){
+  .template-index #root .vanaya-products--explore .vanaya-card:hover .vanaya-card-image-secondary{
+    opacity:1!important;
+  }
+}
+/* Never hide the primary if no second image exists. */
+.template-index #root .vanaya-products--explore .vanaya-card-image-stack:not(:has(.vanaya-card-image-secondary)) .vanaya-card-image-primary{
+  opacity:1!important;
+}

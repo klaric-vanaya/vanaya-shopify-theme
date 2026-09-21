@@ -1,0 +1,16 @@
+/* Vanaya v16 text clarity */
+.shopify-section-announcement-bar,.shopify-section-announcement-bar *{
+  font-weight:700!important;
+}
+.vanaya-card-button{
+  color:#4b4136!important;
+  font-weight:700!important;
+}
+.vanaya-card-copy h3{
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  white-space:normal!important;
+  text-overflow:clip!important;
+}
+.vanaya-card-measurement{white-space:nowrap;font:inherit;color:inherit}

@@ -1,0 +1,51 @@
+/* ==========================================================
+   Vanaya v29.18 — requested isolated refinements only
+   ========================================================== */
+
+/* WISHLIST: Add/Move to Bag button -> Vanaya green + brown */
+body.template-page #root .v293-wishlist-page .v293-primary-btn,
+body[class*="template-page"] #root .v293-wishlist-page .v293-primary-btn{
+  background:#a2a880!important;
+  background-image:none!important;
+  color:#6a4738!important;
+  border:1px solid #6a4738!important;
+  box-shadow:none!important;
+}
+body.template-page #root .v293-wishlist-page .v293-primary-btn:hover,
+body[class*="template-page"] #root .v293-wishlist-page .v293-primary-btn:hover{
+  background:#b2b696!important;
+  color:#6a4738!important;
+  border-color:#6a4738!important;
+}
+
+/* WISHLIST: remove X -> Vanaya logo green, not black */
+body.template-page #root .v293-wishlist-page .v293-remove,
+body[class*="template-page"] #root .v293-wishlist-page .v293-remove{
+  color:#a2a880!important;
+  border-color:rgba(162,168,128,.65)!important;
+}
+body.template-page #root .v293-wishlist-page .v293-remove:hover,
+body[class*="template-page"] #root .v293-wishlist-page .v293-remove:hover{
+  color:#8f966f!important;
+}
+
+/* OUR STORY: preserve existing 50/50 split; show full editorial image beautifully */
+.vstory__belief-image--editorial{
+  overflow:hidden!important;
+  background:#e9e6cf!important;
+}
+.vstory__belief-image--editorial img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:650px!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+}
+@media(max-width:650px){
+  .vstory__belief-image--editorial img{
+    min-height:0!important;
+    aspect-ratio:1/1!important;
+    object-fit:cover!important;
+  }
+}

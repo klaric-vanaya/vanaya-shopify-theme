@@ -1,0 +1,14 @@
+/* Vanaya v29.2 — Option 1 customer-account readiness.
+   New Shopify Customer Accounts are hosted by Shopify; this stylesheet only brands
+   storefront-side account entry/fallback surfaces and intentionally does not attempt
+   to override Shopify's secure hosted authentication UI. */
+.template-customers-login main,
+.template-customers-register main,
+.template-customers-account main,
+.template-customers-addresses main,
+.template-customers-order main { background:#f8f4e9; }
+.template-customers-login .main-account,
+.template-customers-register .main-account,
+.template-customers-account .main-account,
+.template-customers-addresses .main-account,
+.template-customers-order .main-account { max-width:1280px; margin-inline:auto; }

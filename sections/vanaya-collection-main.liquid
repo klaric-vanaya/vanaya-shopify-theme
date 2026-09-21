@@ -1,0 +1,234 @@
+<section class="vanaya-shop" data-vanaya-shop>
+  <div class="vanaya-shop__hero">
+    <img src="{{ 'vanaya-rituals-shop-banner-v24.jpg' | asset_url }}" width="1600" height="540" loading="eager" alt="Vanaya rituals reflected in a mirror">
+    <div class="vanaya-shop__hero-copy vanaya-shop__hero-copy--editorial">
+      <p>The complete Vanaya collection</p>
+      <h1>{% if collection.handle == 'all' %}Shop all Rituals{% else %}{{ collection.title | escape }}{% endif %}</h1>
+      <span class="vanaya-shop__hero-rule" aria-hidden="true"><i></i></span>
+    </div>
+  </div>
+
+  <div class="vanaya-shop__body">
+    <header class="vanaya-shop__intro">
+      <p class="vanaya-kicker">The complete Vanaya collection</p>
+      <h2>Explore every ritual</h2>
+      <p>Considered Ayurvedic formulations created for modern skin, daily care and rituals worth returning to.</p>
+    </header>
+
+    {% paginate collection.products by 48 %}
+      {% if collection.products_count > 0 %}
+        <div class="vanaya-shop__grid" role="list">
+          {% for product in collection.products %}
+            <article class="vanaya-card vanaya-shop-card" role="listitem">
+              <a class="vanaya-card-media" href="{{ product.url | within: collection }}">
+                {% if product.featured_image %}
+                  {{ product.featured_image | image_url: width: 1000 | image_tag: class: 'vanaya-shop-card__image vanaya-shop-card__image--primary', loading: 'lazy', widths: '360,540,720,1000', sizes: '(min-width: 1000px) 25vw, 50vw', alt: product.featured_image.alt | default: product.title }}
+                  {% if product.media[1] != blank %}
+                    {{ product.media[1] | image_url: width: 1000 | image_tag: class: 'vanaya-shop-card__image vanaya-shop-card__image--secondary', loading: 'lazy', widths: '360,540,720,1000', sizes: '(min-width: 1000px) 25vw, 50vw', alt: product.media[1].alt | default: product.title }}
+                  {% endif %}
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag }}
+                {% endif %}
+              </a>
+              <div class="vanaya-card-copy">
+                <small>{{ product.type | default: 'Ayurvedic skincare ritual' }}</small>
+                <h3><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
+                <span class="vanaya-price">{{ product.price | money }}{% if product.compare_at_price > product.price %} <s>{{ product.compare_at_price | money }}</s>{% endif %}</span>
+                <div class="vanaya-card-actions-v23">
+                  <a class="vanaya-card-button vanaya-button-v20" href="{{ product.url | within: collection }}"><span>Discover</span></a>
+                  <button
+                    class="vanaya-card-button vanaya-button-v20 vanaya-quick-add-v23"
+                    type="button"
+                    data-vanaya-quick-add
+                    data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                    data-product-url="{{ product.url | within: collection }}"
+                    {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+                  >{% if product.selected_or_first_available_variant.available %}Add to Bag{% else %}Sold Out{% endif %}</button>
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+        {% if paginate.pages > 1 %}
+          <nav class="vanaya-shop__pagination" aria-label="Collection pages">
+            {% if paginate.previous %}<a class="vanaya-control-v20" href="{{ paginate.previous.url }}" aria-label="Previous page">‹</a>{% endif %}
+            <span>{{ paginate.current_page }} / {{ paginate.pages }}</span>
+            {% if paginate.next %}<a class="vanaya-control-v20" href="{{ paginate.next.url }}" aria-label="Next page">›</a>{% endif %}
+          </nav>
+        {% endif %}
+      {% else %}
+        <p class="vanaya-shop__empty">Products added to this collection will appear here automatically.</p>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+
+<style>
+  .template-collection .vanaya-shop__hero{
+    aspect-ratio:100/27!important;
+    min-height:0!important;
+    isolation:isolate;
+  }
+  .template-collection .vanaya-shop__hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    background:linear-gradient(90deg,rgba(52,35,22,.08) 0%,transparent 42%,rgba(52,35,22,.06) 100%);
+  }
+  .template-collection .vanaya-shop__hero>img{
+    object-position:center center;
+  }
+  .template-collection .vanaya-shop__hero-copy--editorial{
+    inset:clamp(12px,1.5vw,24px) auto auto clamp(14px,2vw,32px)!important;
+    z-index:2;
+    width:min(300px,28vw)!important;
+    padding:12px 18px 11px!important;
+    transform:none!important;
+    border:1px solid rgba(237,211,154,.7)!important;
+    border-left:3px solid #d2a756!important;
+    border-radius:2px 24px 2px 2px;
+    background:linear-gradient(135deg,rgba(57,39,28,.86),rgba(84,56,35,.72))!important;
+    color:#fff8e9!important;
+    text-align:left!important;
+    box-shadow:0 16px 38px rgba(49,30,17,.24);
+    backdrop-filter:blur(8px)!important;
+    -webkit-backdrop-filter:blur(8px)!important;
+  }
+  .template-collection .vanaya-shop__hero-copy--editorial p{
+    margin:0 0 5px!important;
+    color:#ead29f;
+    font:700 7px/1.3 "Avenir Next",Avenir,Arial,sans-serif!important;
+    letter-spacing:.2em!important;
+  }
+  .template-collection .vanaya-shop__hero-copy--editorial h1{
+    margin:0!important;
+    color:#fff8e9!important;
+    font:500 clamp(21px,1.85vw,30px)/1.04 Georgia,"Times New Roman",serif!important;
+    letter-spacing:-.02em!important;
+  }
+  .template-collection .vanaya-shop__hero-rule{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    width:76px;
+    margin-top:7px;
+  }
+  .template-collection .vanaya-shop__hero-rule::before,
+  .template-collection .vanaya-shop__hero-rule::after{
+    content:"";
+    height:1px;
+    flex:1;
+    background:rgba(234,210,159,.72);
+  }
+  .template-collection .vanaya-shop__hero-rule i{
+    width:5px;
+    height:5px;
+    border:1px solid #ead29f;
+    transform:rotate(45deg);
+  }
+  .template-collection .vanaya-shop-card .vanaya-card-actions-v23{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
+    width:100%;
+  }
+  .template-collection .vanaya-shop-card .vanaya-card-media{position:relative;display:block;overflow:hidden;background:#eee8d8}
+  .template-collection .vanaya-shop-card .vanaya-shop-card__image{display:block;width:100%;height:100%;aspect-ratio:1/1.18;object-fit:cover;transition:opacity .55s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+  .template-collection .vanaya-shop-card .vanaya-shop-card__image--secondary{position:absolute;inset:0;opacity:0}
+  @media(hover:hover) and (pointer:fine){.template-collection .vanaya-shop-card:hover .vanaya-shop-card__image--secondary{opacity:1;transform:scale(1.025)}.template-collection .vanaya-shop-card:hover .vanaya-shop-card__image--primary{opacity:0}}
+  .template-collection .vanaya-shop-card .vanaya-card-actions-v23 .vanaya-card-button{
+    width:100%;
+    min-width:0;
+    min-height:43px;
+    margin:0;
+    padding:8px 10px;
+    cursor:pointer;
+    font-size:10px;
+    line-height:1.15;
+  }
+  .template-collection .vanaya-shop-card .vanaya-quick-add-v23{
+    background:#4b4136;
+    color:#fffaf0;
+  }
+  .template-collection .vanaya-shop-card .vanaya-quick-add-v23:disabled{
+    cursor:not-allowed;
+    opacity:.55;
+  }
+  @media(max-width:600px){
+    .template-collection .vanaya-shop__hero{aspect-ratio:20/7!important}
+    .template-collection .vanaya-shop__hero>img{object-position:center center!important}
+    .template-collection .vanaya-shop__hero-copy--editorial{
+      inset:8px auto auto 8px!important;
+      width:auto!important;
+      max-width:205px;
+      padding:8px 11px 7px!important;
+      border-radius:2px 16px 2px 2px;
+    }
+    .template-collection .vanaya-shop__hero-copy--editorial p{margin-bottom:4px!important;font-size:6px!important;letter-spacing:.18em!important}
+    .template-collection .vanaya-shop__hero-copy--editorial h1{font-size:17px!important}
+    .template-collection .vanaya-shop__hero-rule{width:52px;margin-top:5px}
+    .template-collection .vanaya-shop-card .vanaya-card-actions-v23{gap:6px}
+    .template-collection .vanaya-shop-card .vanaya-card-actions-v23 .vanaya-card-button{
+      min-height:38px;
+      padding:7px 4px;
+      font-size:8px;
+      letter-spacing:.06em;
+    }
+  }
+</style>
+
+<script>
+if (!window.VanayaQuickAddV23) {
+  window.VanayaQuickAddV23 = true;
+  document.addEventListener('click', async function(event) {
+    var button = event.target.closest('[data-vanaya-quick-add]');
+    if (!button || button.disabled) return;
+    event.preventDefault();
+    event.stopPropagation();
+
+    var variantId = Number(button.dataset.variantId || 0);
+    if (!variantId) {
+      if (button.dataset.productUrl) window.location.href = button.dataset.productUrl;
+      return;
+    }
+
+    var originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Adding…';
+
+    try {
+      var response = await fetch('{{ routes.cart_add_url }}.js', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify({items:[{id:variantId,quantity:1}]})
+      });
+      if (!response.ok) throw new Error('Unable to add product');
+
+      var cartResponse = await fetch('{{ routes.cart_url }}.js', {credentials:'same-origin'});
+      if (cartResponse.ok) {
+        var cart = await cartResponse.json();
+        document.querySelectorAll('#cart-count, #cart-count--m, .vanaya-global-header__bag span').forEach(function(count) {
+          count.textContent = count.matches('.vanaya-global-header__bag span') ? '(' + cart.item_count + ')' : cart.item_count;
+        });
+      }
+
+      button.textContent = 'Added ✓';
+      setTimeout(function() {
+        button.disabled = false;
+        button.textContent = originalText;
+      }, 1500);
+    } catch (error) {
+      button.disabled = false;
+      button.textContent = originalText;
+      if (button.dataset.productUrl) window.location.href = button.dataset.productUrl;
+    }
+  });
+}
+</script>
+
+{% schema %}
+{"name":"Vanaya shop collection","settings":[]}
+{% endschema %}

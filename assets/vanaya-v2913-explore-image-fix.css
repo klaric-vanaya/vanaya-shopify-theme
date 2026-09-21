@@ -1,0 +1,69 @@
+/* Vanaya v29.13 — definitive Explore the Range image fix */
+
+/* Give the link a real box. The previous absolute-only image stack collapsed it. */
+.template-index #root .vanaya-products--explore .vanaya-card-media{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:1 / 1!important;
+  overflow:hidden!important;
+  background:#f3ead9!important;
+}
+
+/* Stack itself fills the established media box. */
+.template-index #root .vanaya-products--explore .vanaya-card-image-stack{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+}
+
+/* Primary image establishes visible content and is always shown. */
+.template-index #root .vanaya-products--explore .vanaya-card-image-primary{
+  position:relative!important;
+  z-index:1!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:100%!important;
+  object-fit:cover!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  transition:opacity .42s ease,transform .55s ease!important;
+}
+
+/* Secondary image overlays primary only. */
+.template-index #root .vanaya-products--explore .vanaya-card-image-secondary{
+  position:absolute!important;
+  z-index:2!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  opacity:0!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+  transform:scale(1.02)!important;
+  transition:opacity .42s ease,transform .55s ease!important;
+}
+
+/* Hover to actual second image. Primary remains visible underneath until fade completes. */
+@media(hover:hover) and (pointer:fine){
+  .template-index #root .vanaya-products--explore .vanaya-card:hover .vanaya-card-image-secondary{
+    opacity:1!important;
+    transform:scale(1)!important;
+  }
+  .template-index #root .vanaya-products--explore .vanaya-card:hover .vanaya-card-image-primary{
+    transform:scale(1.015)!important;
+  }
+}
+
+/* Ensure older v29.11 rules cannot hide primary images. */
+.template-index #root .vanaya-products--explore .vanaya-card-media img:first-child,
+.template-index #root .vanaya-products--explore .vanaya-card-image-stack > .vanaya-card-image-primary{
+  opacity:1!important;
+  visibility:visible!important;
+}

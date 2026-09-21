@@ -1,0 +1,130 @@
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {
+        "hide_mobile": false
+      }
+    },
+    "3a71b1d6-5b42-41a8-87d4-002ec3eac817": {
+      "type": "section-countdown",
+      "settings": {
+        "overlay_opacity": 20,
+        "height": "s",
+        "width": "boxed",
+        "countdown_bg_color": "#cdc7bb",
+        "countdown_text_color": "#ffffff",
+        "color_palette": "scheme-4",
+        "text_position": "center",
+        "title": "<h1>Scandinavian home decor with discount.</h1>",
+        "title_underline_style": "none",
+        "show_link": false,
+        "link_text": "",
+        "link_url": "",
+        "button_style": "primary plain",
+        "countdown_start": "",
+        "countdown_end": "December 25th, 5pm",
+        "hide_banner_after_countdown": false,
+        "ended_title": "<h1>Countdown banner</h1>",
+        "ended_title_underline_style": "none",
+        "ended_text": "<p>Tell something about your offers, sale or discounts when the timer has ended.</p>",
+        "spacing_desktop": 50,
+        "spacing_mobile": 30
+      }
+    },
+    "1654861069d4d7d612": {
+      "type": "section-spacer",
+      "settings": {
+        "height": 0,
+        "height_mobile": 20
+      }
+    },
+    "main-collection": {
+      "type": "main-collection",
+      "blocks": {
+        "sorting": {
+          "type": "sorting",
+          "settings": {}
+        },
+        "product_grid": {
+          "type": "product_grid",
+          "settings": {}
+        },
+        "423fb7f6-2c97-4420-8211-d45378349d2a": {
+          "type": "description",
+          "settings": {
+            "text_alignment": "left",
+            "enable_read_more": false,
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "sorting",
+        "product_grid",
+        "423fb7f6-2c97-4420-8211-d45378349d2a"
+      ],
+      "settings": {
+        "pagination_qty": 24,
+        "pagination_type": "button",
+        "show_amount_of_products_in_collection": true,
+        "productview_type": "grid",
+        "products_per_row": 3,
+        "show_collection_image": false,
+        "enable_filters": true,
+        "enable_menu": false,
+        "enable_collections": true,
+        "filters_menu_alignment": "left",
+        "collections_menu": [],
+        "filter_sticky": false,
+        "filters_show_more_limit": 7,
+        "image_swatches_size": "xs",
+        "image_swatches_fill_images": true,
+        "image_swatches_show_in_circle": true,
+        "enable_quick_buy_desktop": false,
+        "enable_quick_buy_mobile": false,
+        "enable_quick_buy_drawer": false,
+        "enable_quick_buy_qty_selector": true,
+        "enable_color_picker": false,
+        "enable_quick_buy_compact": false,
+        "products_per_row_mobile": "1",
+        "filter_mobile_sticky": false
+      }
+    },
+    "section_spacer_EnEUic": {
+      "type": "section-spacer",
+      "settings": {
+        "height": 50,
+        "height_mobile": 20
+      }
+    },
+    "1654860531b98406c0": {
+      "type": "section-collection-list",
+      "settings": {
+        "image_ratio": "square",
+        "fill_images": true,
+        "layout": "slider",
+        "number_of_items": 6,
+        "text_alignment": "start",
+        "title": "<h2>More home decor</h2>",
+        "title_underline_style": "none",
+        "show_link": true,
+        "link_text": "View all",
+        "link_url": "/",
+        "button_style": "primary link",
+        "collection_title_size": "h5",
+        "mobile_layout": "slider",
+        "spacing_desktop": 50,
+        "spacing_mobile": 30
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "3a71b1d6-5b42-41a8-87d4-002ec3eac817",
+    "1654861069d4d7d612",
+    "main-collection",
+    "section_spacer_EnEUic",
+    "1654860531b98406c0"
+  ]
+}

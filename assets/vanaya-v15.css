@@ -1,0 +1,45 @@
+/* Vanaya v15 consistency and carousel refinements */
+:root{--vanaya-green:#d4d2b4;--vanaya-logo-brown:#4b4136}
+
+body,input,textarea,select,button,.vanaya-section,.vanaya-global-header,.vanaya-global-footer,
+.vanaya-section p,.vanaya-section li,.vanaya-section a,.vanaya-global-footer p,.vanaya-global-footer a{
+  font-family:var(--main_ff),"Avenir Next",Avenir,Arial,sans-serif!important;
+  font-weight:400!important;
+}
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.vanaya-section h1,.vanaya-section h2,.vanaya-section h3,
+.vanaya-card-copy h3,.vanaya-faq-list summary,.vanaya-global-footer h4{
+  font-family:var(--main_ff_h),var(--main_ff),"Avenir Next",Avenir,Arial,sans-serif!important;
+  font-weight:600!important;
+}
+strong,b,.strong{font-weight:600!important}
+
+.shopify-section-announcement-bar,.shopify-section-announcement-bar>*,.shopify-section-announcement-bar [class*="color-palette"]{
+  background:var(--vanaya-green)!important;color:var(--vanaya-logo-brown)!important
+}
+.shopify-section-announcement-bar *{color:var(--vanaya-logo-brown)!important}
+
+.vanaya-testimonial-track{gap:14px!important}
+.vanaya-testimonial-card{flex:0 0 calc((100% - 42px)/4)!important;min-height:280px!important;padding:20px 19px 18px!important;border-radius:2px 30px 2px 2px!important}
+.vanaya-testimonial-quote{height:38px!important;margin-top:9px!important;font-size:55px!important}
+.vanaya-testimonial-card blockquote{margin-bottom:18px!important;font-size:13px!important;line-height:1.6!important}
+.vanaya-testimonial-author{gap:9px!important;padding-top:12px!important}.vanaya-testimonial-monogram{flex-basis:32px!important;height:32px!important;font-size:14px!important}
+.vanaya-testimonial-name{font-size:12px!important}.vanaya-testimonial-product{font-size:10px!important}.vanaya-testimonial-preview{font-size:8px!important}
+
+.vanaya-product-edge-arrow,.vanaya-testimonial-side,.vanaya-banner-arrow,.vanaya-carousel-tools button{
+  width:38px!important;height:38px!important;min-width:38px!important;padding:0!important;border:1px solid var(--vanaya-logo-brown)!important;border-radius:50%!important;
+  background:var(--vanaya-green)!important;color:var(--vanaya-logo-brown)!important;font-size:18px!important;box-shadow:0 8px 22px rgba(75,65,54,.16)!important
+}
+.vanaya-product-edge-arrow{top:38%!important;transform:translateY(-50%)}
+.vanaya-product-edge-arrow--prev{right:auto!important;left:10px!important}.vanaya-product-edge-arrow--next{right:10px!important}
+.vanaya-testimonial-side--prev{left:-4px!important}.vanaya-testimonial-side--next{right:-4px!important}
+.vanaya-banner-arrow.prev{left:14px!important}.vanaya-banner-arrow.next{right:14px!important}
+
+.vanaya-seabuckthorn__seal{width:144px!important;height:144px!important;padding:24px 18px!important}
+.vanaya-seabuckthorn__seal span{font-size:14px!important;line-height:1.08!important}.vanaya-seabuckthorn__seal small{margin-top:7px!important;font-size:9px!important}
+.vanaya-seabuckthorn__benefits{margin-bottom:30px!important}
+.vanaya-seabuckthorn__content .vanaya-cta{margin-top:2px!important}
+
+.vanaya-products--explore .vanaya-badge{display:none!important}
+
+@media(max-width:900px){.vanaya-testimonial-card{flex-basis:calc((100% - 14px)/2)!important}.vanaya-seabuckthorn__seal{width:120px!important;height:120px!important}.vanaya-seabuckthorn__seal span{font-size:12px!important}}
+@media(max-width:600px){.vanaya-testimonial-card{flex-basis:100%!important;min-height:270px!important}.vanaya-product-edge-arrow,.vanaya-testimonial-side,.vanaya-banner-arrow{width:34px!important;height:34px!important;min-width:34px!important}.vanaya-product-edge-arrow--prev{left:3px!important}.vanaya-product-edge-arrow--next{right:3px!important}.vanaya-seabuckthorn__benefits{margin-bottom:22px!important}}

@@ -1,0 +1,71 @@
+/* Vanaya v18 — definitive high-specificity button and arrow palette */
+:root{--vanaya-control-green:#d4d2b4;--vanaya-control-brown:#4b4136}
+
+.template-index #root .vanaya-journal .vanaya-journal__form button[type="submit"],
+.template-index #root .vanaya-journal .vanaya-journal__form button[type="submit"]:hover,
+.template-index #root .vanaya-journal .vanaya-journal__form button[type="submit"]:focus,
+#root .vanaya-global-footer .vanaya-global-footer__journal button[type="submit"],
+#root .vanaya-global-footer .vanaya-global-footer__journal button[type="submit"]:hover,
+#root .vanaya-global-footer .vanaya-global-footer__journal button[type="submit"]:focus{
+  border:1px solid var(--vanaya-control-brown)!important;
+  background:var(--vanaya-control-green)!important;
+  color:var(--vanaya-control-brown)!important;
+  font-weight:700!important;
+  opacity:1!important;
+}
+
+.template-index #root .vanaya-products .vanaya-card-copy a.vanaya-card-button,
+.template-index #root .vanaya-products .vanaya-card-copy a.vanaya-card-button:link,
+.template-index #root .vanaya-products .vanaya-card-copy a.vanaya-card-button:visited,
+.template-index #root .vanaya-products .vanaya-card-copy a.vanaya-card-button:hover,
+.template-index #root .vanaya-products .vanaya-card-copy a.vanaya-card-button:focus{
+  border-color:var(--vanaya-control-brown)!important;
+  background:var(--vanaya-control-green)!important;
+  color:var(--vanaya-control-brown)!important;
+  font-family:var(--main_ff_h),var(--main_ff),"Avenir Next",Avenir,Arial,sans-serif!important;
+  font-weight:700!important;
+  opacity:1!important;
+}
+
+html body #root button.vanaya-product-edge-arrow,
+html body #root button.vanaya-testimonial-side,
+html body #root button.vanaya-banner-arrow,
+html body #root .vanaya-carousel-tools button,
+html body #root button.vp-gallery__arrow,
+html body #root .swiper-button-prev,
+html body #root .swiper-button-next,
+html body #root button.vanaya-product-edge-arrow:hover,
+html body #root button.vanaya-testimonial-side:hover,
+html body #root button.vanaya-banner-arrow:hover,
+html body #root .vanaya-carousel-tools button:hover,
+html body #root button.vp-gallery__arrow:hover,
+html body #root .swiper-button-prev:hover,
+html body #root .swiper-button-next:hover,
+html body #root button.vanaya-product-edge-arrow:focus,
+html body #root button.vanaya-testimonial-side:focus,
+html body #root button.vanaya-banner-arrow:focus,
+html body #root .vanaya-carousel-tools button:focus,
+html body #root button.vp-gallery__arrow:focus,
+html body #root .swiper-button-prev:focus,
+html body #root .swiper-button-next:focus{
+  border-color:var(--vanaya-control-brown)!important;
+  background:var(--vanaya-control-green)!important;
+  background-color:var(--vanaya-control-green)!important;
+  color:var(--vanaya-control-brown)!important;
+  font-weight:700!important;
+  opacity:1!important;
+  box-shadow:0 8px 22px rgba(75,65,54,.18)!important;
+}
+
+html body #root .swiper-button-prev:after,
+html body #root .swiper-button-next:after,
+html body #root button.vanaya-product-edge-arrow:before,
+html body #root button.vanaya-product-edge-arrow:after,
+html body #root button.vanaya-testimonial-side:before,
+html body #root button.vanaya-testimonial-side:after,
+html body #root button.vanaya-banner-arrow:before,
+html body #root button.vanaya-banner-arrow:after,
+html body #root button.vp-gallery__arrow:before,
+html body #root button.vp-gallery__arrow:after{
+  color:var(--vanaya-control-brown)!important;
+}

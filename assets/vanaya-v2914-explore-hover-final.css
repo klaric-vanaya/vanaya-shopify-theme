@@ -1,0 +1,19 @@
+/* v29.14 — reliable Explore secondary-image hover */
+.template-index #root .vanaya-products--explore .vanaya-card-image-secondary{
+  position:absolute!important;
+  z-index:5!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  opacity:0!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+  transition:opacity .42s ease!important;
+}
+@media(hover:hover) and (pointer:fine){
+  .template-index #root .vanaya-products--explore .vanaya-card:hover .vanaya-card-image-secondary{
+    opacity:1!important;
+  }
+}

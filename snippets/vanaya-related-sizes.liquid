@@ -1,0 +1,72 @@
+{% comment %}
+  Vanaya currently stores several sizes as separate Shopify products. Direct
+  handle families avoid collection pagination and expose every published size.
+{% endcomment %}
+{% assign current_name = product.title | downcase %}
+{% assign size_handles = '' %}
+
+{% if current_name contains 'sea buckthorn' %}
+  {% assign size_handles = 'sea-buckthorn-oil-30ml,sea-buckthorn-oil-10ml,sea-buckthorn-oil-5ml' %}
+{% elsif current_name contains 'kumkumadi tailam' %}
+  {% assign size_handles = 'kumkumadi-tailam-30ml,kumkumadi-tailam-10ml,kumkumadi-tailam-5ml' %}
+{% elsif current_name contains 'haridra' %}
+  {% assign size_handles = 'haridradyam-tailam-30ml,haridradyam-tailam-10ml,haridrayadam-tailam-30ml,haridrayadam-tailam-10ml' %}
+{% elsif current_name contains 'kanak tailam' %}
+  {% assign size_handles = 'kanak-tailam-30ml,kanak-tailam-10ml' %}
+{% elsif current_name contains 'nayan tara' or current_name contains 'dark circle repair' %}
+  {% assign size_handles = 'dark-circle-repair-cream,nayan-tara-under-eye-cream-12gm,nayan-tara-under-eye-cream-15gm,dark-circle-repair-cream-15gm' %}
+{% elsif current_name contains 'ratri glow' %}
+  {% assign size_handles = 'ratri-glow-night-cream,ratri-glow-night-cream-50gm,ratri-glow-night-cream-12gm' %}
+{% elsif current_name contains 'tara sitara' or current_name contains 'exfoliating cream' %}
+  {% assign size_handles = 'kumkumadi-glow-exfoliating-cream,tara-sitara-exfoliating-scrub-12gm,kumkumadi-glow-exfoliating-cream-50gm' %}
+{% elsif current_name contains 'chamak damak' or current_name contains 'resurfacing mask' %}
+  {% assign size_handles = 'kesar-kumkumadi-resurfacing-mask,chamak-damak-glow-ubtan-12gm,kesar-kumkumadi-resurfacing-mask-50gm' %}
+{% endif %}
+
+{% if size_handles != blank %}
+  {% assign handle_list = size_handles | split: ',' %}
+  {% assign published_size_count = 0 %}
+  {% for size_handle in handle_list %}
+    {% assign size_product = all_products[size_handle] %}
+    {% if size_product != blank %}
+      {% assign published_size_count = published_size_count | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+
+  {% if published_size_count > 1 %}
+    <div class="vp-related-sizes">
+      <p>Select size</p>
+      <div class="vp-related-sizes__options">
+        {% for size_handle in handle_list %}
+          {% assign size_product = all_products[size_handle] %}
+          {% if size_product != blank %}
+            {% assign size_label = size_product.title | split: '|' | last | strip %}
+            {% if size_label == size_product.title %}
+              {% assign size_label = size_product.title
+                | remove: 'Sea Buckthorn Oil'
+                | remove: 'Kumkumadi Tailam'
+                | remove: 'Haridradyam Tailam'
+                | remove: 'Haridrayadam Tailam'
+                | remove: 'Kanak Tailam'
+                | remove: 'Nayan Tara Under Eye Cream'
+                | remove: 'Dark Circle Repair Cream'
+                | remove: 'Ratri Glow Night Cream'
+                | remove: 'Tara Sitara Exfoliating Scrub'
+                | remove: 'Kumkumadi Glow Exfoliating Cream'
+                | remove: 'Chamak Damak Glow Ubtan'
+                | remove: 'Kesar Kumkumadi Resurfacing Mask'
+                | strip
+              %}
+            {% endif %}
+            {% if size_label == blank %}{% assign size_label = size_product.title %}{% endif %}
+            <a
+              href="{{ size_product.url }}"
+              class="{% if size_product.handle == product.handle %}is-active{% endif %}"
+              {% if size_product.handle == product.handle %}aria-current="page"{% endif %}
+            >{{ size_label }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

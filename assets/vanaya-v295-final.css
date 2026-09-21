@@ -1,0 +1,208 @@
+/* v29.5 FINAL OVERRIDES — testimonial navigation + product wishlist */
+
+/* Community carousel: hard-isolate all control geometry from legacy/global button styles */
+body.template-index #root .v291-testimonial-shell .v291-testimonial-arrow{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  position:absolute!important;
+  z-index:10!important;
+  top:50%!important;
+  width:46px!important;
+  min-width:46px!important;
+  max-width:46px!important;
+  height:46px!important;
+  min-height:46px!important;
+  max-height:46px!important;
+  margin:0!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid #6a4738!important;
+  border-radius:999px!important;
+  background:#a2a880!important;
+  color:#6a4738!important;
+  box-shadow:0 7px 20px rgba(35,47,36,.18)!important;
+  opacity:1!important;
+  transform:translateY(-50%)!important;
+  line-height:1!important;
+  overflow:hidden!important;
+}
+body.template-index #root .v291-testimonial-shell .v291-testimonial-arrow::before,
+body.template-index #root .v291-testimonial-shell .v291-testimonial-arrow::after{
+  content:none!important;
+  display:none!important;
+}
+body.template-index #root .v291-testimonial-shell .v291-testimonial-arrow svg{
+  display:block!important;
+  width:20px!important;
+  height:20px!important;
+  flex:0 0 20px!important;
+  fill:none!important;
+  stroke:#6a4738!important;
+  stroke-width:1.8!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  pointer-events:none!important;
+}
+body.template-index #root .v291-testimonial-shell .v291-testimonial-arrow--prev{left:0!important}
+body.template-index #root .v291-testimonial-shell .v291-testimonial-arrow--next{right:0!important}
+body.template-index #root .v291-testimonial-shell .v291-testimonial-arrow:hover{
+  background:#b7b99a!important;
+  color:#6a4738!important;
+  transform:translateY(-50%)!important;
+}
+body.template-index #root .v291-testimonial-dots{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:9px!important;
+  min-height:24px!important;
+  margin:26px 0 0!important;
+}
+body.template-index #root .v291-testimonial-dots button{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  display:block!important;
+  width:9px!important;
+  min-width:9px!important;
+  max-width:9px!important;
+  height:9px!important;
+  min-height:9px!important;
+  max-height:9px!important;
+  margin:0!important;
+  padding:0!important;
+  border:1px solid #6a4738!important;
+  border-radius:999px!important;
+  background:#a2a880!important;
+  opacity:.55!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+body.template-index #root .v291-testimonial-dots button::before,
+body.template-index #root .v291-testimonial-dots button::after{
+  content:none!important;
+  display:none!important;
+}
+body.template-index #root .v291-testimonial-dots button.is-active{
+  width:28px!important;
+  min-width:28px!important;
+  max-width:28px!important;
+  opacity:1!important;
+  background:#a2a880!important;
+}
+@media(max-width:700px){
+  body.template-index #root .v291-testimonial-shell .v291-testimonial-arrow{
+    width:38px!important;
+    min-width:38px!important;
+    max-width:38px!important;
+    height:38px!important;
+    min-height:38px!important;
+    max-height:38px!important;
+  }
+  body.template-index #root .v291-testimonial-shell .v291-testimonial-arrow svg{
+    width:17px!important;height:17px!important;flex-basis:17px!important;
+  }
+}
+
+/* Product Wishlist: force Vanaya green/brown, compact and centred */
+body.template-product #root .vp-product .v293-product-wishlist,
+body.template-product #root .vp-product .v293-product-wishlist--custom{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  position:relative!important;
+  float:none!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  width:44%!important;
+  min-width:270px!important;
+  max-width:390px!important;
+  min-height:40px!important;
+  height:40px!important;
+  margin:14px auto 22px!important;
+  padding:0 18px!important;
+  border:1px solid #6a4738!important;
+  border-radius:0!important;
+  background:#a2a880!important;
+  background-image:none!important;
+  color:#6a4738!important;
+  box-shadow:none!important;
+  opacity:1!important;
+  font-family:"Avenir Next",Avenir,Arial,sans-serif!important;
+  font-size:10px!important;
+  font-weight:800!important;
+  line-height:1!important;
+  letter-spacing:.14em!important;
+  text-transform:uppercase!important;
+  text-align:center!important;
+}
+body.template-product #root .vp-product .v293-product-wishlist::before,
+body.template-product #root .vp-product .v293-product-wishlist::after{
+  content:none!important;
+  display:none!important;
+}
+body.template-product #root .vp-product .v293-product-wishlist span{
+  position:relative!important;
+  z-index:2!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  color:#6a4738!important;
+  opacity:1!important;
+}
+body.template-product #root .vp-product .v293-product-wishlist__icon{
+  color:#6a4738!important;
+  font:20px/1 Georgia,serif!important;
+  transform:none!important;
+}
+body.template-product #root .vp-product .v293-product-wishlist:hover,
+body.template-product #root .vp-product .v293-product-wishlist.is-saved{
+  background:#b7b99a!important;
+  color:#6a4738!important;
+  border-color:#6a4738!important;
+}
+
+/* Prevent removed legacy assurances/duplicate content from reserving layout space */
+body.template-product #root .vp-product__assurances:empty{display:none!important}
+body.template-product #root .vp-product__accordions:empty{display:none!important}
+
+@media(max-width:700px){
+  body.template-product #root .vp-product .v293-product-wishlist,
+  body.template-product #root .vp-product .v293-product-wishlist--custom{
+    width:64%!important;
+    min-width:220px!important;
+    max-width:320px!important;
+  }
+}
+
+
+/* v29.6 - Reduce product title size by ~20% */
+body.template-product .vp-product__title,
+body.template-product .product__title,
+body.template-product h1.product-title,
+body.template-product .product-single__title{
+  font-size:80% !important;
+  line-height:1.15 !important;
+}
+@media (max-width:700px){
+  body.template-product .vp-product__title,
+  body.template-product .product__title,
+  body.template-product h1.product-title,
+  body.template-product .product-single__title{
+    font-size:85% !important;
+  }
+}
+
+
+/* v29.7 wishlist page mount safeguard */
+body.template-page .v293-wishlist-page,
+body[class*="template-page"] .v293-wishlist-page{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+body.template-page .v293-wishlist-grid,
+body[class*="template-page"] .v293-wishlist-grid{
+  display:grid!important;
+}

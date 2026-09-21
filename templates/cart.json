@@ -1,0 +1,72 @@
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {
+        "hide_mobile": false
+      }
+    },
+    "main-cart": {
+      "type": "main-cart",
+      "blocks": {
+        "0d49aad6-ec66-45c2-873e-bb9e4b2bebd4": {
+          "type": "shipping_timer",
+          "settings": {}
+        },
+        "3a97b7e1-261c-47a9-abb2-762eb658f4dd": {
+          "type": "usp",
+          "settings": {
+            "usp": "<p><strong>Secure checkout</strong> through your selected payment method</p>"
+          }
+        },
+        "0de7a67d-1bf0-4afd-a266-123b54034a66": {
+          "type": "usp",
+          "settings": {
+            "usp": "<p>Thoughtfully packed and dispatched with care</p>"
+          }
+        }
+      },
+      "block_order": [
+        "0d49aad6-ec66-45c2-873e-bb9e4b2bebd4",
+        "3a97b7e1-261c-47a9-abb2-762eb658f4dd",
+        "0de7a67d-1bf0-4afd-a266-123b54034a66"
+      ],
+      "settings": {
+        "show_dynamic_buybutton": false,
+        "enable_discount_tab": true,
+        "show_payment_methods": true,
+        "show_order_notes": true,
+        "order_notes_alignment": "right",
+        "enable_terms_checkbox": false,
+        "terms_text": "<p>I accept the <a href='/policies/privacy-policy' title='Privacy Policy'>privacy policy</a>"
+      }
+    },
+    "05b85ec4-b172-41cb-9110-52391145624b": {
+      "type": "section-recently-viewed-products",
+      "settings": {
+        "number_of_items": 4,
+        "text_alignment": "center",
+        "title": "<h2>These products had your attention</h2>",
+        "title_underline_style": "none",
+        "enable_quick_buy_desktop": false,
+        "enable_quick_buy_drawer": false,
+        "enable_quick_buy_mobile": false,
+        "enable_quick_buy_qty_selector": false,
+        "enable_color_picker": false,
+        "enable_quick_buy_compact": false,
+        "spacing_desktop": 50,
+        "spacing_mobile": 30
+      }
+    },
+    "perks-v29": {
+      "type": "vanaya-cart-perks-v29",
+      "settings": {}
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main-cart",
+    "perks-v29",
+    "05b85ec4-b172-41cb-9110-52391145624b"
+  ]
+}

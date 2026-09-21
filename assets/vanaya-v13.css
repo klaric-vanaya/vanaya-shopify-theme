@@ -1,0 +1,15 @@
+/* Vanaya v13 brand refinements */
+:root{--vanaya-avenir:Avenir,"Avenir Next","Segoe UI",Arial,sans-serif;--vanaya-brown:#4b4136}
+body,input,textarea,select,button,.vanaya-section,.vanaya-global-header,.vanaya-global-footer{font-family:var(--vanaya-avenir)!important;font-weight:400}
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.vanaya-section h1,.vanaya-section h2,.vanaya-section h3,.vanaya-global-header strong,.vanaya-global-footer h4,.vanaya-card-copy h3,.vanaya-faq-list summary{font-family:var(--vanaya-avenir)!important;font-weight:800!important}
+.vanaya-section p,.vanaya-section li,.vanaya-section a,.vanaya-global-footer p,.vanaya-global-footer a{font-family:var(--vanaya-avenir)!important}
+.shopify-section-announcement-bar,.shopify-section-announcement-bar>*,.shopify-section-announcement-bar [class*="color-palette"]{background:var(--vanaya-brown)!important;color:#fff!important}
+.vanaya-video-copy{background:rgba(255,250,240,.34)!important;-webkit-backdrop-filter:blur(3px)!important;backdrop-filter:blur(3px)!important}
+.vanaya-video-copy h2{font-size:clamp(25px,2.95vw,43px)!important;line-height:1.04!important;letter-spacing:-.025em!important}
+.vanaya-product-page{grid-template-columns:repeat(4,minmax(0,1fr))}
+#most-loved .vanaya-product-page,#the-vanaya-edit .vanaya-product-page{grid-template-columns:repeat(4,minmax(0,1fr))}
+.vanaya-seabuckthorn__seal{display:flex!important;flex-direction:column;align-items:center;justify-content:center;padding:22px 17px}
+.vanaya-seabuckthorn__seal span{font:800 11px/1.05 var(--vanaya-avenir)!important;letter-spacing:.08em}
+.vanaya-seabuckthorn__seal small{position:static!important;margin-top:5px;font:800 8px/1.1 var(--vanaya-avenir)!important;letter-spacing:.16em}
+@media(max-width:900px){.vanaya-product-page,#most-loved .vanaya-product-page,#the-vanaya-edit .vanaya-product-page{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.vanaya-video-copy{background:rgba(255,250,240,.42)!important}.vanaya-video-copy h2{font-size:clamp(22px,7vw,31px)!important}}

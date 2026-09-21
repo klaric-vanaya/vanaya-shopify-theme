@@ -1,0 +1,60 @@
+<section class="vanaya-contact-page vanaya-policy-shell">
+  <div class="vanaya-contact-hero">
+    <p class="vanaya-kicker">We are here to help</p>
+    <h1>Contact Vanaya</h1>
+    <p>Questions about an order, a ritual or your delivery? Send us a note and our team will get back to you.</p>
+    <div class="vanaya-contact-direct">
+      <a href="mailto:info@vanayaveda.com">info@vanayaveda.com</a>
+      <a href="tel:+919220248500">+91 9220248500</a>
+      <a href="tel:+911204818553">01204818553</a>
+    </div>
+  </div>
+
+  <div class="vanaya-contact-card">
+    {% form 'contact', id: 'VanayaContactForm' %}
+      {% if form.posted_successfully? %}
+        <div class="vanaya-form-success" role="status">Thank you. Your query has been received and our team will contact you shortly.</div>
+      {% endif %}
+      {% if form.errors %}
+        <div class="vanaya-form-error" role="alert">{{ form.errors | default_errors }}</div>
+      {% endif %}
+
+      <div class="vanaya-contact-grid">
+        <div class="vanaya-field">
+          <label for="VanayaContactName">Name</label>
+          <input id="VanayaContactName" type="text" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" autocomplete="name" required placeholder="Your name">
+        </div>
+        <div class="vanaya-field">
+          <label for="VanayaContactPhone">Mobile</label>
+          <input id="VanayaContactPhone" type="tel" name="contact[phone]" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" autocomplete="tel" inputmode="tel" required placeholder="Your mobile number">
+        </div>
+        <div class="vanaya-field vanaya-field--wide">
+          <label for="VanayaContactEmail">Email</label>
+          <input id="VanayaContactEmail" type="email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" autocomplete="email" required placeholder="Your email address">
+        </div>
+        <div class="vanaya-field vanaya-field--wide">
+          <label for="VanayaContactQuery">Queries</label>
+          <textarea id="VanayaContactQuery" name="contact[body]" rows="6" required placeholder="How can we help you?">{{ form.body }}</textarea>
+        </div>
+      </div>
+      <button type="submit" id="VanayaContactSubmit" class="vanaya-contact-submit" style="background:#a2a880!important;color:#6a4738!important;border-color:#6a4738!important;">SEND YOUR QUERY</button>
+    {% endform %}
+  </div>
+
+  <div class="vanaya-order-faqs">
+    <p class="vanaya-kicker">Order support</p>
+    <h2>Frequently Asked Questions</h2>
+    <div class="vanaya-order-faq-list">
+      <details><summary>When will my order be delivered?<span>+</span></summary><p>Orders are generally dispatched within 1–2 working days. Delivery time varies by location and the latest available estimate is shown during checkout or in your order updates.</p></details>
+      <details><summary>How can I track my order?<span>+</span></summary><p>Once your order is dispatched, tracking information is shared through the contact details provided with your order. You can also sign in to My Account to review your order history and available order details.</p></details>
+      <details><summary>Can I cancel an order?<span>+</span></summary><p>An order can be cancelled only before dispatch. Once shipped, cancellation may no longer be possible and the applicable Return &amp; Refund Policy will apply.</p></details>
+      <details><summary>What if my order arrives damaged, leaked or incorrect?<span>+</span></summary><p>Please report a damaged, leaked, tampered, incomplete or incorrect order promptly, with your order number and clear product/packaging images. An unboxing video may be requested where applicable.</p></details>
+      <details><summary>Can I return or replace a product?<span>+</span></summary><p>Eligible return, replacement or refund requests may be raised within 7 days of delivery. Hygiene and safety restrictions apply. Please review our Return &amp; Refund Policy for complete eligibility conditions.</p></details>
+      <details><summary>How long does an approved refund take?<span>+</span></summary><p>Approved refunds are generally processed within 5–10 business days. The time taken to reflect may vary depending on your bank, card issuer or payment gateway.</p></details>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{"name":"Vanaya Contact Page","settings":[],"presets":[{"name":"Vanaya Contact Page"}]}
+{% endschema %}

@@ -1,0 +1,317 @@
+/* ==========================================================
+   Vanaya v29.9 — static home sections + clean wishlist hearts
+   ========================================================== */
+
+/* 1. As Seen on @vanayaveda: permanently static four-video grid, no arrows */
+.template-index #root .vanaya-bloggers .vanaya-carousel-tools,
+.template-index #root .vanaya-bloggers .vanaya-product-edge-arrow,
+.template-index #root .vanaya-bloggers [class*="arrow"],
+.template-index #root .vanaya-bloggers [data-product-move],
+.template-index #root .vanaya-bloggers .vanaya-progress{
+  display:none!important;
+}
+.template-index #root .vanaya-bloggers{
+  overflow:hidden!important;
+}
+.template-index #root .vanaya-blog-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:18px!important;
+  overflow:visible!important;
+  transform:none!important;
+}
+.template-index #root .vanaya-blog-grid article{
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  transform:none!important;
+}
+@media(max-width:800px){
+  .template-index #root .vanaya-blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+
+/* 2. Most Loved: static four cards, no scroll controls or transforms */
+.template-index #root .vanaya-products--static .vanaya-carousel-tools,
+.template-index #root .vanaya-products--static .vanaya-product-edge-arrow,
+.template-index #root .vanaya-products--static .vanaya-progress{
+  display:none!important;
+}
+.template-index #root .vanaya-products--static .vanaya-product-window{
+  overflow:visible!important;
+}
+.template-index #root .vanaya-products--static .vanaya-product-track--items{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:22px!important;
+  transform:none!important;
+  transition:none!important;
+}
+.template-index #root .vanaya-products--static .vanaya-product-track--items>.vanaya-card{
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  flex:none!important;
+}
+@media(max-width:800px){
+  .template-index #root .vanaya-products--static .vanaya-product-track--items{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+  }
+}
+
+/* 3. Product-card wishlist heart: small icon only, no circle/box/background */
+html body #root button.v29-wishlist-btn,
+html body #root .l4cl button.v29-wishlist-btn,
+html body #root .recently-viewed-products button.v29-wishlist-btn,
+html body #root .vanaya-card button.v29-wishlist-btn{
+  all:unset!important;
+  box-sizing:border-box!important;
+  position:absolute!important;
+  z-index:20!important;
+  top:13px!important;
+  right:13px!important;
+  display:grid!important;
+  place-items:center!important;
+  width:28px!important;
+  height:28px!important;
+  min-width:28px!important;
+  min-height:28px!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  color:#6a4738!important;
+  font:400 25px/1 Georgia,"Times New Roman",serif!important;
+  text-align:center!important;
+  cursor:pointer!important;
+  opacity:.92!important;
+}
+html body #root button.v29-wishlist-btn:hover,
+html body #root button.v29-wishlist-btn.is-saved{
+  background:transparent!important;
+  color:#6a4738!important;
+  transform:scale(1.10)!important;
+  opacity:1!important;
+}
+html body #root button.v29-wishlist-btn::before,
+html body #root button.v29-wishlist-btn::after{
+  content:none!important;
+  display:none!important;
+}
+.template-index #root .vanaya-card{
+  position:relative!important;
+}
+
+/* 4. Cart: rebuild "These products had your attention" as clean equal cards */
+.template-cart #root .recently-viewed-products{
+  overflow:hidden!important;
+  width:100%!important;
+  max-width:none!important;
+}
+.template-cart #root .recently-viewed-products>.l4cl{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:20px!important;
+  width:min(1380px,100%)!important;
+  max-width:1380px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  transform:none!important;
+}
+.template-cart #root .recently-viewed-products>.l4cl>li{
+  position:relative!important;
+  display:block!important;
+  float:none!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:10px 10px 20px!important;
+  overflow:hidden!important;
+  border:1px solid rgba(106,71,56,.18)!important;
+  border-radius:4px 34px 4px 4px!important;
+  background:#fffaf0!important;
+  box-shadow:0 14px 34px rgba(63,72,52,.08)!important;
+}
+.template-cart #root .recently-viewed-products>.l4cl>li figure{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:0 0 15px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  aspect-ratio:1/1!important;
+  border-radius:3px 27px 3px 3px!important;
+  background:#ecebd9!important;
+}
+.template-cart #root .recently-viewed-products>.l4cl>li figure picture,
+.template-cart #root .recently-viewed-products>.l4cl>li figure a{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+}
+.template-cart #root .recently-viewed-products>.l4cl>li figure img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  aspect-ratio:1/1!important;
+  object-fit:cover!important;
+}
+.template-cart #root .recently-viewed-products>.l4cl>li h2,
+.template-cart #root .recently-viewed-products>.l4cl>li h3{
+  width:100%!important;
+  max-width:none!important;
+  min-height:0!important;
+  margin:0 0 8px!important;
+  color:#342b25!important;
+  font:700 17px/1.35 "Avenir Next",Avenir,Arial,sans-serif!important;
+  overflow-wrap:anywhere!important;
+}
+.template-cart #root .recently-viewed-products>.l4cl>li .price{
+  display:block!important;
+  width:100%!important;
+  color:#6a4738!important;
+  font-weight:800!important;
+}
+.template-cart #root .recently-viewed-products .quick-buy,
+.template-cart #root .recently-viewed-products [class*="quick-buy"]{
+  display:none!important;
+}
+@media(max-width:1000px){
+  .template-cart #root .recently-viewed-products>.l4cl{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+  }
+}
+@media(max-width:560px){
+  .template-cart #root .recently-viewed-products>.l4cl{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+  }
+  .template-cart #root .recently-viewed-products>.l4cl>li{
+    padding:7px 7px 14px!important;
+  }
+  .template-cart #root .recently-viewed-products>.l4cl>li h2,
+  .template-cart #root .recently-viewed-products>.l4cl>li h3{
+    font-size:14px!important;
+  }
+}
+
+/* 5. Wishlist page: designer cards + Vanaya green buttons, no black */
+body.template-page #root .v293-wishlist-page,
+body[class*="template-page"] #root .v293-wishlist-page{
+  width:min(1460px,calc(100% - 48px))!important;
+  margin:0 auto!important;
+  padding:74px 0 100px!important;
+}
+body.template-page #root .v293-wishlist-hero,
+body[class*="template-page"] #root .v293-wishlist-hero{
+  max-width:760px!important;
+  margin:0 auto 42px!important;
+}
+body.template-page #root .v293-wishlist-grid,
+body[class*="template-page"] #root .v293-wishlist-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:22px!important;
+}
+body.template-page #root .v293-wishlist-card,
+body[class*="template-page"] #root .v293-wishlist-card{
+  position:relative!important;
+  overflow:hidden!important;
+  border:1px solid rgba(106,71,56,.18)!important;
+  border-radius:4px 40px 4px 4px!important;
+  background:#fffaf0!important;
+  box-shadow:0 18px 42px rgba(63,72,52,.09)!important;
+}
+body.template-page #root .v293-wishlist-image{
+  display:block!important;
+  margin:9px!important;
+  overflow:hidden!important;
+  aspect-ratio:1/1.08!important;
+  border-radius:3px 31px 3px 3px!important;
+  background:#ecebd9!important;
+}
+body.template-page #root .v293-wishlist-image img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+}
+body.template-page #root .v293-wishlist-copy{
+  padding:13px 19px 21px!important;
+}
+body.template-page #root .v293-wishlist-copy h3{
+  margin:3px 0 7px!important;
+  color:#342b25!important;
+  font:500 20px/1.28 Georgia,"Times New Roman",serif!important;
+}
+body.template-page #root .v293-wishlist-price{
+  color:#6a4738!important;
+  font-weight:800!important;
+}
+body.template-page #root .v293-primary-btn,
+body[class*="template-page"] #root .v293-primary-btn{
+  border:1px solid #6a4738!important;
+  background:#a2a880!important;
+  background-image:none!important;
+  color:#6a4738!important;
+  box-shadow:none!important;
+}
+body.template-page #root .v293-primary-btn:hover,
+body[class*="template-page"] #root .v293-primary-btn:hover{
+  background:#b4b89a!important;
+  color:#6a4738!important;
+}
+body.template-page #root .v293-secondary-btn,
+body[class*="template-page"] #root .v293-secondary-btn{
+  border:1px solid rgba(106,71,56,.55)!important;
+  background:#fffaf0!important;
+  color:#6a4738!important;
+}
+body.template-page #root .v293-remove,
+body[class*="template-page"] #root .v293-remove{
+  all:unset!important;
+  box-sizing:border-box!important;
+  position:absolute!important;
+  z-index:8!important;
+  top:16px!important;
+  right:16px!important;
+  display:grid!important;
+  place-items:center!important;
+  width:30px!important;
+  height:30px!important;
+  cursor:pointer!important;
+  color:#6a4738!important;
+  background:rgba(255,250,240,.78)!important;
+  border:1px solid rgba(106,71,56,.18)!important;
+  border-radius:50%!important;
+  font:300 22px/1 Arial,sans-serif!important;
+  backdrop-filter:blur(5px)!important;
+}
+@media(max-width:1000px){
+  body.template-page #root .v293-wishlist-grid,
+  body[class*="template-page"] #root .v293-wishlist-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:560px){
+  body.template-page #root .v293-wishlist-page,
+  body[class*="template-page"] #root .v293-wishlist-page{
+    width:calc(100% - 24px)!important;
+    padding:50px 0 70px!important;
+  }
+  body.template-page #root .v293-wishlist-grid,
+  body[class*="template-page"] #root .v293-wishlist-grid{
+    gap:10px!important;
+  }
+  body.template-page #root .v293-wishlist-copy{
+    padding:10px 12px 15px!important;
+  }
+  body.template-page #root .v293-wishlist-copy h3{
+    font-size:16px!important;
+  }
+}

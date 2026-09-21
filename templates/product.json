@@ -1,0 +1,92 @@
+{
+  "sections": {
+    "main-product": {
+      "type": "vanaya-product-main",
+      "settings": {}
+    },
+    "1654858435570866da": {
+      "type": "section-faq",
+      "blocks": {
+        "1654858435278bc343-0": {
+          "type": "text",
+          "settings": {
+            "faq_question": "How should I use my Vanaya ritual?",
+            "icon": "none",
+            "header_image_width": 25,
+            "faq_answer": "<p>Please follow the usage directions given in the product description and on the product packaging. Introduce a new skincare product gradually and perform a patch test before regular use.</p>",
+            "page": "",
+            "image_width": 465,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        },
+        "1654858435278bc343-1": {
+          "type": "text",
+          "settings": {
+            "faq_question": "When will my order be delivered?",
+            "icon": "none",
+            "header_image_width": 25,
+            "faq_answer": "<p>Orders are generally dispatched within 1–2 working days. Final delivery time depends on your location and is displayed during checkout.</p>",
+            "page": "",
+            "image_width": 465,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        },
+        "1654858435278bc343-2": {
+          "type": "text",
+          "settings": {
+            "faq_question": "What should I do if my order arrives damaged?",
+            "icon": "none",
+            "header_image_width": 25,
+            "faq_answer": "<p>Please contact Vanaya support promptly with your order details and clear photographs of the package and product so the team can review the issue.</p>",
+            "page": "",
+            "image_width": 465,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        }
+      },
+      "block_order": [
+        "1654858435278bc343-0",
+        "1654858435278bc343-1",
+        "1654858435278bc343-2"
+      ],
+      "settings": {
+        "alignment": "left",
+        "compact": false,
+        "title": "<h2>Questions about your ritual</h2>",
+        "title_underline_style": "none",
+        "spacing_desktop": 75,
+        "spacing_mobile": 30
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "recommended_products_qty": 3,
+        "number_of_items": 3,
+        "text_alignment": "start",
+        "title": "<h2>You may also like</h2>",
+        "title_underline_style": "none",
+        "enable_quick_buy_desktop": false,
+        "enable_quick_buy_mobile": false,
+        "enable_quick_buy_drawer": false,
+        "enable_quick_buy_qty_selector": true,
+        "enable_color_picker": false,
+        "enable_quick_buy_compact": false,
+        "spacing_desktop": 75,
+        "spacing_mobile": 0,
+        "mobile_collapse": false
+      }
+    }
+  },
+  "order": [
+    "main-product",
+    "1654858435570866da",
+    "recommendations"
+  ]
+}

@@ -1,0 +1,72 @@
+/* Vanaya v22 */
+:root{--v22-green:#d4d2b4;--v22-brown:#4b4136;--v22-cream:#fffaf0}
+
+/* The label is direct text so no inherited span rule can hide it on mobile. */
+html body #root .vanaya-global-footer button.vanaya-footer-join-v22,
+html body #root .vanaya-global-footer button.vanaya-footer-join-v22:hover,
+html body #root .vanaya-global-footer button.vanaya-footer-join-v22:focus{
+  -webkit-appearance:none!important;appearance:none!important;display:flex!important;visibility:visible!important;
+  align-items:center!important;justify-content:center!important;flex:0 0 92px!important;width:92px!important;
+  min-width:92px!important;height:44px!important;min-height:44px!important;margin:3px 0!important;padding:0 12px!important;
+  border:1px solid var(--v22-brown)!important;border-radius:999px!important;background:var(--v22-green)!important;
+  background-image:none!important;color:var(--v22-brown)!important;font-family:"Avenir Next",Avenir,Arial,sans-serif!important;
+  font-size:12px!important;font-weight:800!important;line-height:44px!important;letter-spacing:.12em!important;
+  text-align:center!important;text-indent:0!important;text-transform:uppercase!important;opacity:1!important;
+}
+html body #root .vanaya-global-footer button.vanaya-footer-join-v22::before,
+html body #root .vanaya-global-footer button.vanaya-footer-join-v22::after{content:none!important;display:none!important}
+
+/* Shop hero is 30% shorter than v21 and the title glass is lighter. */
+.vanaya-shop__hero{aspect-ratio:2048/575!important;min-height:230px!important}
+.vanaya-shop__hero-copy{background:rgba(255,250,240,.43)!important;border-color:rgba(255,250,240,.45)!important;backdrop-filter:blur(4px)!important;-webkit-backdrop-filter:blur(4px)!important}
+
+/* Product experience typography */
+.template-product #content,
+.template-product .vp-product,
+.template-product .vp-product button,
+.template-product .vp-product input,
+.template-product .vp-product select,
+.template-product .shopify-section[id*="section-faq"],
+.template-product .shopify-section[id*="product-recommendations"]{
+  font-family:"Avenir Next",Avenir,Arial,sans-serif!important;
+}
+.template-product .vp-product h1,.template-product .vp-product h2,.template-product .vp-product h3,
+.template-product .vp-product__intro,.template-product .vp-product__intro *,
+.template-product .vp-product__price,.template-product .vp-product__accordions summary,
+.template-product .vp-product__accordions details>div,.template-product .vp-product__accordions details>p,
+.template-product .shopify-section[id*="section-faq"] h2,.template-product .shopify-section[id*="section-faq"] h3,
+.template-product .shopify-section[id*="section-faq"] p{
+  font-family:"Avenir Next",Avenir,Arial,sans-serif!important;
+}
+.template-product .vp-product h1{font-weight:700!important;letter-spacing:-.035em!important}
+.template-product .vp-product__intro,.template-product .vp-product__accordions details>div,.template-product .vp-product__accordions details>p{font-weight:400!important}
+
+/* Designer related-products presentation */
+.template-product .shopify-section[id*="product-recommendations"]{max-width:none!important;padding:74px max(22px,5vw) 92px!important;background:linear-gradient(135deg,#d4d2b4 0%,#eee8d6 52%,#fffaf0 100%)!important}
+.template-product .product-recommendations>article{max-width:1460px;margin:auto}
+.vanaya-related__header{max-width:720px;margin:0 auto 38px;text-align:center}
+.vanaya-related__header>p{margin:0 0 10px;color:#71654d;font:800 10px/1.2 "Avenir Next",Avenir,Arial,sans-serif!important;letter-spacing:.2em;text-transform:uppercase}
+.vanaya-related__header h2{margin:0 0 14px;color:var(--v22-brown);font:700 clamp(35px,4vw,58px)/1.04 "Avenir Next",Avenir,Arial,sans-serif!important;letter-spacing:-.035em}
+.vanaya-related__header>span{display:block;color:#61584c;font:400 15px/1.65 "Avenir Next",Avenir,Arial,sans-serif}
+.vanaya-related__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.vanaya-related-card{position:relative;overflow:hidden;border:1px solid rgba(75,65,54,.24);border-radius:4px 54px 4px 4px;background:#fffaf0;box-shadow:0 20px 46px rgba(75,65,54,.11);transition:transform .35s,box-shadow .35s}
+.vanaya-related-card:hover{transform:translateY(-5px);box-shadow:0 26px 58px rgba(75,65,54,.17)}
+.vanaya-related-card__media{position:relative;display:block;aspect-ratio:1;overflow:hidden;background:#efe6d5}
+.vanaya-related-card__media img,.vanaya-related-card__media svg{display:block;width:100%;height:100%;object-fit:cover;transition:transform .55s}
+.vanaya-related-card:hover .vanaya-related-card__media img{transform:scale(1.035)}
+.vanaya-related-card__media>span{position:absolute;left:14px;bottom:14px;padding:7px 11px;border-radius:999px;background:rgba(212,210,180,.9);color:var(--v22-brown);font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(5px)}
+.vanaya-related-card__copy{padding:21px 20px 22px}.vanaya-related-card__copy small{color:#786a54;font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.vanaya-related-card__copy h3{min-height:52px;margin:9px 0 18px;font:700 20px/1.28 "Avenir Next",Avenir,Arial,sans-serif!important;color:var(--v22-brown)}
+.vanaya-related-card__copy h3 a{color:inherit;text-decoration:none}.vanaya-related-card__copy>div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid rgba(75,65,54,.15)}
+.vanaya-related-card__copy strong{font-size:14px}.vanaya-related-card__discover{color:var(--v22-brown);font-size:10px;font-weight:800;letter-spacing:.11em;text-decoration:none;text-transform:uppercase}.vanaya-related-card__discover span{margin-left:7px}
+
+@media(max-width:700px){
+  .vanaya-shop__hero{aspect-ratio:16/7!important;min-height:0!important}
+  .vanaya-shop__hero-copy{width:78%!important;padding:13px 10px!important;background:rgba(255,250,240,.4)!important}
+  .vanaya-shop__hero-copy h1{font-size:27px!important}.vanaya-shop__hero-copy p{font-size:7px!important;letter-spacing:.13em!important}
+  html body #root .vanaya-global-footer button.vanaya-footer-join-v22{display:flex!important;visibility:visible!important;color:var(--v22-brown)!important;font-size:12px!important;font-weight:800!important;text-indent:0!important}
+  .template-product .shopify-section[id*="product-recommendations"]{padding:54px 14px 64px!important}
+  .vanaya-related__header{margin-bottom:28px;padding:0 8px}.vanaya-related__header h2{font-size:34px!important}.vanaya-related__header>span{font-size:13px}
+  .vanaya-related__grid{display:flex;gap:13px;overflow-x:auto;padding:2px 3px 22px;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .vanaya-related__grid::-webkit-scrollbar{display:none}.vanaya-related-card{flex:0 0 82%;scroll-snap-align:center;border-radius:4px 38px 4px 4px}
+}

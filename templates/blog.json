@@ -1,0 +1,66 @@
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {
+        "hide_mobile": false
+      }
+    },
+    "16548703264ad097e6": {
+      "type": "section-slideshow",
+      "blocks": {
+        "16548703261ef9dfe8-0": {
+          "type": "slide",
+          "settings": {
+            "layout": "background",
+            "overlay_opacity": 10,
+            "color_palette": "scheme-4",
+            "text_position": "text-center",
+            "title": "<h1>Our blog.</h1>",
+            "title_underline_style": "none",
+            "text": "<p>Get inspired and read our blog.</p>",
+            "show_first_link": false,
+            "first_link_text": "Button",
+            "first_link_url": "/",
+            "first_button_style": "primary plain",
+            "show_second_link": false,
+            "second_link_text": "Button",
+            "second_link_url": "",
+            "second_button_style": "secondary plain"
+          }
+        }
+      },
+      "block_order": [
+        "16548703261ef9dfe8-0"
+      ],
+      "settings": {
+        "height": "32/9",
+        "width": "boxed",
+        "autoplay": false,
+        "autoplay_seconds": 3,
+        "enable_controls": false,
+        "height_mobile": "xs",
+        "spacing_desktop": 50,
+        "spacing_mobile": 30
+      }
+    },
+    "main-blog": {
+      "type": "main-blog",
+      "settings": {
+        "title": "",
+        "show_tags": false,
+        "pagination_qty": 12,
+        "show_image": true,
+        "show_date": true,
+        "show_author": true,
+        "show_excerpt": false,
+        "button_style_post": "secondary link"
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "16548703264ad097e6",
+    "main-blog"
+  ]
+}

@@ -1,0 +1,81 @@
+.template-index .vanaya-products,
+.template-index .vanaya-gifting,
+.template-index .vanaya-bloggers,
+.template-index .vanaya-faq,
+.template-index .vanaya-values,
+.template-index .vanaya-journal,
+.template-index .vanaya-testimonials {
+  padding-top: 68px !important;
+  padding-bottom: 68px !important;
+}
+
+.template-index .vanaya-seabuckthorn {
+  padding-top: 76px !important;
+  padding-bottom: 76px !important;
+}
+
+.template-index .vanaya-heading { margin-bottom: 28px; }
+
+.vanaya-testimonials {
+  overflow: hidden;
+  background: #f6f3e7;
+  color: #30291f;
+}
+
+.vanaya-testimonial-viewport { overflow: hidden; }
+.vanaya-testimonial-track {
+  display: flex;
+  gap: 18px;
+  transition: transform .75s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+
+.vanaya-testimonial-card {
+  flex: 0 0 calc((100% - 36px) / 3);
+  min-width: 0;
+  padding: 30px;
+  border: 1px solid rgba(92,76,47,.16);
+  border-radius: 22px;
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 15px 40px rgba(72,59,37,.08);
+}
+
+.vanaya-testimonial-stars {
+  color: #9a6b20;
+  font-size: 17px;
+  letter-spacing: 4px;
+  margin-bottom: 18px;
+}
+
+.vanaya-testimonial-card blockquote {
+  margin: 0 0 22px;
+  font-family: var(--font-stack-body);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.vanaya-testimonial-name { font-weight: 650; }
+.vanaya-testimonial-product { margin-top: 4px; opacity: .68; font-size: 13px; }
+.vanaya-testimonial-preview { display: inline-block; margin-top: 14px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .58; }
+.vanaya-testimonial-controls { display: flex; justify-content: center; gap: 10px; margin-top: 28px; }
+.vanaya-testimonial-controls button {
+  width: 42px; height: 42px; border: 1px solid rgba(57,50,36,.3); border-radius: 50%;
+  background: transparent; color: inherit; font-size: 22px; cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .vanaya-testimonial-card { flex-basis: calc((100% - 18px) / 2); }
+}
+
+@media (max-width: 600px) {
+  .template-index .vanaya-products,
+  .template-index .vanaya-gifting,
+  .template-index .vanaya-bloggers,
+  .template-index .vanaya-faq,
+  .template-index .vanaya-values,
+  .template-index .vanaya-journal,
+  .template-index .vanaya-testimonials { padding-top: 46px !important; padding-bottom: 46px !important; }
+  .template-index .vanaya-seabuckthorn { padding-top: 52px !important; padding-bottom: 52px !important; }
+  .template-index .vanaya-heading { margin-bottom: 22px; }
+  .vanaya-testimonial-card { flex-basis: 100%; padding: 24px; }
+}

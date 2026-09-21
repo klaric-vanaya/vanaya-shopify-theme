@@ -1,0 +1,67 @@
+{
+  "type": "footer",
+  "name": "t:static_sections.footer.name",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "ee8cf9cf-0a8b-4986-b76c-1016a9510c5b": {
+          "type": "customer_support",
+          "settings": {
+            "title": "Vanaya",
+            "title_underline_style": "none",
+            "customer_support_img_width": 230,
+            "customer_support_offset_right": 0,
+            "customer_support_offset_bottom": 0,
+            "extra_customer_support": "<p>Rooted in Ayurveda. Created as meaningful rituals for modern Indian skin.</p>",
+            "show_phone_link": false,
+            "show_mail_link": false,
+            "show_whatsapp_link": false,
+            "customer_support_offset_right_mobile": 0,
+            "customer_support_offset_bottom_mobile": 0
+          }
+        },
+        "c9a8027f-3a8d-4084-adbf-29db94608977": {
+          "type": "menu",
+          "settings": {
+            "menu": "footer",
+            "split_menu": false
+          }
+        },
+        "4300adc0-a530-4961-bb5a-0ef06c6e64fb": {
+          "type": "socials_newsletter",
+          "settings": {
+            "title": "Follow us",
+            "show_socials": true,
+            "enable_follow_on_shop": false,
+            "show_newsletter": false,
+            "footer_button_style": "primary plain",
+            "enable_newsletter_terms_checkbox": false
+          }
+        }
+      },
+      "block_order": [
+        "ee8cf9cf-0a8b-4986-b76c-1016a9510c5b",
+        "c9a8027f-3a8d-4084-adbf-29db94608977",
+        "4300adc0-a530-4961-bb5a-0ef06c6e64fb"
+      ],
+      "settings": {
+        "footer_color": "white",
+        "title_font": "primary",
+        "title_size_blocks": "h4",
+        "bottom_color": "scheme-3",
+        "bottom_img_width": 50,
+        "bottom_img_link": "",
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "enable_follow_on_shop": false,
+        "show_payment_methods": true,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

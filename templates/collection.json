@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "hide_mobile": false
+      }
+    },
+    "main-collection": {
+      "type": "vanaya-collection-main",
+      "settings": {}
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main-collection"
+  ]
+}

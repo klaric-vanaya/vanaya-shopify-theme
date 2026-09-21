@@ -1,0 +1,44 @@
+{% liquid
+  assign gift_variant = product.selected_or_first_available_variant
+  assign gift_url = '/products/' | append: fallback_handle
+  if product != blank
+    assign gift_url = product.url
+  endif
+  assign gift_image = product.featured_image
+  if gift_image == blank
+    assign gift_image = product.images.first
+  endif
+  if gift_image == blank and product.media.first != blank
+    assign gift_image = product.media.first.preview_image
+  endif
+  assign gift_contents = contents | split: '|'
+%}
+<article class="vgift-box{% if reverse %} vgift-box--reverse{% endif %}" id="{{ fallback_handle }}">
+  <div class="vgift-box__visual">
+    <a href="{{ gift_url }}" aria-label="View {{ title }}">
+      {% if gift_image != blank %}
+        {{ gift_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480,720,960,1200', sizes: '(min-width: 1181px) 480px, 88vw', alt: gift_image.alt | default: title }}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag }}
+      {% endif %}
+    </a>
+    <span class="vgift-box__number">{{ number }}</span>
+  </div>
+  <div class="vgift-box__content">
+    <p class="vgift-box__eyebrow">{{ eyebrow }}</p><h2>{% if product != blank %}{{ product.title }}{% else %}{{ title }}{% endif %}</h2><p class="vgift-box__subtitle">{{ subtitle }}</p>
+    <div class="vgift-box__price">{% if product != blank %}<strong>{{ gift_variant.price | money }}</strong>{% if gift_variant.compare_at_price > gift_variant.price %}<s>{{ gift_variant.compare_at_price | money }}</s>{% endif %}{% else %}<strong>{{ fallback_price }}</strong><s>{{ fallback_compare }}</s>{% endif %}<span>Gift Box Price</span></div>
+    <p class="vgift-box__description">{{ description }}</p>
+    <div class="vgift-box__inside"><p>Inside the box</p><ul>{% for item in gift_contents %}<li>{{ item }}</li>{% endfor %}</ul></div>
+    <p class="vgift-box__best"><strong>Best for</strong><span>{{ best_for }}</span></p>
+    <div class="vgift-box__actions">
+      <a href="{{ gift_url }}">Discover the Gift Box</a>
+      {% if product != blank %}{% form 'product', product, class: 'vgift-box__form' %}<input type="hidden" name="id" value="{{ gift_variant.id }}"><input type="hidden" name="quantity" value="1"><button type="submit" {% unless gift_variant.available %}disabled{% endunless %}>{% if gift_variant.available %}Add to Bag{% else %}Sold Out{% endif %}</button>{% endform %}{% else %}<a class="vgift-box__bag" href="{{ gift_url }}">Add to Bag</a>{% endif %}
+    </div>
+  </div>
+</article>
+<style>
+.vgift-box{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(380px,.92fr);max-width:1500px;margin:0 auto;padding:70px max(22px,5vw) 115px;gap:clamp(45px,7vw,110px);align-items:center}.vgift-box--reverse .vgift-box__visual{order:2}.vgift-box--reverse .vgift-box__content{order:1}.vgift-box__visual{position:relative;min-width:0;background:#e6e0ca;box-shadow:0 30px 75px rgba(57,47,37,.12)}.vgift-box__visual>a{display:block;aspect-ratio:1/1.05;overflow:hidden}.vgift-box__visual img,.vgift-box__visual svg{display:block;width:100%!important;height:100%!important;object-fit:cover!important;transition:transform 1s cubic-bezier(.2,.7,.2,1)}.vgift-box__visual:hover img{transform:scale(1.025)}.vgift-box__number{position:absolute;right:24px;bottom:18px;color:rgba(255,255,255,.88);font:58px/1 Georgia,serif;text-shadow:0 2px 20px rgba(0,0,0,.2)}.vgift-box__edition{position:absolute;top:20px;left:20px;padding:9px 13px;background:rgba(255,250,240,.9);font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;backdrop-filter:blur(6px)}.vgift-box__eyebrow{margin:0;color:#876d4d;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}.vgift-box__content h2{max-width:650px;margin:14px 0 10px;font:400 clamp(40px,4.4vw,67px)/1 Georgia,serif;letter-spacing:-.035em}.vgift-box__subtitle{margin:0 0 20px;font:italic 16px/1.5 Georgia,serif}.vgift-box__price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 24px}.vgift-box__price strong{font-size:27px}.vgift-box__price s{opacity:.48}.vgift-box__price span{padding:5px 9px;background:#d4d2b4;font-size:8px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.vgift-box__description{max-width:640px;margin:0;color:#5d5145;font-size:14px;line-height:1.75}.vgift-box__inside{margin:27px 0 20px;padding:21px 0;border-block:1px solid rgba(57,47,37,.2)}.vgift-box__inside>p{margin:0 0 12px;font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.vgift-box__inside ul{display:grid;grid-template-columns:1fr 1fr;gap:9px 20px;margin:0;padding:0;list-style:none}.vgift-box__inside li{position:relative;padding-left:15px;font-size:12px;line-height:1.45}.vgift-box__inside li:before{position:absolute;left:0;color:#9c7448;content:'✦';font-size:7px}.vgift-box__best{display:grid;grid-template-columns:75px 1fr;gap:12px;margin:0 0 25px;color:#5d5145;font-size:12px;line-height:1.55}.vgift-box__best strong{color:#392f25;font-size:9px;letter-spacing:.13em;text-transform:uppercase}.vgift-box__actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.vgift-box__actions>a,.vgift-box__actions button{display:flex!important;width:100%!important;min-height:51px!important;align-items:center!important;justify-content:center!important;margin:0!important;padding:0 15px!important;border:1px solid #392f25!important;border-radius:0!important;background:transparent!important;color:#392f25!important;font:800 9px/1.2 "Avenir Next",Avenir,Arial,sans-serif!important;letter-spacing:.12em!important;text-align:center!important;text-decoration:none!important;text-transform:uppercase!important}.vgift-box__actions button,.vgift-box__actions .vgift-box__bag{background:#392f25!important;color:#fff!important}.vgift-box__form{margin:0!important}.vgift-box__form input{display:none!important}@media(max-width:900px){.vgift-box,.vgift-box--reverse{grid-template-columns:1fr;gap:42px;padding-top:45px}.vgift-box--reverse .vgift-box__visual,.vgift-box--reverse .vgift-box__content{order:initial}}@media(max-width:600px){.vgift-box{padding:28px 12px 72px;gap:30px}.vgift-box__content{padding:0 6px}.vgift-box__content h2{font-size:38px}.vgift-box__inside ul{grid-template-columns:1fr}.vgift-box__actions{grid-template-columns:1fr}.vgift-box__number{font-size:42px}}
+</style>
+<style>
+.vgift-box{box-sizing:border-box!important;grid-template-columns:minmax(320px,520px) minmax(0,1fr)!important;max-width:1320px!important;padding:48px max(22px,4vw) 88px!important;gap:clamp(42px,6vw,85px)!important}.vgift-box__visual{width:100%!important;max-width:520px!important;justify-self:center!important;border-radius:260px 260px 22px 22px!important;overflow:hidden!important}.vgift-box__visual>a{aspect-ratio:4/5!important}.vgift-box__visual img,.vgift-box__visual svg{object-fit:cover!important}.vgift-box__content h2{font-size:clamp(38px,4vw,58px)!important}@media(max-width:1180px){.vgift-box,.vgift-box--reverse{grid-template-columns:1fr!important;max-width:900px!important;gap:38px!important}.vgift-box--reverse .vgift-box__visual,.vgift-box--reverse .vgift-box__content{order:initial!important}.vgift-box__visual{max-width:560px!important}.vgift-box__content{width:100%!important;max-width:720px!important;justify-self:center!important}}@media(max-width:600px){.vgift-box{padding:30px 12px 65px!important}.vgift-box__visual{max-width:92vw!important;border-radius:48vw 48vw 16px 16px!important}.vgift-box__content h2{font-size:36px!important}}
+</style>

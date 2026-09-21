@@ -1,0 +1,24 @@
+<section class="vanaya-section vanaya-journal" id="vanaya-journal">
+  <p class="vanaya-kicker">The Vanaya journal</p>
+  <h2>Join the VANAYA Community</h2>
+  <p>Be the first to discover new rituals, rare ingredient stories, community experiences and considered skincare guidance.</p>
+  {% form 'customer', class: 'vanaya-community-form-v20' %}
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    <input type="hidden" name="contact[accepts_marketing]" value="true">
+    <div class="vanaya-community-form-v20__row">
+      <div class="vanaya-community-form-v20__field">
+        <label for="VanayaJournalEmail">Email address</label>
+        <input id="VanayaJournalEmail" type="email" name="contact[email]" placeholder="Your email address" autocomplete="email" required>
+      </div>
+      <button class="vanaya-community-form-v20__button vanaya-button-v20" type="submit"><span>Join the community</span></button>
+    </div>
+    {% if form.posted_successfully? %}
+      <p class="vanaya-newsletter-message is-success" role="status">Welcome to the VANAYA Community. Your email has been subscribed successfully.</p>
+    {% elsif form.errors %}
+      <div class="vanaya-newsletter-message is-error" role="alert">{{ form.errors | default_errors }}</div>
+    {% endif %}
+  {% endform %}
+</section>
+{% schema %}
+{"name":"Vanaya journal","settings":[],"presets":[{"name":"Vanaya journal"}]}
+{% endschema %}
