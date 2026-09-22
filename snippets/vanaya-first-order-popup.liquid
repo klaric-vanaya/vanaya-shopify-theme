@@ -8,7 +8,7 @@
     <h2 id="vanaya-welcome-title">10% OFF Your First Order</h2>
     <p class="vanaya-welcome__copy">Begin your VANAYA ritual. Subscribe with your email and mobile number and enjoy 10% off your first order.</p>
     {% form 'customer', id: 'VanayaWelcomeForm', class: 'vanaya-welcome__form' %}
-      <input type="hidden" name="contact[tags]" value="newsletter,first-order-popup">
+      <input type="hidden" name="contact[tags]" value="newsletter,first-order-popup,welcome-consent">
       <div class="vanaya-welcome__field">
         <label for="VanayaWelcomeEmail">Email address</label>
         <input id="VanayaWelcomeEmail" type="email" name="contact[email]" autocomplete="email" required placeholder="Email address">
@@ -17,19 +17,24 @@
         <label for="VanayaWelcomePhone">Mobile number</label>
         <input id="VanayaWelcomePhone" type="tel" name="contact[phone]" autocomplete="tel" inputmode="tel" required placeholder="+91 Mobile number">
       </div>
+      <label class="vanaya-welcome__consent">
+        <input type="checkbox" required>
+        <span>I agree to receive VANAYA offers and updates by email and on my mobile/WhatsApp. I can opt out anytime.</span>
+      </label>
       <button type="submit" class="vanaya-welcome__submit">UNLOCK 10% OFF</button>
       {% if form.posted_successfully? %}
         <div class="vanaya-welcome__success" data-vanaya-success>
           <span>Your welcome code</span>
           <strong>FIRSTVANAYA</strong>
-          <small>Use it at checkout on your first order.</small>
+          <small>Your 10% welcome discount is ready.</small>
+          <a class="vanaya-welcome__apply" href="/discount/FIRSTVANAYA?redirect=/collections/all">APPLY 10% &amp; SHOP</a>
         </div>
       {% endif %}
       {% if form.errors %}
         <div class="vanaya-welcome__error">{{ form.errors | default_errors }}</div>
       {% endif %}
     {% endform %}
-    <p class="vanaya-welcome__terms">By subscribing, you agree to receive VANAYA updates. You can unsubscribe anytime.</p>
+    <p class="vanaya-welcome__terms">Offer valid on eligible first orders, subject to the FIRSTVANAYA discount conditions.</p>
   </section>
 </div>
 {% endif %}
