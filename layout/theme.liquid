@@ -131,6 +131,18 @@
   {{ 'vanaya-v2920-final.css' | asset_url | stylesheet_tag: media: 'screen' }}
   {{ 'vanaya-v2921-cdn-videos.css' | asset_url | stylesheet_tag: media: 'screen' }}
   {{ 'vanaya-v2922-home-refinements.css' | asset_url | stylesheet_tag: media: 'screen' }}
+
+  <style id="vanaya-visual-fixes-20260922">
+    /* Gifting process panel: restore premium VANAYA contrast */
+    .template-page .vgift-premium [class*="process"],
+    .template-page .vgift-premium [class*="steps"]{background:#d4d2b4!important;color:#5a4636!important}
+    .template-page .vgift-premium [class*="process"] *,
+    .template-page .vgift-premium [class*="steps"] *{color:#5a4636!important}
+    /* Cart recently-viewed product cards: prevent portrait imagery being cropped */
+    .template-cart .recently-viewed-products .l4cl img{object-fit:contain!important;object-position:center!important}
+    .template-cart .recently-viewed-products .l4cl picture,
+    .template-cart .recently-viewed-products .l4cl figure{overflow:hidden!important}
+  </style>
 </head>
   <body class="template-{{ template.name | handle }}">
     <div id="root">
