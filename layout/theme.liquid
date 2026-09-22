@@ -178,7 +178,7 @@
 
     /* CART: Shopify's product card may request a cropped CDN rendition.
        Remove crop/height from dynamically injected recently-viewed images. */
-    if (document.body.classList.contains('template-cart')) {
+    {
       function unCropUrl(raw) {
         if (!raw) return raw;
         try {
@@ -191,7 +191,7 @@
         }
       }
       function fixRecentImages(root) {
-        (root || document).querySelectorAll('.recently-viewed-products .product-card img').forEach(function(img){
+        (root || document).querySelectorAll('.recently-viewed-products img').forEach(function(img){
           var src=img.getAttribute('src');
           if(src) img.setAttribute('src',unCropUrl(src));
           var ss=img.getAttribute('srcset');
@@ -203,8 +203,10 @@
             }).join(', '));
           }
           img.classList.remove('filled');
-          img.style.objectFit='contain';
-          img.style.objectPosition='center';
+          img.style.setProperty('object-fit','contain','important');
+          img.style.setProperty('object-position','center','important');
+          img.style.setProperty('width','100%','important');
+          img.style.setProperty('height','100%','important');
         });
       }
       fixRecentImages(document);
