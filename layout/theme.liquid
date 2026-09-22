@@ -132,17 +132,81 @@
   {{ 'vanaya-v2921-cdn-videos.css' | asset_url | stylesheet_tag: media: 'screen' }}
   {{ 'vanaya-v2922-home-refinements.css' | asset_url | stylesheet_tag: media: 'screen' }}
 
+
   <style id="vanaya-visual-fixes-20260922">
-    /* Gifting process panel: restore premium VANAYA contrast */
-    .template-page .vgift-premium [class*="process"],
-    .template-page .vgift-premium [class*="steps"]{background:#d4d2b4!important;color:#5a4636!important}
-    .template-page .vgift-premium [class*="process"] *,
-    .template-page .vgift-premium [class*="steps"] *{color:#5a4636!important}
-    /* Cart recently-viewed product cards: prevent portrait imagery being cropped */
-    .template-cart .recently-viewed-products .l4cl img{object-fit:contain!important;object-position:center!important}
-    .template-cart .recently-viewed-products .l4cl picture,
-    .template-cart .recently-viewed-products .l4cl figure{overflow:hidden!important}
+    /* Our Story: the 'Considered at every step' panel is page content, not the theme section.
+       JS below identifies that exact panel and adds this class. */
+    .vanaya-story-contrast-fix,
+    .vanaya-story-contrast-fix *{color:#fff!important}
+    .vanaya-story-contrast-fix a{color:#fff!important;border-color:rgba(255,255,255,.7)!important}
+
+    /* Cart recently viewed cards */
+    .template-cart .recently-viewed-products .product-card figure,
+    .template-cart .recently-viewed-products .product-card figure > a,
+    .template-cart .recently-viewed-products .product-card picture{
+      overflow:hidden!important;
+    }
+    .template-cart .recently-viewed-products .product-card img{
+      object-fit:contain!important;
+      object-position:center!important;
+    }
   </style>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    /* OUR STORY: target only the panel containing the supplied heading/step labels. */
+    if ({{ page.handle | json }} === 'our-story') {
+      var nodes = Array.from(document.querySelectorAll('h1,h2,h3,p,div,span'));
+      var marker = nodes.find(function(el){
+        var t=(el.textContent||'').trim().toLowerCase();
+        return t === 'considered at every step.' || t === 'considered at every step';
+      });
+      if (marker) {
+        var panel = marker;
+        while (panel && panel !== document.body) {
+          var txt=(panel.textContent||'').toLowerCase();
+          if (txt.indexOf('source')>-1 && txt.indexOf('formulate')>-1 && txt.indexOf('manufacture')>-1 && txt.indexOf('deliver')>-1) break;
+          panel=panel.parentElement;
+        }
+        if (panel && panel !== document.body) panel.classList.add('vanaya-story-contrast-fix');
+      }
+    }
+
+    /* CART: Shopify's product card may request a cropped CDN rendition.
+       Remove crop/height from dynamically injected recently-viewed images. */
+    if (document.body.classList.contains('template-cart')) {
+      function unCropUrl(raw) {
+        if (!raw) return raw;
+        try {
+          var u = new URL(raw, window.location.origin);
+          u.searchParams.delete('height');
+          u.searchParams.delete('crop');
+          return u.toString();
+        } catch(e) {
+          return raw.replace(/([?&])height=[^&]+&?/g,'$1').replace(/([?&])crop=[^&]+&?/g,'$1').replace(/[?&]$/,'');
+        }
+      }
+      function fixRecentImages(root) {
+        (root || document).querySelectorAll('.recently-viewed-products .product-card img').forEach(function(img){
+          var src=img.getAttribute('src');
+          if(src) img.setAttribute('src',unCropUrl(src));
+          var ss=img.getAttribute('srcset');
+          if(ss){
+            img.setAttribute('srcset',ss.split(',').map(function(part){
+              var bits=part.trim().split(/\s+/);
+              bits[0]=unCropUrl(bits[0]);
+              return bits.join(' ');
+            }).join(', '));
+          }
+          img.classList.remove('filled');
+          img.style.objectFit='contain';
+          img.style.objectPosition='center';
+        });
+      }
+      fixRecentImages(document);
+      new MutationObserver(function(){fixRecentImages(document)}).observe(document.body,{childList:true,subtree:true});
+    }
+  });
+  </script>
 </head>
   <body class="template-{{ template.name | handle }}">
     <div id="root">
