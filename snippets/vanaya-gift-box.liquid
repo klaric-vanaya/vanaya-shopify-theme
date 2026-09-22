@@ -13,12 +13,24 @@
   endif
   assign gift_contents = contents | split: '|'
   assign custom_image = custom_image | default: blank
+  assign custom_image_keyword = custom_image_keyword | default: blank
+  if custom_image == blank and custom_image_keyword != blank and product != blank
+    for candidate_image in product.images
+      assign candidate_src = candidate_image.src | downcase
+      assign candidate_alt = candidate_image.alt | downcase
+      assign keyword_down = custom_image_keyword | downcase
+      if candidate_src contains keyword_down or candidate_alt contains keyword_down
+        assign custom_image = candidate_image
+        break
+      endif
+    endfor
+  endif
 %}
 <article class="vgift-box{% if reverse %} vgift-box--reverse{% endif %}" id="{{ fallback_handle }}">
   <div class="vgift-box__visual">
     <a href="{{ gift_url }}" aria-label="View {{ title }}">
       {% if custom_image != blank %}
-        <img src="{{ custom_image }}" loading="lazy" alt="{{ title | escape }}" width="1200" height="1200">
+        {{ custom_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480,720,960,1200', sizes: '(min-width: 1181px) 480px, 88vw', alt: custom_image.alt | default: title }}
       {% elsif gift_image != blank %}
         {{ gift_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480,720,960,1200', sizes: '(min-width: 1181px) 480px, 88vw', alt: gift_image.alt | default: title }}
       {% else %}
