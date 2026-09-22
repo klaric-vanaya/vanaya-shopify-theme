@@ -1,0 +1,51 @@
+{% comment %} VANAYA first-order signup popup {% endcomment %}
+{% if template.name == 'index' %}
+<div class="vanaya-welcome" data-vanaya-welcome hidden>
+  <div class="vanaya-welcome__backdrop" data-vanaya-close></div>
+  <section class="vanaya-welcome__card" role="dialog" aria-modal="true" aria-labelledby="vanaya-welcome-title">
+    <button class="vanaya-welcome__close" type="button" aria-label="Close offer" data-vanaya-close>&times;</button>
+
+    {% form 'customer', id: 'VanayaWelcomeForm', class: 'vanaya-welcome__form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter,first-order-popup,welcome-consent">
+
+      {% if form.posted_successfully? %}
+        <div class="vanaya-welcome__success" data-vanaya-success>
+          <p class="vanaya-welcome__eyebrow">WELCOME TO VANAYA</p>
+          <h2 id="vanaya-welcome-title">Your 10% Welcome Gift Is Ready</h2>
+          <p class="vanaya-welcome__copy">Use this code on your first order at checkout.</p>
+          <div class="vanaya-welcome__coupon">
+            <strong data-vanaya-code>FIRSTVANAYA</strong>
+            <button type="button" class="vanaya-welcome__copy-button" data-vanaya-copy>Copy code</button>
+          </div>
+          <p class="vanaya-welcome__copied" data-vanaya-copied hidden>Copied ✓</p>
+          <button type="button" class="vanaya-welcome__continue" data-vanaya-close>CONTINUE SHOPPING</button>
+          <small>Offer valid on eligible first orders, subject to the FIRSTVANAYA discount conditions.</small>
+        </div>
+      {% else %}
+        <p class="vanaya-welcome__eyebrow">A WELCOME RITUAL</p>
+        <h2 id="vanaya-welcome-title">10% OFF Your First Order</h2>
+        <p class="vanaya-welcome__copy">Begin your VANAYA ritual. Subscribe with your email and mobile number and enjoy 10% off your first order.</p>
+
+        <div class="vanaya-welcome__field">
+          <label for="VanayaWelcomeEmail">Email address</label>
+          <input id="VanayaWelcomeEmail" type="email" name="contact[email]" autocomplete="email" required placeholder="Email address">
+        </div>
+        <div class="vanaya-welcome__field">
+          <label for="VanayaWelcomePhone">Mobile number</label>
+          <input id="VanayaWelcomePhone" type="tel" name="contact[phone]" autocomplete="tel" inputmode="tel" required placeholder="+91 Mobile number">
+        </div>
+        <label class="vanaya-welcome__consent">
+          <input type="checkbox" required>
+          <span>I agree to receive VANAYA offers and updates by email and on my mobile/WhatsApp. I can opt out anytime.</span>
+        </label>
+        <button type="submit" class="vanaya-welcome__submit">UNLOCK 10% OFF</button>
+
+        {% if form.errors %}
+          <div class="vanaya-welcome__error">{{ form.errors | default_errors }}</div>
+        {% endif %}
+        <p class="vanaya-welcome__terms">Offer valid on eligible first orders. You can unsubscribe from marketing anytime.</p>
+      {% endif %}
+    {% endform %}
+  </section>
+</div>
+{% endif %}
