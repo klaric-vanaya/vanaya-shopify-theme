@@ -153,21 +153,26 @@
   </style>
   <script>
   document.addEventListener('DOMContentLoaded', function () {
-    /* OUR STORY: target only the panel containing the supplied heading/step labels. */
+    /* OUR STORY: find the exact panel even when Shopify page HTML wraps the heading. */
     if ({{ page.handle | json }} === 'our-story') {
-      var nodes = Array.from(document.querySelectorAll('h1,h2,h3,p,div,span'));
-      var marker = nodes.find(function(el){
-        var t=(el.textContent||'').trim().toLowerCase();
-        return t === 'considered at every step.' || t === 'considered at every step';
+      var all = Array.from(document.querySelectorAll('#content *'));
+      var marker = all.find(function(el){
+        var t=(el.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+        return t.indexOf('considered at every step') !== -1 && el.children.length < 6;
       });
       if (marker) {
-        var panel = marker;
-        while (panel && panel !== document.body) {
+        var panel=marker;
+        for(var i=0;i<8 && panel && panel!==document.body;i++){
           var txt=(panel.textContent||'').toLowerCase();
-          if (txt.indexOf('source')>-1 && txt.indexOf('formulate')>-1 && txt.indexOf('manufacture')>-1 && txt.indexOf('deliver')>-1) break;
+          var hasSteps = txt.indexOf('source')>-1 && txt.indexOf('formulate')>-1 && txt.indexOf('manufacture')>-1 && txt.indexOf('deliver')>-1;
+          if(hasSteps) break;
           panel=panel.parentElement;
         }
-        if (panel && panel !== document.body) panel.classList.add('vanaya-story-contrast-fix');
+        if(panel && panel!==document.body){
+          panel.classList.add('vanaya-story-contrast-fix');
+          panel.querySelectorAll('*').forEach(function(el){el.style.setProperty('color','#fff','important')});
+          panel.style.setProperty('color','#fff','important');
+        }
       }
     }
 
