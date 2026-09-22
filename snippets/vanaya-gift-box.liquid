@@ -12,11 +12,26 @@
     assign gift_image = product.media.first.preview_image
   endif
   assign gift_contents = contents | split: '|'
+  assign custom_image = custom_image | default: blank
+  assign custom_image_keyword = custom_image_keyword | default: blank
+  if custom_image == blank and custom_image_keyword != blank and product != blank
+    for candidate_image in product.images
+      assign candidate_src = candidate_image.src | downcase
+      assign candidate_alt = candidate_image.alt | downcase
+      assign keyword_down = custom_image_keyword | downcase
+      if candidate_src contains keyword_down or candidate_alt contains keyword_down
+        assign custom_image = candidate_image
+        break
+      endif
+    endfor
+  endif
 %}
 <article class="vgift-box{% if reverse %} vgift-box--reverse{% endif %}" id="{{ fallback_handle }}">
   <div class="vgift-box__visual">
     <a href="{{ gift_url }}" aria-label="View {{ title }}">
-      {% if gift_image != blank %}
+      {% if custom_image != blank %}
+        {{ custom_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480,720,960,1200', sizes: '(min-width: 1181px) 480px, 88vw', alt: custom_image.alt | default: title }}
+      {% elsif gift_image != blank %}
         {{ gift_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480,720,960,1200', sizes: '(min-width: 1181px) 480px, 88vw', alt: gift_image.alt | default: title }}
       {% else %}
         {{ 'product-1' | placeholder_svg_tag }}
@@ -26,7 +41,7 @@
   </div>
   <div class="vgift-box__content">
     <p class="vgift-box__eyebrow">{{ eyebrow }}</p><h2>{% if product != blank %}{{ product.title }}{% else %}{{ title }}{% endif %}</h2><p class="vgift-box__subtitle">{{ subtitle }}</p>
-    <div class="vgift-box__price">{% if product != blank %}<strong>{{ gift_variant.price | money }}</strong>{% if gift_variant.compare_at_price > gift_variant.price %}<s>{{ gift_variant.compare_at_price | money }}</s>{% endif %}{% else %}<strong>{{ fallback_price }}</strong><s>{{ fallback_compare }}</s>{% endif %}<span>Gift Box Price</span></div>
+    <div class="vgift-box__price">{% if product != blank %}<strong>{{ gift_variant.price | money }}</strong>{% if gift_variant.compare_at_price > gift_variant.price %}<s>{{ gift_variant.compare_at_price | money }}</s>{% endif %}{% else %}<strong>{{ fallback_price }}</strong><s>{{ fallback_compare }}</s>{% endif %}<span>MRP</span></div>
     <p class="vgift-box__description">{{ description }}</p>
     <div class="vgift-box__inside"><p>Inside the box</p><ul>{% for item in gift_contents %}<li>{{ item }}</li>{% endfor %}</ul></div>
     <p class="vgift-box__best"><strong>Best for</strong><span>{{ best_for }}</span></p>
