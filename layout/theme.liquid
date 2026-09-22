@@ -43,6 +43,7 @@
     {{ 'vanaya-home-v10.css' | asset_url | stylesheet_tag: media: 'screen' }}
     {{ 'vanaya-home-v11.css' | asset_url | stylesheet_tag: media: 'screen' }}
     {{ 'async-print.css' | asset_url | stylesheet_tag: media: 'print' }}
+    {{ 'vanaya-first-order-popup.css' | asset_url | stylesheet_tag: media: 'screen' }}
     <noscript><link rel="stylesheet" href="{{ 'async-menu.css' | asset_url }}"></noscript>
     {%- if template.name == 'blog' or template.name == 'article' -%}
       <link media="screen" rel="stylesheet" href="{{ 'page-blog.css' | asset_url }}" id="blog-css">
@@ -160,6 +161,7 @@
       <div class="panel-1"></div>
       <div class="panel-2"></div>
     </div>
+    {% render 'vanaya-first-order-popup' %}
     {% render 'global-variables' %}
     {%- if template.name == 'index' -%}
       <script src="{{ 'vanaya-home.js' | asset_url }}" defer></script>
@@ -171,6 +173,7 @@
     <script defer src="{{ 'scripts.js' | asset_url }}"></script>
     <script defer src="{{ 'custom.js' | asset_url }}"></script>
     <script defer src="{{ 'vanaya-v29.js' | asset_url }}"></script>
+    <script defer src="{{ 'vanaya-first-order-popup.js' | asset_url }}"></script>
     {%- if template.name == 'collection' or template.name == 'search' -%}
       <script defer src="{{ 'page-collection.js' | asset_url }}"></script>
     {%- endif -%}
