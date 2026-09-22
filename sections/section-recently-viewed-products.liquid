@@ -52,12 +52,52 @@
   {% endif %}
 ></ul>
 
+<div class="vanaya-attention-fallback" data-vanaya-attention-fallback hidden>
+  <ul class="vanaya-attention-fallback__grid">
+    {% assign fallback_count = 0 %}
+    {% for fallback_product in collections.all.products %}
+      {% if fallback_product.available and fallback_count < section.settings.number_of_items %}
+        <li class="vanaya-attention-fallback__item">
+          <a href="{{ fallback_product.url }}">
+            {% if fallback_product.featured_image %}
+              {{ fallback_product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', alt: fallback_product.featured_image.alt | default: fallback_product.title }}
+            {% endif %}
+            <span>{{ fallback_product.title }}</span>
+          </a>
+        </li>
+        {% assign fallback_count = fallback_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var section=document.getElementById('shopify-section-{{ section.id }}');
+  if(!section) return;
+  var dynamicList=section.querySelector('.l4cl');
+  var fallback=section.querySelector('[data-vanaya-attention-fallback]');
+  if(!dynamicList || !fallback) return;
+  function syncFallback(){
+    fallback.hidden = dynamicList.children.length > 0;
+  }
+  setTimeout(syncFallback,1200);
+  new MutationObserver(syncFallback).observe(dynamicList,{childList:true});
+});
+</script>
+
 <style>
   #shopify-section-{{ section.id }} { position: relative; z-index: {{ section.settings.fix_zindex }}!important; }
   #shopify-section-{{ section.id }} .l4cl { margin-bottom: {{ section.settings.spacing_desktop | minus: 22 }}px; }
   @media only screen and (max-width: 47.5em) {
     #shopify-section-{{ section.id }} .l4cl { margin-bottom: {{ section.settings.spacing_mobile | minus: 8 }}px; }
   }
+
+  #shopify-section-{{ section.id }} .vanaya-attention-fallback__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin:0 0 {{ section.settings.spacing_desktop | minus: 22 }}px;padding:0;list-style:none}
+  #shopify-section-{{ section.id }} .vanaya-attention-fallback__item a{display:block;color:inherit;text-decoration:none}
+  #shopify-section-{{ section.id }} .vanaya-attention-fallback__item img{display:block;width:100%;aspect-ratio:4/5;object-fit:contain;object-position:center;background:#faf7ef}
+  #shopify-section-{{ section.id }} .vanaya-attention-fallback__item span{display:block;padding-top:10px;font-size:13px;line-height:1.4}
+  @media only screen and (max-width:47.5em){#shopify-section-{{ section.id }} .vanaya-attention-fallback__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:{{ section.settings.spacing_mobile | minus: 8 }}px}}
 </style>
 
 {% schema %}
