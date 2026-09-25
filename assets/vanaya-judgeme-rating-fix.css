@@ -112,3 +112,81 @@
     min-height:34px!important;
   }
 }
+
+
+/* Robust runtime classes added by vanaya-judgeme-rating-fix.js */
+.vanaya-jm-rating-row{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:12px!important;
+  width:100%!important;
+  min-width:240px!important;
+  overflow:visible!important;
+}
+.vanaya-jm-star-force{
+  position:relative!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 42px!important;
+  width:42px!important;
+  height:42px!important;
+  min-width:42px!important;
+  min-height:42px!important;
+  max-width:42px!important;
+  max-height:42px!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:visible!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#b79255!important;
+  font-size:0!important;
+  line-height:1!important;
+}
+.vanaya-jm-star-force::before{
+  content:"★"!important;
+  display:block!important;
+  position:static!important;
+  width:auto!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+  color:#b79255!important;
+  font-family:Arial,sans-serif!important;
+  font-size:36px!important;
+  font-weight:400!important;
+  line-height:1!important;
+  text-indent:0!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.vanaya-jm-guidance{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  width:260px!important;
+  max-width:calc(100vw - 80px)!important;
+  margin:8px auto 0!important;
+  gap:24px!important;
+}
+.vanaya-jm-guidance > *{
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+  width:auto!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  white-space:nowrap!important;
+}
+.vanaya-jm-guidance > *:last-child{margin-left:auto!important;text-align:right!important}
+@media(max-width:600px){
+  .vanaya-jm-rating-row{gap:8px!important;min-width:210px!important}
+  .vanaya-jm-star-force{flex-basis:36px!important;width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important;max-width:36px!important;max-height:36px!important}
+  .vanaya-jm-star-force::before{font-size:31px!important}
+  .vanaya-jm-guidance{width:220px!important;max-width:calc(100vw - 60px)!important}
+}
