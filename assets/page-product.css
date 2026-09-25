@@ -195,3 +195,19 @@
    Judge.me's current Review Widget / multi-step review form owns its UI.
    Do not override its buttons, stars, pseudo-elements or accessibility helpers
    from the storefront theme; legacy overrides broke the rating controls. */
+
+
+/* Judge.me 2026 review form: preserve Judge.me's icon font.
+   VANAYA's global typography must not replace the star glyph font. */
+.jm-star-rating__font-icon,
+.jdgm-star{
+  font-family:'JudgemeStar', monospace !important;
+  font-style:normal !important;
+  font-weight:normal !important;
+}
+
+/* Keep Judge.me's native rating row centered; no custom star drawing. */
+.jm-star-rating .jm-cluster,
+.jm-star-rating-input .jm-cluster{
+  justify-content:center !important;
+}
