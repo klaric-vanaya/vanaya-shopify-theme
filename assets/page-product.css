@@ -191,65 +191,7 @@
 
 #root #shopify-product-reviews { margin-top: 0; }
 
-
-
-/*! Judge.me --------- */
-/* icon */ 	.jm-pagination-controls button.jm-pagination-controls__button--nav:after, #root .jdgm-widget button.jm-media-grid__arrow:after { display: block; overflow: visible; position: absolute; left: 0; right: 0; top: 50%; bottom: auto; margin: -10px 0 0; box-shadow: none; border-radius: 0; border-width: 0; background: none; font-weight: 400; font-family: i; font-style: normal; line-height: 20px; text-align: center; text-indent: 0; letter-spacing: normal; }
-
-#root .jdgm-widget { font-size: var(--main_fz); --text_size: var(--main_fz); }
-	#root .jm-review-widget-header__title-and-rating { margin-bottom: var(--main_mr); }
-		#root .jm-review-widget-header__title { margin: 0 0 var(--main_mr_h); color: var(--primary_text_h); font-weight: var(--main_fw_h); font-style: var(--main_fs_h); font-family: var(--main_ff_h); font-size: var(--main_h2); line-height: var(--main_lh_h); text-transform: var(--main_tt_h); letter-spacing: var(--main_ls_h); }
-		#root .jm-review-widget-header__average-rating-display { margin: 0; }
-		#root .jm-review-widget-header__average-rating-display .jm-cluster { align-items: baseline; }
-			#root .jm-average-rating-display { font-size: var(--main_lead); font-weight: 500; line-height: var(--main_lh_l); }
-				#root .jm-average-rating-display p { font-size: 1em; }
-				#root .jm-average-rating-display p:last-child { font-size: var(--main_fz_small); }
-	#root .jdgm-widget button, .jdgm-modal button { overflow: hidden; min-width: 0; min-height: 0; margin: 0; border-radius: var(--b2r); color: inherit; }
-		#root .jdgm-widget button span:has(img) { display: block; overflow: hidden; border-radius: 0; }
-		#root .jdgm-widget button img { display: block; width: 100% !important; height: 100% !important; margin: 0; border-radius: 0; }
-		#root .jm-indicator__close, #root .jm-navigation__next { animation: none; }
-	#root .jm-sort-filter { font-size: 1em; }
-	#root .jdgm-widget select { padding: 0 calc(var(--main_fz) * 1.1428571429); border-radius: var(--b2i); border-color: var(--custom_input_bd); background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 5.7' style='enable-background:new 0 0 9 5.7' xml:space='preserve'%3E%3Cpath d='M8.4.2C8.2.1 8 0 7.8 0s-.3.1-.5.2L4.5 3 1.7.2C1.5.1 1.4 0 1.2 0S.8.1.6.2L.2.6C.1.8 0 1 0 1.2s.1.4.2.5L4 5.5c.1.1.3.2.5.2s.4-.1.5-.2l3.8-3.8c.1-.1.2-.3.2-.5S8.9.8 8.8.6L8.4.2z' style='fill:%23959595'/%3E%3C/svg%3E"); background-position: calc(100% - var(--main_fz) * 1.3571428571) center; background-size: auto calc(var(--main_fz) * 0.4285714286); background-color: var(--custom_input_bg); color: var(--custom_input_fg); font-size: var(--main_fz); font-weight: var(--main_fw); cursor: default; }
-		[dir="ltr"] #root .jdgm-widget select { padding-right: var(--input_h); }
-		[dir="rtl"] #root .jdgm-widget select { padding-left: var(--input_h); }
-		#root .jdgm-widget select:focus { border-color: var(--secondary_bg); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 5.7' style='enable-background:new 0 0 9 5.7' xml:space='preserve'%3E%3Cpath d='M.6 5.5c.2.1.4.2.6.2s.3-.1.5-.2l2.8-2.8 2.8 2.8c.2.1.3.2.5.2s.4-.1.6-.2l.4-.4c.1-.2.2-.4.2-.6s-.1-.4-.2-.5L5 .2C4.9.1 4.7 0 4.5 0s-.4.1-.5.2L.2 4c-.1.1-.2.3-.2.5s.1.4.2.6l.4.4z' style='fill:%23959595'/%3E%3C/svg%3E"); }
-	#root .jdgm-widget .bv_atual, #root .jdgm-widget .bv_atual * { line-height: calc(var(--input_h) - 2px); }		
-	
-	#root .jm-progress-bar { --jm-progress-fill: var(--secondary_bg) !important; }
-	#root .jm-sort-filter, #root .jm-review-widget__header-and-body { display: block; }
-	#root .jm-review-widget-header__main-content { margin: 0; padding: 0; }
-	#root .jm-histogram, #root .jm-media-preview, #root .jm-review-widget-header__filters-wrapper { margin: 0 0 var(--main_mr); }
-	
-	#root .jm-review-widget__body { --jm-default-line-height: var(--main_lh); }
-		#root .jm-review-widget__body .jm-text { font-size: var(--main_fz); }
-		#root .jm-review-widget__body .jm-stack, #root .jm-review-widget__body .jm-cluster { margin: 0; padding: 0; }
-		#root .jm-review-widget__body .jm-review-item { margin: 0 0 var(--main_mr); padding: 0 0 .1px; border-bottom: 1px solid var(--gallery); }
-		#root .jm-review-widget__body .jm-reviewer-info { margin: 0 0 6px; padding: 0; color: var(--gray_text); }
-			#root .jm-review-widget__body .jm-reviewer-info .jm-stack { display: flex; flex-direction: column-reverse; }
-			#root .jm-review-widget__body .jm-reviewer-info .jm-text:not(.jm-reviewer-info__name) { color: inherit !important; font-size: var(--main_fz_small); }
-			#root .jm-review-widget__body .jm-reviewer-info__name { display: block; color: var(--secondary_bg); font-weight: var(--main_fw_strong); }
-		#root .jm-review-widget__body .jm-review-item p, #root .jm-review-widget__body .jm-voting-controls { margin-bottom: var(--main_mr); }
-		#root .jm-review-widget__body .jm-cluster:has(.jm-voting-controls) { margin-top: -10px; align-items: baseline; }
-		#root .jm-review-widget__body .jm-voting-controls { color: inherit; font-size: var(--main_fz_small); font-weight: var(--main_fw); font-style: normal; opacity: .5; }
-		#root .jm-review-widget__body .jm-voting-controls p { margin: 0; font-size: 1em; }
-		#root .jm-review-widget__body .jm-highlight-thumbnail { overflow: hidden; border-radius: var(--b2r); }
-	
-	#root .jm-review-widget__body .jm-star-rating { margin-bottom: 12px; }
-	#root .jm-review-widget__body .jm-star-rating .jm-cluster { gap: calc(var(--main_fz) * 0.1428571429); }
-	#root .jm-review-widget__body .jm-star-rating .jm-star-rating__font-icon, .jm-review-widget-header__main-content .jm-star-rating__font-icon { display: block; position: relative; z-index: 2; width: calc(var(--main_fz) * 0.8571428571); height: 100%; margin: 0; color: var(--secondary_bg) !important; font-size: var(--main_fz) !important; line-height: 1; --main_fz: 16px; }
-	
-	#root .jm-pagination-controls { margin: 0 0 var(--main_mr); padding: 0; font-size: var(--main_fz); --dist: 24px; }
-	#root .jm-pagination-controls .jm-cluster { column-gap: var(--dist); }
-		#root .jm-pagination-controls button { margin: 0; padding: 0; border-radius: 0; border-width: 0; color: var(--secondary_bg); }	
-		#root .jm-pagination-controls button:not(.jm-pagination-controls__button--nav) { animation: none; }
-		#root .jm-pagination-controls button.jm-pagination-controls__button--active { color: inherit; pointer-events: none; }
-		#root .jm-pagination-controls button.jm-pagination-controls__button--nav, #root .jdgm-widget button.jm-media-grid__arrow { overflow: hidden; border-radius: 99px; width: calc(var(--main_fz) * 2.6428571429); height: calc(var(--main_fz) * 2.6428571429); margin: 0; padding: 0; color: var(--secondary_text); font-size: 0.5714285714em; text-indent: -3000em; text-align: left; direction: ltr; outline: none; }
-			.jm-pagination-controls button.jm-pagination-controls__button--nav:after, #root .jdgm-widget button.jm-media-grid__arrow:after { content: ""; display: flex; overflow: hidden; position: absolute; left: 0; right: 0; top: 0; bottom: 0; width: auto; margin: 0; padding: 1px 0 0; box-shadow: var(--btn_sh_inner); border-radius: 999px; border: 0 solid var(--secondary_bg_btn); background: var(--secondary_bg_btn); justify-content: center; align-items: center; }
-			[dir="ltr"] .jm-pagination-controls button.jm-pagination-controls__button--nav:last-child:after, [dir="rtl"] .jm-pagination-controls button.jm-pagination-controls__button--nav:first-child:after, [dir="ltr"] #root .jdgm-widget button.jm-media-grid__arrow--next:after, [dir="rtl"] #root .jdgm-widget button.jm-media-grid__arrow--prev:after { content: "\e906"; padding-left: 1px; }	
-			[dir="ltr"] .jm-pagination-controls button.jm-pagination-controls__button--nav:first-child:after, [dir="rtl"] .jm-pagination-controls button.jm-pagination-controls__button--nav:last-child:after, [dir="ltr"] #root .jdgm-widget button.jm-media-grid__arrow--prev:after, [dir="rtl"] #root .jdgm-widget button.jm-media-grid__arrow--next:after { content: "\e907"; padding-right: 1px; }	
-		#root .jm-pagination-controls span { display: block; margin: 0; padding: 0; color: inherit; font-family: var(--main_ff); font-size: var(--main_fz); font-weight: inherit; }	
-	
-/* hide */ 	#root .jdgm-widget .jm-center:has(~.jm-review-widget-header__filters-wrapper), .jdgm-widget button:before, #root .jm-pagination-controls button.jm-button--disabled, .jdgm-visually-hidden { display: none; } 		
-		
-		
-		
+/* Judge.me
+   Judge.me's current Review Widget / multi-step review form owns its UI.
+   Do not override its buttons, stars, pseudo-elements or accessibility helpers
+   from the storefront theme; legacy overrides broke the rating controls. */
