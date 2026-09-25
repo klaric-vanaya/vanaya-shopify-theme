@@ -1,0 +1,114 @@
+/* VANAYA Judge.me rating form stability fix — 25 Sep 2026
+   Isolated to Judge.me review forms/modals only. */
+:root{
+  --vanaya-jm-star:#c9ad76;
+  --vanaya-jm-text:#3f352d;
+}
+
+/* Judge.me's in-store popup inherits VANAYA theme button rules.
+   Restore Judge.me's own star controls so icons are never clipped. */
+.jdgm-modal button,
+.jdgm-modal [role="button"],
+.jdgm-review-form-wrapper button,
+.jm-review-form button,
+.jm-write-review button{
+  overflow:visible!important;
+}
+
+/* Keep the star choice row on one line and fully visible on desktop/mobile. */
+.jdgm-modal :is(.jm-star-rating,.jm-star-rating-input,.jdgm-form__rating,[class*="star-rating"]),
+.jdgm-review-form-wrapper :is(.jm-star-rating,.jm-star-rating-input,.jdgm-form__rating,[class*="star-rating"]),
+.jm-review-form :is(.jm-star-rating,.jm-star-rating-input,[class*="star-rating"]){
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:12px!important;
+  width:100%!important;
+  max-width:100%!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+}
+
+/* Judge.me v2 icons + legacy icons */
+.jdgm-modal :is(.jm-star-rating__font-icon,.jdgm-star,.jdgm-star.jdgm--off,[class*="star"] svg,[class*="star"] i),
+.jdgm-review-form-wrapper :is(.jm-star-rating__font-icon,.jdgm-star,.jdgm-star.jdgm--off,[class*="star"] svg,[class*="star"] i),
+.jm-review-form :is(.jm-star-rating__font-icon,.jdgm-star,.jdgm-star.jdgm--off,[class*="star"] svg,[class*="star"] i){
+  color:var(--vanaya-jm-star)!important;
+  fill:var(--vanaya-jm-star)!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+
+/* Star buttons must be large enough for touch, without theme min/max sizing clipping them. */
+.jdgm-modal [class*="star-rating"] button,
+.jdgm-review-form-wrapper [class*="star-rating"] button,
+.jm-review-form [class*="star-rating"] button{
+  flex:0 0 38px!important;
+  width:38px!important;
+  height:38px!important;
+  min-width:38px!important;
+  min-height:38px!important;
+  max-width:none!important;
+  padding:3px!important;
+  margin:0!important;
+  line-height:1!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+/* Poor / Great guidance: force separate ends instead of concatenating/overlapping. */
+.jdgm-modal :is(.jm-star-rating__labels,.jm-star-rating-input__labels,.jdgm-form__rating-labels,[class*="rating"][class*="label"]),
+.jdgm-review-form-wrapper :is(.jm-star-rating__labels,.jm-star-rating-input__labels,.jdgm-form__rating-labels,[class*="rating"][class*="label"]),
+.jm-review-form :is(.jm-star-rating__labels,.jm-star-rating-input__labels,[class*="rating"][class*="label"]){
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:20px!important;
+  width:min(260px,100%)!important;
+  margin:5px auto 0!important;
+  padding:0 4px!important;
+  color:var(--vanaya-jm-text)!important;
+  font-size:11px!important;
+  line-height:1.35!important;
+  white-space:nowrap!important;
+  box-sizing:border-box!important;
+}
+
+.jdgm-modal :is(.jm-star-rating__labels,.jm-star-rating-input__labels,.jdgm-form__rating-labels,[class*="rating"][class*="label"]) > *,
+.jdgm-review-form-wrapper :is(.jm-star-rating__labels,.jm-star-rating-input__labels,.jdgm-form__rating-labels,[class*="rating"][class*="label"]) > *,
+.jm-review-form :is(.jm-star-rating__labels,.jm-star-rating-input__labels,[class*="rating"][class*="label"]) > *{
+  position:static!important;
+  inset:auto!important;
+  width:auto!important;
+  max-width:48%!important;
+  margin:0!important;
+  padding:0!important;
+  transform:none!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+}
+.jdgm-modal :is(.jm-star-rating__labels,.jm-star-rating-input__labels,.jdgm-form__rating-labels,[class*="rating"][class*="label"]) > *:last-child,
+.jdgm-review-form-wrapper :is(.jm-star-rating__labels,.jm-star-rating-input__labels,.jdgm-form__rating-labels,[class*="rating"][class*="label"]) > *:last-child,
+.jm-review-form :is(.jm-star-rating__labels,.jm-star-rating-input__labels,[class*="rating"][class*="label"]) > *:last-child{
+  text-align:right!important;
+}
+
+/* Mobile: slightly tighter but always show all five stars. */
+@media(max-width:600px){
+  .jdgm-modal :is(.jm-star-rating,.jm-star-rating-input,.jdgm-form__rating,[class*="star-rating"]),
+  .jdgm-review-form-wrapper :is(.jm-star-rating,.jm-star-rating-input,.jdgm-form__rating,[class*="star-rating"]),
+  .jm-review-form :is(.jm-star-rating,.jm-star-rating-input,[class*="star-rating"]){
+    gap:9px!important;
+  }
+  .jdgm-modal [class*="star-rating"] button,
+  .jdgm-review-form-wrapper [class*="star-rating"] button,
+  .jm-review-form [class*="star-rating"] button{
+    flex-basis:34px!important;
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+    min-height:34px!important;
+  }
+}
