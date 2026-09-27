@@ -187,3 +187,22 @@ body.template-index #root .v291-testimonial-dots button.is-active{
     border-radius:34px 34px 14px 14px!important;
   }
 }
+
+
+/* Force As Seen on @vanayaveda to five cards in one desktop row */
+@media (min-width: 901px){
+  .vanaya-blog-grid{
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    width:100%!important;
+    max-width:1500px!important;
+    gap:12px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  .vanaya-blog-grid > article{
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+  }
+}
