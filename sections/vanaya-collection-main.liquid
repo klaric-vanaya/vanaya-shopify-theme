@@ -1,7 +1,7 @@
 <section class="vanaya-shop" data-vanaya-shop>
   <div class="vanaya-shop__hero vanaya-shop__hero--carousel" data-vanaya-shop-hero>
     <div class="vanaya-shop__hero-track">
-      <div class="vanaya-shop__hero-slide is-active" data-shop-hero-slide>
+      <div class="vanaya-shop__hero-slide vanaya-shop__hero-slide--primary is-active" data-shop-hero-slide>
         <img src="{{ 'vanaya-rituals-shop-banner-v24.jpg' | asset_url }}" width="1600" height="540" loading="eager" alt="Vanaya rituals reflected in a mirror">
         <div class="vanaya-shop__hero-copy vanaya-shop__hero-copy--editorial">
           <p>The complete Vanaya collection</p>
@@ -10,7 +10,7 @@
         </div>
       </div>
       {% if collection.handle == 'all' %}
-        <div class="vanaya-shop__hero-slide" data-shop-hero-slide>
+        <div class="vanaya-shop__hero-slide vanaya-shop__hero-slide--offer" data-shop-hero-slide>
           <img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/vanaya-free-gift-offer-banner.jpg?v=1790509182" width="1600" height="675" loading="eager" alt="Vanaya free gift offer on orders above Rs 1599 and Rs 2599">
         </div>
       {% endif %}
@@ -82,12 +82,33 @@
 
 <style>
 
-  .template-collection .vanaya-shop__hero--carousel{position:relative;overflow:hidden}
+  .template-collection .vanaya-shop__hero--carousel{position:relative;overflow:hidden;aspect-ratio:1600/610!important}
   .template-collection .vanaya-shop__hero-track{position:absolute;inset:0}
   .template-collection .vanaya-shop__hero-slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .55s ease}
   .template-collection .vanaya-shop__hero-slide.is-active{opacity:1;pointer-events:auto}
   .template-collection .vanaya-shop__hero-slide>img{display:block;width:100%;height:100%;object-fit:cover}
-  .template-collection .vanaya-shop__hero-arrow{position:absolute;z-index:6;top:50%;width:44px;height:44px;display:grid;place-items:center;transform:translateY(-50%);border:1px solid rgba(255,255,255,.74);border-radius:50%;background:rgba(52,39,27,.42);color:#fffaf0;font:30px/1 Georgia,serif;cursor:pointer;backdrop-filter:blur(5px)}
+  .template-collection .vanaya-shop__hero-slide--offer{background:#a7b27d}
+  .template-collection .vanaya-shop__hero-slide--offer>img{object-fit:contain;background:#a7b27d}
+  .template-collection .vanaya-shop__hero-arrow{
+    position:absolute;
+    z-index:6;
+    top:50%;
+    width:auto;
+    height:auto;
+    min-width:0;
+    min-height:0;
+    padding:8px 10px;
+    transform:translateY(-50%);
+    border:0;
+    border-radius:0;
+    background:transparent;
+    color:#1f1a15;
+    font:700 36px/1 Georgia,serif;
+    box-shadow:none;
+    cursor:pointer;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
   .template-collection .vanaya-shop__hero-arrow--prev{left:18px}
   .template-collection .vanaya-shop__hero-arrow--next{right:18px}
   .template-collection .vanaya-shop__hero-dots{position:absolute;z-index:6;left:50%;bottom:14px;display:flex;gap:8px;transform:translateX(-50%)}
@@ -187,7 +208,7 @@
   }
   @media(max-width:600px){
 
-    .template-collection .vanaya-shop__hero-arrow{width:34px;height:34px;font-size:24px}
+    .template-collection .vanaya-shop__hero-arrow{width:auto;height:auto;padding:6px 8px;font-size:28px}
     .template-collection .vanaya-shop__hero-arrow--prev{left:8px}
     .template-collection .vanaya-shop__hero-arrow--next{right:8px}
     .template-collection .vanaya-shop__hero-dots{bottom:8px}
