@@ -1,11 +1,28 @@
 <section class="vanaya-shop" data-vanaya-shop>
-  <div class="vanaya-shop__hero">
-    <img src="{{ 'vanaya-rituals-shop-banner-v24.jpg' | asset_url }}" width="1600" height="540" loading="eager" alt="Vanaya rituals reflected in a mirror">
-    <div class="vanaya-shop__hero-copy vanaya-shop__hero-copy--editorial">
-      <p>The complete Vanaya collection</p>
-      <h1>{% if collection.handle == 'all' %}Shop all Rituals{% else %}{{ collection.title | escape }}{% endif %}</h1>
-      <span class="vanaya-shop__hero-rule" aria-hidden="true"><i></i></span>
+  <div class="vanaya-shop__hero vanaya-shop__hero--carousel" data-vanaya-shop-hero>
+    <div class="vanaya-shop__hero-track">
+      <div class="vanaya-shop__hero-slide is-active" data-shop-hero-slide>
+        <img src="{{ 'vanaya-rituals-shop-banner-v24.jpg' | asset_url }}" width="1600" height="540" loading="eager" alt="Vanaya rituals reflected in a mirror">
+        <div class="vanaya-shop__hero-copy vanaya-shop__hero-copy--editorial">
+          <p>The complete Vanaya collection</p>
+          <h1>{% if collection.handle == 'all' %}Shop all Rituals{% else %}{{ collection.title | escape }}{% endif %}</h1>
+          <span class="vanaya-shop__hero-rule" aria-hidden="true"><i></i></span>
+        </div>
+      </div>
+      {% if collection.handle == 'all' %}
+        <div class="vanaya-shop__hero-slide" data-shop-hero-slide>
+          <img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/vanaya-free-gift-offer-banner.jpg?v=1790509182" width="1600" height="675" loading="eager" alt="Vanaya free gift offer on orders above Rs 1599 and Rs 2599">
+        </div>
+      {% endif %}
     </div>
+    {% if collection.handle == 'all' %}
+      <button type="button" class="vanaya-shop__hero-arrow vanaya-shop__hero-arrow--prev" data-shop-hero-prev aria-label="Previous banner">‹</button>
+      <button type="button" class="vanaya-shop__hero-arrow vanaya-shop__hero-arrow--next" data-shop-hero-next aria-label="Next banner">›</button>
+      <div class="vanaya-shop__hero-dots" aria-label="Banner navigation">
+        <button type="button" class="is-active" data-shop-hero-dot="0" aria-label="Show banner 1"></button>
+        <button type="button" data-shop-hero-dot="1" aria-label="Show banner 2"></button>
+      </div>
+    {% endif %}
   </div>
 
   <div class="vanaya-shop__body">
@@ -64,6 +81,18 @@
 </section>
 
 <style>
+
+  .template-collection .vanaya-shop__hero--carousel{position:relative;overflow:hidden}
+  .template-collection .vanaya-shop__hero-track{position:absolute;inset:0}
+  .template-collection .vanaya-shop__hero-slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .55s ease}
+  .template-collection .vanaya-shop__hero-slide.is-active{opacity:1;pointer-events:auto}
+  .template-collection .vanaya-shop__hero-slide>img{display:block;width:100%;height:100%;object-fit:cover}
+  .template-collection .vanaya-shop__hero-arrow{position:absolute;z-index:6;top:50%;width:44px;height:44px;display:grid;place-items:center;transform:translateY(-50%);border:1px solid rgba(255,255,255,.74);border-radius:50%;background:rgba(52,39,27,.42);color:#fffaf0;font:30px/1 Georgia,serif;cursor:pointer;backdrop-filter:blur(5px)}
+  .template-collection .vanaya-shop__hero-arrow--prev{left:18px}
+  .template-collection .vanaya-shop__hero-arrow--next{right:18px}
+  .template-collection .vanaya-shop__hero-dots{position:absolute;z-index:6;left:50%;bottom:14px;display:flex;gap:8px;transform:translateX(-50%)}
+  .template-collection .vanaya-shop__hero-dots button{width:28px;height:3px;min-width:0;padding:0;border:0;border-radius:0;background:rgba(255,255,255,.55);cursor:pointer}
+  .template-collection .vanaya-shop__hero-dots button.is-active{width:44px;background:#fff}
   .template-collection .vanaya-shop__hero{
     aspect-ratio:100/27!important;
     min-height:0!important;
@@ -157,6 +186,11 @@
     opacity:.55;
   }
   @media(max-width:600px){
+
+    .template-collection .vanaya-shop__hero-arrow{width:34px;height:34px;font-size:24px}
+    .template-collection .vanaya-shop__hero-arrow--prev{left:8px}
+    .template-collection .vanaya-shop__hero-arrow--next{right:8px}
+    .template-collection .vanaya-shop__hero-dots{bottom:8px}
     .template-collection .vanaya-shop__hero{aspect-ratio:20/7!important}
     .template-collection .vanaya-shop__hero>img{object-position:center center!important}
     .template-collection .vanaya-shop__hero-copy--editorial{
@@ -178,6 +212,39 @@
     }
   }
 </style>
+
+
+<script>
+(() => {
+  const root = document.querySelector('[data-vanaya-shop-hero]');
+  if (!root) return;
+  const slides = Array.from(root.querySelectorAll('[data-shop-hero-slide]'));
+  if (slides.length < 2) return;
+  const dots = Array.from(root.querySelectorAll('[data-shop-hero-dot]'));
+  const prev = root.querySelector('[data-shop-hero-prev]');
+  const next = root.querySelector('[data-shop-hero-next]');
+  let index = 0;
+  let timer;
+
+  const show = (nextIndex) => {
+    index = (nextIndex + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+  };
+
+  const restart = () => {
+    clearInterval(timer);
+    timer = setInterval(() => show(index + 1), 5500);
+  };
+
+  prev?.addEventListener('click', () => { show(index - 1); restart(); });
+  next?.addEventListener('click', () => { show(index + 1); restart(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); restart(); }));
+  root.addEventListener('mouseenter', () => clearInterval(timer));
+  root.addEventListener('mouseleave', restart);
+  restart();
+})();
+</script>
 
 <script>
 if (!window.VanayaQuickAddV23) {
