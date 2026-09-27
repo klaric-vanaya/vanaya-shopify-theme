@@ -1,4 +1,26 @@
 <section class="vanaya-section vanaya-bloggers" data-vanaya-bloggers>
+  <style>
+    @media screen and (min-width: 901px) {
+      #shopify-section-{{ section.id }} .vanaya-blog-grid {
+        display: grid !important;
+        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+        grid-auto-flow: row !important;
+        width: 100% !important;
+        max-width: 1500px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        gap: 12px !important;
+        align-items: start !important;
+      }
+      #shopify-section-{{ section.id }} .vanaya-blog-grid > article {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        flex: none !important;
+        margin: 0 !important;
+      }
+    }
+  </style>
   <div class="vanaya-heading">
     <div>
       <p class="vanaya-kicker">{{ section.settings.eyebrow }}</p>
