@@ -206,19 +206,3 @@ body.template-index #root .v291-testimonial-dots button.is-active{
     max-width:none!important;
   }
 }
-
-
-/* Remove vertical gap between As Seen on @vanayaveda and Explore the Range */
-.template-index .vanaya-bloggers{
-  padding-bottom:0!important;
-  margin-bottom:0!important;
-}
-.template-index .vanaya-bloggers + .shopify-section,
-.template-index .vanaya-bloggers + section,
-.template-index .vanaya-bloggers ~ .vanaya-explore-collection{
-  margin-top:0!important;
-}
-.template-index .vanaya-explore-collection{
-  padding-top:42px!important;
-  margin-top:0!important;
-}
