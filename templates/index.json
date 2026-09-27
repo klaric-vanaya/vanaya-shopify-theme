@@ -151,25 +151,41 @@
         "v1": {
           "type": "video",
           "settings": {
-            "fallback_asset": "vanaya-blogger-1.mp4"
+            "video": "",
+            "external_url": "",
+            "legacy_slot": 1
           }
         },
         "v2": {
           "type": "video",
           "settings": {
-            "fallback_asset": "vanaya-blogger-2.mp4"
+            "video": "",
+            "external_url": "",
+            "legacy_slot": 4
           }
         },
         "v3": {
           "type": "video",
           "settings": {
-            "fallback_asset": "vanaya-blogger-3.mp4"
+            "video": "",
+            "external_url": "",
+            "legacy_slot": 0
           }
         },
         "v4": {
           "type": "video",
           "settings": {
-            "fallback_asset": "vanaya-blogger-4.mp4"
+            "video": "",
+            "external_url": "",
+            "legacy_slot": 0
+          }
+        },
+        "v5": {
+          "type": "video",
+          "settings": {
+            "video": "",
+            "external_url": "",
+            "legacy_slot": 0
           }
         }
       },
@@ -177,7 +193,8 @@
         "v1",
         "v2",
         "v3",
-        "v4"
+        "v4",
+        "v5"
       ],
       "settings": {
         "eyebrow": "Our Community",
