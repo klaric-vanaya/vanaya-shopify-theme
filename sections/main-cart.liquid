@@ -126,118 +126,213 @@
           {%- endif -%}
 
           {%- liquid
-            assign ritual_qty = cart.item_count
-            assign ritual_remaining = 4 | minus: ritual_qty
-            if ritual_remaining < 0
-              assign ritual_remaining = 0
+            assign low_gift_ids = '50508649365747,50508786303219'
+            assign high_gift_ids = '49996749209843,49996861538547,50508649365747,49996794593523,49981744742643,50757096308979,50757454266611,50508779487475,50508786303219,50508794265843'
+            assign low_qualifying_total = 0
+            assign high_qualifying_total = 0
+            assign selected_gift_title = ''
+            assign selected_gift_price = 0
+
+            for offer_item in cart.items
+              assign offer_variant_id = offer_item.variant.id | append: ''
+              assign is_selected_gift = false
+              if offer_item.properties['_vanaya_free_gift'] == 'true'
+                assign is_selected_gift = true
+                assign selected_gift_title = offer_item.product.title
+                assign selected_gift_price = offer_item.original_price
+              endif
+
+              unless is_selected_gift
+                assign offer_line_total = offer_item.original_price | times: offer_item.quantity
+                unless low_gift_ids contains offer_variant_id
+                  assign low_qualifying_total = low_qualifying_total | plus: offer_line_total
+                endunless
+                unless high_gift_ids contains offer_variant_id
+                  assign high_qualifying_total = high_qualifying_total | plus: offer_line_total
+                endunless
+              endunless
+            endfor
+
+            assign gift_tier = 'none'
+            if high_qualifying_total >= 259900
+              assign gift_tier = 'high'
+            elsif low_qualifying_total >= 159900
+              assign gift_tier = 'low'
+            endif
+
+            assign low_remaining = 159900 | minus: low_qualifying_total
+            if low_remaining < 0
+              assign low_remaining = 0
+            endif
+            assign high_remaining = 259900 | minus: high_qualifying_total
+            if high_remaining < 0
+              assign high_remaining = 0
+            endif
+            assign gift_progress = high_qualifying_total | times: 100.0 | divided_by: 259900
+            if gift_progress > 100
+              assign gift_progress = 100
             endif
           -%}
-          <aside class="vanaya-ritual-savings" aria-label="Vanaya ritual savings">
-            <div class="vanaya-ritual-savings__copy">
-              <span class="vanaya-ritual-savings__eyebrow">The More You Ritual, The More You Save</span>
-              {% if ritual_qty >= 4 %}
-                <strong>Complete Ritual unlocked — 20% OFF</strong>
-                <span>Your best Vanaya saving is active and applied automatically.</span>
-              {% elsif ritual_qty == 3 %}
-                <strong>You’re one product away from 20% OFF</strong>
-                <span>Add 1 more ritual to unlock the Complete Ritual saving.</span>
-              {% elsif ritual_qty == 2 %}
-                <strong>10% OFF unlocked</strong>
-                <span>Add 1 more product for 15% OFF, or 2 more for 20% OFF.</span>
-              {% else %}
-                <strong>Build your ritual and unlock more</strong>
-                <span>Add one more product to unlock 10% OFF.</span>
-              {% endif %}
+
+          <aside class="vanaya-gift-unlock" data-vanaya-gift-offer data-tier="{{ gift_tier }}" data-low-total="{{ low_qualifying_total }}" data-high-total="{{ high_qualifying_total }}">
+            <div class="vanaya-gift-unlock__top">
+              <div>
+                <span class="vanaya-gift-unlock__eyebrow">A Little Gift, On Us</span>
+                {% if gift_tier == 'high' %}
+                  <strong>Your ₹899 gift tier is unlocked.</strong>
+                  <p>Choose one eligible product up to ₹899. Your free gift is applied automatically.</p>
+                {% elsif gift_tier == 'low' %}
+                  <strong>Your ₹349 gift tier is unlocked.</strong>
+                  <p>Choose one eligible product up to ₹349. Add {{ high_remaining | money }} more to unlock gifts up to ₹899.</p>
+                {% else %}
+                  <strong>Add {{ low_remaining | money }} more to unlock your first FREE gift.</strong>
+                  <p>Spend ₹1,599+ for a gift up to ₹349, or ₹2,599+ for a gift up to ₹899.</p>
+                {% endif %}
+              </div>
+              <div class="vanaya-gift-unlock__badge">
+                <b>{% if gift_tier == 'high' %}₹899{% elsif gift_tier == 'low' %}₹349{% else %}FREE{% endif %}</b>
+                <span>{% if gift_tier == 'none' %}GIFT AWAITS{% else %}UNLOCKED{% endif %}</span>
+              </div>
             </div>
 
-            <div class="vanaya-ritual-steps" aria-hidden="true">
-              <div class="vanaya-ritual-step {% if ritual_qty >= 1 %}is-reached{% endif %}">
-                <b>1</b><span>Regular</span>
-              </div>
-              <i></i>
-              <div class="vanaya-ritual-step {% if ritual_qty >= 2 %}is-reached{% endif %}">
-                <b>2</b><span>10% OFF</span>
-              </div>
-              <i></i>
-              <div class="vanaya-ritual-step {% if ritual_qty >= 3 %}is-reached{% endif %}">
-                <b>3</b><span>15% OFF</span>
-              </div>
-              <i></i>
-              <div class="vanaya-ritual-step vanaya-ritual-step--best {% if ritual_qty >= 4 %}is-reached{% endif %}">
-                <b>4+</b><span>20% OFF</span><em>BEST VALUE</em>
-              </div>
+            <div class="vanaya-gift-unlock__progress" aria-hidden="true"><i style="width:{{ gift_progress }}%"></i></div>
+            <div class="vanaya-gift-unlock__milestones">
+              <span>₹0</span><span>₹1,599 · Gift up to ₹349</span><span>₹2,599 · Gift up to ₹899</span>
             </div>
+
+            {% if selected_gift_title != blank %}
+              <div class="vanaya-gift-unlock__selected">Selected gift: <strong>{{ selected_gift_title }}</strong></div>
+            {% endif %}
+
+            {% if gift_tier != 'none' %}
+              <div class="vanaya-gift-unlock__choose">
+                <h3>Choose your complimentary gift</h3>
+                <div class="vanaya-gift-grid">
+                  {% if gift_tier == 'low' %}
+                    <button type="button" class="vanaya-gift-card" data-vanaya-gift-variant="50508649365747" data-gift-price="26900">
+                      <img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/1_2425c82a-875b-4979-a6ed-3cb86fb1f337.jpg?v=1787215678" alt="Chamak Damak Glow Ubtan">
+                      <span><b>Chamak Damak Glow Ubtan</b><small>₹269 · FREE</small></span>
+                    </button>
+                    <button type="button" class="vanaya-gift-card" data-vanaya-gift-variant="50508786303219" data-gift-price="28900">
+                      <img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/1_2.png?v=1787216592" alt="Tara Sitara Exfoliating Scrub">
+                      <span><b>Tara Sitara Exfoliating Scrub</b><small>₹289 · FREE</small></span>
+                    </button>
+                  {% else %}
+                    <button type="button" class="vanaya-gift-card" data-vanaya-gift-variant="50508649365747" data-gift-price="26900"><img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/1_2425c82a-875b-4979-a6ed-3cb86fb1f337.jpg?v=1787215678" alt="Chamak Damak Glow Ubtan"><span><b>Chamak Damak Glow Ubtan</b><small>₹269 · FREE</small></span></button>
+                    <button type="button" class="vanaya-gift-card" data-vanaya-gift-variant="50508786303219" data-gift-price="28900"><img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/1_2.png?v=1787216592" alt="Tara Sitara Exfoliating Scrub"><span><b>Tara Sitara Exfoliating Scrub</b><small>₹289 · FREE</small></span></button>
+                    <button type="button" class="vanaya-gift-card" data-vanaya-gift-variant="50508779487475" data-gift-price="38900"><img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/1_f49a7923-f0b8-4331-a4df-8fc65dfbb5fc.jpg?v=1787216463" alt="Ratri Glow Night Cream 12gm"><span><b>Ratri Glow Night Cream · 12gm</b><small>₹389 · FREE</small></span></button>
+                    <button type="button" class="vanaya-gift-card" data-vanaya-gift-variant="49981744742643" data-gift-price="55000"><img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/1_f93f5373-d0bf-4e17-9902-b3fb0a66c374.jpg?v=1787216754" alt="Nayan Tara Under Eye Cream"><span><b>Nayan Tara Under Eye Cream</b><small>₹550 · FREE</small></span></button>
+                    <button type="button" class="vanaya-gift-card" data-vanaya-gift-variant="49996749209843" data-gift-price="62900"><img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/KUMKUMADI_EXFOLIATING_CREAM.jpg?v=1787136302" alt="Kumkumadi Glow Exfoliating Cream"><span><b>Kumkumadi Glow Exfoliating Cream</b><small>₹629 · FREE</small></span></button>
+                    <button type="button" class="vanaya-gift-card" data-vanaya-gift-variant="49996794593523" data-gift-price="67900"><img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/KESAR_KUMKUMADI_RESURFACING_MASK.jpg?v=1787136269" alt="Kesar Kumkumadi Resurfacing Mask"><span><b>Kesar Kumkumadi Resurfacing Mask</b><small>₹679 · FREE</small></span></button>
+                    <button type="button" class="vanaya-gift-card" data-vanaya-gift-variant="50508794265843" data-gift-price="69900"><img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/1_b6bd4e2b-f4ff-4588-9626-f90fead013cf.jpg?v=1787216971" alt="Under Eye Cream for Dark Circles"><span><b>Under Eye Cream for Dark Circles</b><small>₹699 · FREE</small></span></button>
+                    <button type="button" class="vanaya-gift-card" data-vanaya-gift-variant="49996861538547" data-gift-price="89900"><img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/1_c88a72d5-cc3f-4152-8349-4093ef5a4a15.jpg?v=1786992050" alt="Ratri Glow Night Cream 50gm"><span><b>Ratri Glow Night Cream · 50gm</b><small>₹899 · FREE</small></span></button>
+                    <button type="button" class="vanaya-gift-card" data-vanaya-gift-variant="50757096308979" data-gift-price="89900"><img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/1_796ebae0-9183-43f4-87f8-b7bc58f277c4.jpg?v=1788285433" alt="Kumkumadi Tailam 5ml"><span><b>Kumkumadi Tailam · 5ml</b><small>₹899 · FREE</small></span></button>
+                    <button type="button" class="vanaya-gift-card" data-vanaya-gift-variant="50757454266611" data-gift-price="89900"><img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/1_5a043b77-b42a-42c7-b19f-84bfaebe1c43.jpg?v=1788285551" alt="Sea Buckthorn Oil 5ml"><span><b>Sea Buckthorn Oil · 5ml</b><small>₹899 · FREE</small></span></button>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
           </aside>
 
           <style>
-            body.template-cart .vanaya-ritual-savings{
-              margin:18px 0 22px;
-              padding:20px 24px;
-              border:1px solid rgba(91,73,49,.34);
-              border-radius:18px;
-              background:
-                radial-gradient(circle at 0 0,rgba(212,210,180,.55),transparent 32%),
-                linear-gradient(135deg,#fffdf8 0%,#f5f0e2 100%);
-              box-shadow:0 12px 34px rgba(74,56,32,.08);
-              display:grid;
-              grid-template-columns:minmax(260px,.9fr) minmax(420px,1.1fr);
-              gap:28px;
-              align-items:center;
-              color:#493825;
-            }
-            body.template-cart .vanaya-ritual-savings__copy{
-              display:flex;flex-direction:column;gap:5px;
-            }
-            body.template-cart .vanaya-ritual-savings__eyebrow{
-              font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8b6f48;
-            }
-            body.template-cart .vanaya-ritual-savings__copy strong{
-              font-size:18px;line-height:1.25;color:#33271d;
-            }
-            body.template-cart .vanaya-ritual-savings__copy>span:last-child{
-              font-size:13px;line-height:1.5;color:#756650;
-            }
-            body.template-cart .vanaya-ritual-steps{
-              display:grid;
-              grid-template-columns:auto 1fr auto 1fr auto 1fr auto;
-              align-items:start;
-              gap:8px;
-            }
-            body.template-cart .vanaya-ritual-steps>i{
-              height:1px;background:rgba(94,77,52,.24);margin-top:19px;
-            }
-            body.template-cart .vanaya-ritual-step{
-              min-width:72px;text-align:center;position:relative;
-            }
-            body.template-cart .vanaya-ritual-step b{
-              width:38px;height:38px;margin:0 auto 7px;border-radius:50%;
-              display:grid;place-items:center;border:1px solid rgba(86,70,48,.34);
-              background:#fffaf0;color:#6f5a3d;font-size:13px;
-            }
-            body.template-cart .vanaya-ritual-step span{
-              display:block;font-size:11px;font-weight:700;white-space:nowrap;color:#776a58;
-            }
-            body.template-cart .vanaya-ritual-step em{
-              display:block;margin-top:2px;font-size:8px;font-style:normal;font-weight:900;letter-spacing:.08em;color:#55613a;
-            }
-            body.template-cart .vanaya-ritual-step.is-reached b{
-              background:#d4d2b4;border-color:#887650;color:#3d362b;
-              box-shadow:0 4px 12px rgba(83,71,45,.12);
-            }
-            body.template-cart .vanaya-ritual-step--best.is-reached b{
-              background:#53613b;color:#fff;border-color:#53613b;
-            }
-            @media(max-width:900px){
-              body.template-cart .vanaya-ritual-savings{grid-template-columns:1fr;gap:18px;padding:18px}
-            }
-            @media(max-width:560px){
-              body.template-cart .vanaya-ritual-steps{gap:3px}
-              body.template-cart .vanaya-ritual-step{min-width:54px}
-              body.template-cart .vanaya-ritual-step b{width:32px;height:32px;font-size:11px}
-              body.template-cart .vanaya-ritual-step span{font-size:9px}
-              body.template-cart .vanaya-ritual-steps>i{margin-top:16px}
+            body.template-cart .vanaya-gift-unlock{margin:18px 0 22px;padding:20px 22px;border:1px solid rgba(91,73,49,.28);border-radius:18px;background:linear-gradient(135deg,#fffdf8,#f2efdd);box-shadow:0 12px 34px rgba(74,56,32,.08);color:#493825}
+            body.template-cart .vanaya-gift-unlock__top{display:flex;align-items:center;justify-content:space-between;gap:22px}
+            body.template-cart .vanaya-gift-unlock__eyebrow{display:block;margin-bottom:5px;color:#8b6f48;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+            body.template-cart .vanaya-gift-unlock__top strong{display:block;color:#33271d;font-size:19px;line-height:1.2}
+            body.template-cart .vanaya-gift-unlock__top p{margin:5px 0 0;color:#756650;font-size:13px;line-height:1.45}
+            body.template-cart .vanaya-gift-unlock__badge{flex:0 0 82px;height:82px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(90,70,50,.32);border-radius:50%;background:#d4d2b4;color:#4b3929;text-align:center}
+            body.template-cart .vanaya-gift-unlock__badge b{font:500 22px/1 Georgia,serif}
+            body.template-cart .vanaya-gift-unlock__badge span{margin-top:4px;font-size:7px;font-weight:900;letter-spacing:.12em}
+            body.template-cart .vanaya-gift-unlock__progress{height:7px;margin:18px 0 7px;overflow:hidden;border-radius:999px;background:#e6e0d0}
+            body.template-cart .vanaya-gift-unlock__progress i{display:block;height:100%;border-radius:inherit;background:#53613b}
+            body.template-cart .vanaya-gift-unlock__milestones{display:flex;justify-content:space-between;gap:12px;color:#776a58;font-size:9px;font-weight:700}
+            body.template-cart .vanaya-gift-unlock__selected{margin-top:15px;padding:9px 12px;border-radius:10px;background:#53613b;color:#fffaf0;font-size:12px}
+            body.template-cart .vanaya-gift-unlock__choose{margin-top:18px}
+            body.template-cart .vanaya-gift-unlock__choose h3{margin:0 0 10px;font-size:14px;color:#3e3023}
+            body.template-cart .vanaya-gift-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+            body.template-cart .vanaya-gift-card{display:flex;flex-direction:column;gap:8px;min-width:0;padding:8px;border:1px solid rgba(86,70,48,.18);border-radius:12px;background:#fffaf0;color:#4b3929;text-align:left;cursor:pointer;transition:.2s ease}
+            body.template-cart .vanaya-gift-card:hover{transform:translateY(-2px);border-color:#75624d;box-shadow:0 8px 20px rgba(74,56,32,.1)}
+            body.template-cart .vanaya-gift-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;background:#eee8d8}
+            body.template-cart .vanaya-gift-card b{display:block;font-size:10px;line-height:1.25}
+            body.template-cart .vanaya-gift-card small{display:block;margin-top:4px;color:#53613b;font-size:9px;font-weight:800}
+            body.template-cart .vanaya-gift-card.is-loading{opacity:.55;pointer-events:none}
+            @media(max-width:1100px){body.template-cart .vanaya-gift-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+            @media(max-width:650px){
+              body.template-cart .vanaya-gift-unlock{padding:17px 14px}
+              body.template-cart .vanaya-gift-unlock__top{align-items:flex-start}
+              body.template-cart .vanaya-gift-unlock__badge{flex-basis:66px;height:66px}
+              body.template-cart .vanaya-gift-unlock__badge b{font-size:18px}
+              body.template-cart .vanaya-gift-unlock__milestones{font-size:7px}
+              body.template-cart .vanaya-gift-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
             }
           </style>
+
+          <script>
+          (() => {
+            const panel = document.querySelector('[data-vanaya-gift-offer]');
+            if (!panel) return;
+            const tier = panel.dataset.tier;
+            const buttons = Array.from(panel.querySelectorAll('[data-vanaya-gift-variant]'));
+
+            const removeGiftLines = async (cart, invalidOnly) => {
+              const updates = {};
+              let keptOne = false;
+              for (const item of cart.items || []) {
+                if (!item.properties || item.properties._vanaya_free_gift !== 'true') continue;
+                const price = Number(item.original_price || item.final_price || 0);
+                const valid = tier === 'high' ? price <= 89900 : tier === 'low' ? price <= 34900 : false;
+                if ((!invalidOnly || !valid || keptOne)) updates[item.key] = 0;
+                else keptOne = true;
+              }
+              if (Object.keys(updates).length) {
+                await fetch('/cart/update.js', {
+                  method:'POST',
+                  credentials:'same-origin',
+                  headers:{'Content-Type':'application/json','Accept':'application/json'},
+                  body:JSON.stringify({updates})
+                });
+                return true;
+              }
+              return false;
+            };
+
+            fetch('/cart.js', {credentials:'same-origin'})
+              .then(r => r.ok ? r.json() : null)
+              .then(async cart => {
+                if (!cart) return;
+                const changed = await removeGiftLines(cart, true);
+                if (changed) location.reload();
+              })
+              .catch(() => {});
+
+            buttons.forEach(button => {
+              button.addEventListener('click', async () => {
+                buttons.forEach(b => b.classList.add('is-loading'));
+                try {
+                  const cart = await fetch('/cart.js', {credentials:'same-origin'}).then(r => r.json());
+                  await removeGiftLines(cart, false);
+                  const add = await fetch('/cart/add.js', {
+                    method:'POST',
+                    credentials:'same-origin',
+                    headers:{'Content-Type':'application/json','Accept':'application/json'},
+                    body:JSON.stringify({
+                      items:[{
+                        id:Number(button.dataset.vanayaGiftVariant),
+                        quantity:1,
+                        properties:{'_vanaya_free_gift':'true','Gift Offer':'Complimentary Vanaya Gift'}
+                      }]
+                    })
+                  });
+                  if (!add.ok) throw new Error('Unable to add gift');
+                  location.reload();
+                } catch (e) {
+                  buttons.forEach(b => b.classList.remove('is-loading'));
+                  alert('We could not add the gift. Please try again.');
+                }
+              });
+            });
+          })();
+          </script>
 
           <ul class="l4ca">
             {%- for line_item in cart.items -%}
