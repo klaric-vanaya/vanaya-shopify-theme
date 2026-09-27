@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="vanaya-blog-grid">
+  <div class="vanaya-blog-grid" style="display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;grid-auto-flow:row!important;width:100%!important;max-width:1500px!important;gap:12px!important;margin-left:auto!important;margin-right:auto!important;align-items:start!important;">
     {% assign legacy_sources = 'https://cdn.shopify.com/videos/c/o/v/5426c64ecf8d4133aec565ab4c7a835a.mp4|https://cdn.shopify.com/videos/c/o/v/a8bc644b3fc2426f865202dc5b64daf6.mp4|https://cdn.shopify.com/videos/c/o/v/e91a23ab717a47ed9a1e1f695289b5e8.mp4|https://cdn.shopify.com/videos/c/o/v/e4bde69316074a989c13395577e7de5d.mov' | split: '|' %}
     {% for block in section.blocks %}
       {% assign video_src = '' %}
@@ -50,7 +50,7 @@
       {% endif %}
 
       {% if video_src != blank %}
-        <article
+        <article style="width:100%!important;min-width:0!important;max-width:none!important;flex:none!important;margin:0!important;"
           data-vanaya-video-card
           tabindex="0"
           role="button"
