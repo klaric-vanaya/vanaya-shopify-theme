@@ -365,11 +365,11 @@
     "vanaya_complete_ritual_offer": {
       "type": "vanaya-complete-ritual-offer",
       "settings": {
-        "eyebrow": "The More You Ritual, The More You Save",
-        "heading": "Build Your Ritual. Enjoy More.",
-        "text": "Curate four or more Vanaya rituals and enjoy our highest automatic saving — thoughtfully designed to reward a more complete routine.",
+        "eyebrow": "A Little Gift, On Us",
+        "heading": "Your Ritual Comes With Something Extra.",
+        "text": "Build your Vanaya ritual and choose a complimentary gift when your cart reaches the qualifying value.",
         "link": "/collections/all",
-        "link_text": "Build Your Ritual"
+        "link_text": "Shop & Unlock Your Gift"
       }
     }
   },
