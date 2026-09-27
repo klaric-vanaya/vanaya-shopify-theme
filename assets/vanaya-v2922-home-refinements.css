@@ -153,3 +153,37 @@ body.template-index #root .v291-testimonial-dots button.is-active{
     height:96px!important;
   }
 }
+
+
+/* Homepage — As Seen on @vanayaveda: five-video editorial row */
+@media (min-width: 901px){
+  .template-index .vanaya-bloggers{
+    padding-left:max(22px,3vw)!important;
+    padding-right:max(22px,3vw)!important;
+  }
+  .template-index .vanaya-blog-grid{
+    width:100%!important;
+    max-width:1380px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    gap:14px!important;
+    align-items:start!important;
+  }
+  .template-index .vanaya-blog-grid article{
+    width:100%!important;
+    min-width:0!important;
+    aspect-ratio:9/16!important;
+    border-radius:46px 46px 16px 16px!important;
+    box-shadow:0 14px 34px rgba(57,63,41,.14)!important;
+  }
+}
+@media (min-width: 901px) and (max-width: 1180px){
+  .template-index .vanaya-blog-grid{
+    gap:10px!important;
+  }
+  .template-index .vanaya-blog-grid article{
+    border-radius:34px 34px 14px 14px!important;
+  }
+}
