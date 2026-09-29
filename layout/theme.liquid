@@ -212,6 +212,69 @@
     }
   });
   </script>
+
+  {%- if template.name == 'cart' -%}
+    <style id="vanaya-cart-offer-dedupe-fix">
+      body.template-cart .vanaya-card-offer-banner{
+        display:none!important;
+        visibility:hidden!important;
+        height:0!important;
+        min-height:0!important;
+        max-height:0!important;
+        margin:0!important;
+        padding:0!important;
+        border:0!important;
+        overflow:hidden!important;
+      }
+    </style>
+    <script>
+      (function () {
+        function removeLegacyCardOffer() {
+          var root = document.getElementById('content') || document;
+          var nodes = root.querySelectorAll('strong,b,h1,h2,h3,h4,p,span');
+          for (var i = 0; i < nodes.length; i++) {
+            var el = nodes[i];
+            var text = (el.textContent || '').replace(/\s+/g, ' ').trim();
+            if (
+              text.indexOf('Flat 10% Instant Discount on all Major Credit Cards') !== -1 &&
+              text.indexOf('999/-') === -1
+            ) {
+              var box = el.closest('.vanaya-card-offer-banner');
+              if (!box) {
+                var p = el.parentElement;
+                for (var depth = 0; depth < 5 && p && p !== root; depth++, p = p.parentElement) {
+                  var pt = (p.textContent || '').replace(/\s+/g, ' ').trim();
+                  if (
+                    pt.indexOf('Flat 10% Instant Discount on all Major Credit Cards') !== -1 &&
+                    pt.indexOf('999/-') === -1 &&
+                    pt.length < 260
+                  ) {
+                    box = p;
+                  }
+                }
+              }
+              if (box) {
+                box.style.setProperty('display', 'none', 'important');
+                box.style.setProperty('height', '0', 'important');
+                box.style.setProperty('margin', '0', 'important');
+                box.style.setProperty('padding', '0', 'important');
+                box.setAttribute('aria-hidden', 'true');
+              }
+            }
+          }
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', removeLegacyCardOffer, { once: true });
+        } else {
+          removeLegacyCardOffer();
+        }
+        setTimeout(removeLegacyCardOffer, 250);
+        setTimeout(removeLegacyCardOffer, 1000);
+      })();
+    </script>
+  {%- endif -%}
+
 </head>
   <body class="template-{{ template.name | handle }}">
     <div id="root">
