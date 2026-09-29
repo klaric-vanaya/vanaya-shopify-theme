@@ -13,7 +13,8 @@
       "type": "breadcrumbs",
       "settings": {
         "hide_mobile": false
-      }
+      },
+      "disabled": true
     },
     "main-cart": {
       "type": "main-cart",
