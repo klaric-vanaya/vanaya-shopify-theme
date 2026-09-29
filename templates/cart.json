@@ -70,10 +70,15 @@
     "perks-v29": {
       "type": "vanaya-cart-perks-v29",
       "settings": {}
+    },
+    "card-offer": {
+      "type": "vanaya-cart-credit-card-offer",
+      "settings": {}
     }
   },
   "order": [
     "breadcrumbs",
+    "card-offer",
     "main-cart",
     "perks-v29",
     "05b85ec4-b172-41cb-9110-52391145624b"
