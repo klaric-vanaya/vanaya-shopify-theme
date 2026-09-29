@@ -7,14 +7,7 @@
   </div>
 </section>
 
-<style>
-
-  /* Keep only the first cart credit-card offer if Shopify still renders an older duplicate section. */
-  body.template-cart .shopify-section:has(.vanaya-cart-credit-card-offer)
-  ~ .shopify-section:has(.vanaya-cart-credit-card-offer){
-    display:none!important;
-  }
-  #shopify-section-{{ section.id }}{margin:0!important;padding:0!important}
+<style>#shopify-section-{{ section.id }}{margin:0!important;padding:0!important}
   #shopify-section-{{ section.id }} .vanaya-cart-credit-card-offer{
     width:calc(100vw - 72px);
     max-width:1720px;
@@ -68,6 +61,35 @@
   }
 </style>
 
+
+
+<script>
+(function () {
+  function keepSingleVanayaCardOffer() {
+    var offers = document.querySelectorAll('.vanaya-cart-credit-card-offer');
+    if (!offers || offers.length < 2) return;
+    for (var i = 1; i < offers.length; i++) {
+      var offer = offers[i];
+      var section = offer.closest('.shopify-section');
+      if (section && !section.contains(offers[0])) {
+        section.remove();
+      } else {
+        offer.remove();
+      }
+    }
+  }
+
+  keepSingleVanayaCardOffer();
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', keepSingleVanayaCardOffer, { once: true });
+  }
+
+  requestAnimationFrame(keepSingleVanayaCardOffer);
+  setTimeout(keepSingleVanayaCardOffer, 300);
+  setTimeout(keepSingleVanayaCardOffer, 1200);
+})();
+</script>
 
 {% endunless %}
 
