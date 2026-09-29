@@ -61,6 +61,44 @@
     #shopify-section-{{ section.id }} .vanaya-cart-credit-card-offer div>span{font-size:9px}
   }
 </style>
+
+<script>
+(() => {
+  const normalizeCardOffer = () => {
+    const offers = Array.from(document.querySelectorAll('.vanaya-cart-credit-card-offer'));
+    if (!offers.length) return;
+
+    offers.forEach((offer, index) => {
+      if (index > 0) {
+        const wrapper = offer.closest('.shopify-section');
+        if (wrapper && wrapper !== offer.parentElement) wrapper.remove();
+        else offer.remove();
+        return;
+      }
+
+      const heading = offer.querySelector('strong');
+      const sub = offer.querySelector('div > span');
+      if (heading) {
+        heading.textContent = 'Flat 10% Instant Discount on all Major Credit Cards on Order Value 999/- or Above';
+      }
+      if (sub) {
+        sub.textContent = 'Pay by an eligible major credit card at checkout to enjoy the instant offer on qualifying orders.';
+      }
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', normalizeCardOffer, { once: true });
+  } else {
+    normalizeCardOffer();
+  }
+
+  const observer = new MutationObserver(normalizeCardOffer);
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+  window.setTimeout(() => observer.disconnect(), 8000);
+})();
+</script>
+
 {% endunless %}
 
 {% schema %}
