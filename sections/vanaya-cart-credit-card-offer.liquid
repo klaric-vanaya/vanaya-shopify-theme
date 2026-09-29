@@ -63,33 +63,6 @@
 
 
 
-<script>
-(function () {
-  function keepSingleVanayaCardOffer() {
-    var offers = document.querySelectorAll('.vanaya-cart-credit-card-offer');
-    if (!offers || offers.length < 2) return;
-    for (var i = 1; i < offers.length; i++) {
-      var offer = offers[i];
-      var section = offer.closest('.shopify-section');
-      if (section && !section.contains(offers[0])) {
-        section.remove();
-      } else {
-        offer.remove();
-      }
-    }
-  }
-
-  keepSingleVanayaCardOffer();
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', keepSingleVanayaCardOffer, { once: true });
-  }
-
-  requestAnimationFrame(keepSingleVanayaCardOffer);
-  setTimeout(keepSingleVanayaCardOffer, 300);
-  setTimeout(keepSingleVanayaCardOffer, 1200);
-})();
-</script>
 
 {% endunless %}
 
