@@ -10,10 +10,15 @@
     "main-collection": {
       "type": "vanaya-collection-main",
       "settings": {}
+    },
+    "shop-free-gift-banner": {
+      "type": "vanaya-shop-free-gift-banner",
+      "settings": {}
     }
   },
   "order": [
     "breadcrumbs",
+    "shop-free-gift-banner",
     "main-collection"
   ]
 }
