@@ -1,0 +1,38 @@
+<section class="vanaya-shop-free-gift-banner" aria-label="Vanaya free gift offer">
+  <img
+    src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/vanaya-free-gift-banner-latest.jpg?v=1790670093"
+    width="1600"
+    height="540"
+    loading="eager"
+    alt="Vanaya free gift offer on orders above Rs 1599 and Rs 2599"
+  >
+</section>
+
+<style>
+  /* Hide the legacy Shop hero/carousel so only the latest Free Gift banner is shown. */
+  .template-collection .vanaya-shop__hero{display:none!important}
+  #shopify-section-{{ section.id }}{
+    margin:0!important;
+    padding:0!important;
+    background:#eef0df;
+  }
+  #shopify-section-{{ section.id }} .vanaya-shop-free-gift-banner{
+    width:100%;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+  }
+  #shopify-section-{{ section.id }} .vanaya-shop-free-gift-banner img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+</style>
+
+{% schema %}
+{
+  "name":"Shop Free Gift Banner",
+  "settings":[],
+  "presets":[{"name":"Shop Free Gift Banner"}]
+}
+{% endschema %}
