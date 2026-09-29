@@ -1,0 +1,72 @@
+{% unless cart.item_count == 0 %}
+<section class="vanaya-cart-credit-card-offer" role="note" aria-label="Credit card offer">
+  <span class="vanaya-cart-credit-card-offer__icon" aria-hidden="true">%</span>
+  <div>
+    <strong>Flat 10% Instant Discount on all Major Credit Cards</strong>
+    <span>Pay by an eligible major credit card at checkout to enjoy the instant offer.</span>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }}{margin:0!important;padding:0!important}
+  #shopify-section-{{ section.id }} .vanaya-cart-credit-card-offer{
+    width:calc(100vw - 72px);
+    max-width:1720px;
+    margin:18px auto 16px;
+    padding:12px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    border:1px solid rgba(90,70,50,.22);
+    border-radius:14px;
+    background:linear-gradient(90deg,#f4f0d8 0%,#fffaf0 52%,#f4f0d8 100%);
+    color:#4b3929;
+    text-align:center;
+    box-shadow:0 8px 22px rgba(74,56,32,.06);
+  }
+  #shopify-section-{{ section.id }} .vanaya-cart-credit-card-offer__icon{
+    flex:0 0 28px;
+    width:28px;
+    height:28px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#5a4632;
+    color:#fffaf0;
+    font-size:13px;
+    font-weight:900;
+  }
+  #shopify-section-{{ section.id }} .vanaya-cart-credit-card-offer strong{
+    display:block;
+    font-size:14px;
+    line-height:1.25;
+  }
+  #shopify-section-{{ section.id }} .vanaya-cart-credit-card-offer div>span{
+    display:block;
+    margin-top:2px;
+    color:#756650;
+    font-size:10px;
+    line-height:1.35;
+  }
+  @media(max-width:760px){
+    #shopify-section-{{ section.id }} .vanaya-cart-credit-card-offer{
+      width:calc(100% - 28px);
+      margin:12px auto 14px;
+      padding:10px 12px;
+      gap:9px;
+      text-align:left;
+    }
+    #shopify-section-{{ section.id }} .vanaya-cart-credit-card-offer strong{font-size:12px}
+    #shopify-section-{{ section.id }} .vanaya-cart-credit-card-offer div>span{font-size:9px}
+  }
+</style>
+{% endunless %}
+
+{% schema %}
+{
+  "name":"Cart Card Offer",
+  "settings":[],
+  "presets":[{"name":"Cart Card Offer"}]
+}
+{% endschema %}
