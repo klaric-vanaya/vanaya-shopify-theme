@@ -371,12 +371,17 @@
         "link": "/collections/all",
         "link_text": "Shop & Unlock Your Gift"
       }
+    },
+    "vanaya_diwali": {
+      "type": "vanaya-diwali-banner",
+      "settings": {}
     }
   },
   "order": [
     "vanaya_video",
     "vanaya_complete_ritual_offer",
     "vanaya_new",
+    "vanaya_diwali",
     "vanaya_story",
     "vanaya_bloggers",
     "vanaya_sale",
