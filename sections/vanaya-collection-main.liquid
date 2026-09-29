@@ -1,24 +1,12 @@
 <section class="vanaya-shop" data-vanaya-shop>
-  <div class="vanaya-shop__hero vanaya-shop__hero--carousel" data-vanaya-shop-hero>
-    <div class="vanaya-shop__hero-track">
-      <div class="vanaya-shop__hero-slide vanaya-shop__hero-slide--primary is-active" data-shop-hero-slide>
-        <img src="{{ 'vanaya-rituals-shop-banner-v24.jpg' | asset_url }}" width="1600" height="540" loading="eager" alt="Vanaya rituals reflected in a mirror">
-        <div class="vanaya-shop__hero-copy vanaya-shop__hero-copy--editorial">
-          <p>The complete Vanaya collection</p>
-          <h1>{% if collection.handle == 'all' %}Shop all Rituals{% else %}{{ collection.title | escape }}{% endif %}</h1>
-          <span class="vanaya-shop__hero-rule" aria-hidden="true"><i></i></span>
-        </div>
-      </div>
-      {% if collection.handle == 'all' %}
-        <div class="vanaya-shop__hero-slide vanaya-shop__hero-slide--offer" data-shop-hero-slide>
-          <img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/vanaya-free-gift-offer-banner-v2.jpg?v=1790510096" width="1600" height="675" loading="eager" alt="Vanaya free gift offer on orders above Rs 1599 and Rs 2599">
-        </div>
-      {% endif %}
-    </div>
-    {% if collection.handle == 'all' %}
-      <button type="button" class="vanaya-shop__hero-arrow vanaya-shop__hero-arrow--prev" data-shop-hero-prev aria-label="Previous banner">‹</button>
-      <button type="button" class="vanaya-shop__hero-arrow vanaya-shop__hero-arrow--next" data-shop-hero-next aria-label="Next banner">›</button>
-    {% endif %}
+  <div class="vanaya-shop__hero vanaya-shop__hero--single">
+    <img
+      src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/vanaya-free-gift-banner-latest.jpg?v=1790670093"
+      width="1600"
+      height="540"
+      loading="eager"
+      alt="Vanaya free gift offer on orders above Rs 1599 and Rs 2599"
+    >
   </div>
 
   <div class="vanaya-shop__body">
@@ -77,6 +65,27 @@
 </section>
 
 <style>
+
+  .template-collection .vanaya-shop__hero--single{
+    position:relative!important;
+    width:100%!important;
+    aspect-ratio:1600/540!important;
+    min-height:0!important;
+    overflow:hidden!important;
+    margin:0!important;
+    background:#eef0df!important;
+  }
+  .template-collection .vanaya-shop__hero--single>img{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+    object-position:center center!important;
+  }
+  @media(max-width:600px){
+    .template-collection .vanaya-shop__hero--single{aspect-ratio:1600/540!important}
+    .template-collection .vanaya-shop__hero--single>img{object-fit:cover!important}
+  }
 
   .template-collection .vanaya-shop__hero--carousel{
     position:relative;
@@ -239,36 +248,6 @@
   }
 </style>
 
-
-<script>
-(() => {
-  const root = document.querySelector('[data-vanaya-shop-hero]');
-  if (!root) return;
-  const slides = Array.from(root.querySelectorAll('[data-shop-hero-slide]'));
-  if (slides.length < 2) return;
-  const prev = root.querySelector('[data-shop-hero-prev]');
-  const next = root.querySelector('[data-shop-hero-next]');
-  let index = 0;
-  let timer;
-
-  const show = (nextIndex) => {
-    index = (nextIndex + slides.length) % slides.length;
-    slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
-    root.classList.toggle('is-offer', index === 1);
-  };
-
-  const restart = () => {
-    clearInterval(timer);
-    timer = setInterval(() => show(index + 1), 5500);
-  };
-
-  prev?.addEventListener('click', () => { show(index - 1); restart(); });
-  next?.addEventListener('click', () => { show(index + 1); restart(); });
-  root.addEventListener('mouseenter', () => clearInterval(timer));
-  root.addEventListener('mouseleave', restart);
-  restart();
-})();
-</script>
 
 <script>
 if (!window.VanayaQuickAddV23) {
