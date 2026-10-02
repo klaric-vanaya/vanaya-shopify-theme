@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </style>
 
 
-<section class="vanaya-judgeme-section" aria-label="Customer reviews">
+<section class="vanaya-judgeme-section" id="vanaya-customer-reviews" aria-label="Customer reviews">
   <div style="clear:both"></div>
   <div
     id="judgeme_product_reviews"
@@ -269,9 +269,37 @@ document.addEventListener('DOMContentLoaded', function () {
     data-product-title="{{ product.title | escape }}"
     data-id="{{ product.id }}"
   >
-    {{ product.metafields.judgeme.widget }}
+    {% if product.metafields.judgeme.review_widget_ssr_html != blank %}
+      {{ product.metafields.judgeme.review_widget_ssr_html }}
+    {% else %}
+      {{ product.metafields.judgeme.widget }}
+    {% endif %}
   </div>
 </section>
+
+<style>
+  .template-product .vanaya-judgeme-section{
+    width:min(1180px,calc(100% - 40px));
+    margin:34px auto 56px;
+  }
+  .template-product .vanaya-judgeme-section .jdgm-ssr-reviews{
+    display:block!important;
+  }
+  .template-product .vanaya-judgeme-section .jdgm-ssr-reviews__list{
+    display:block!important;
+  }
+  .template-product .vanaya-judgeme-section .jdgm-rev{
+    display:block!important;
+    opacity:1!important;
+    visibility:visible!important;
+  }
+  @media(max-width:749px){
+    .template-product .vanaya-judgeme-section{
+      width:calc(100% - 28px);
+      margin:26px auto 40px;
+    }
+  }
+</style>
 
 {% schema %}
 {"name":"Vanaya product experience","settings":[],"presets":[{"name":"Vanaya product experience"}]}
