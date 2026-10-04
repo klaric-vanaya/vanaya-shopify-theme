@@ -4,8 +4,12 @@
   assign vanaya_product_title = product.title | downcase
   assign is_kansa_wand = false
   assign is_seabuckthorn_kansa_ritual = false
+  assign is_sea_buckthorn = false
   if product.handle == 'vanaya-seabuckthorn-kansa-sculpt-ritual'
     assign is_seabuckthorn_kansa_ritual = true
+  endif
+  if product.handle == 'sea-buckthorn-oil-30ml'
+    assign is_sea_buckthorn = true
   endif
   if vanaya_product_title contains 'kansa' or vanaya_product_title contains 'kaansa' or vanaya_product_title contains 'sculpting wand'
     assign is_kansa_wand = true
@@ -64,7 +68,16 @@
       <p class="vp-product__eyebrow">The Vanaya Ayurvedic ritual</p>
       <h1>{{ product.title }}</h1>
       {% if product.metafields.reviews.rating.value != blank %}
-        <p class="vp-product__rating">★★★★★ <span>{{ product.metafields.reviews.rating.value }} / 5</span></p>
+        <p class="vp-product__rating">★★★★★ <span>{{ product.metafields.reviews.rating.value }} / 5</span> <a href="#vanaya-customer-reviews" class="vp-product__reviews-link">See verified reviews</a></p>
+      {% elsif is_sea_buckthorn %}
+        <p class="vp-product__rating"><a href="#vanaya-customer-reviews" class="vp-product__reviews-link">See verified reviews</a></p>
+      {% endif %}
+      {% if is_sea_buckthorn %}
+        <div class="vp-product__benefits" aria-label="Sea Buckthorn Oil benefits">
+          <span>Replenishes barrier</span>
+          <span>Restores glow</span>
+          <span>Supports elasticity</span>
+        </div>
       {% endif %}
       <div class="vp-product__price" data-vp-price>
         {% if current_variant.compare_at_price > current_variant.price %}
@@ -77,6 +90,9 @@
           <span class="vp-product__sale-price">{{ current_variant.price | money }}</span>
         {% endif %}
       </div>
+      {% if is_sea_buckthorn %}
+        <p class="vp-product__price-guide">Starting at <strong>₹899</strong> for 5ml trial size · 10ml ₹1,348 · 30ml ₹1,613</p>
+      {% endif %}
 
       {% if product.description != blank %}
         <div class="vp-product__intro{% if is_kansa_wand %} vp-product__intro--full{% endif %}">{{ product.description }}</div>
@@ -110,7 +126,7 @@
                   {% unless variant.available %}disabled{% endunless %}
                   {% if variant == current_variant %}checked{% endif %}
                 >
-                <span>{{ variant.title }}</span>
+                <span>{{ variant.title }} <small>{{ variant.price | money }}</small></span>
               </label>
             {% endfor %}
           </fieldset>
@@ -130,7 +146,19 @@
             <span>{% if current_variant.available %}Add to bag{% else %}Sold out{% endif %}</span><span>→</span>
           </button>
         </div>
+        {% if is_sea_buckthorn %}
+          <div class="vp-product__buy-now">{{ form | payment_button }}</div>
+        {% endif %}
       {% endform %}
+
+      {% if is_sea_buckthorn %}
+        <div class="vp-product__trust-strip">
+          <span>✓ Free shipping above ₹999</span>
+          <span>✓ Prepaid checkout</span>
+          <span>✓ Dispatch in 1–2 working days</span>
+        </div>
+        <p class="vp-product__cod-note">COD is currently unavailable to protect customers and the brand from fraudulent orders.</p>
+      {% endif %}
 
       <button type="button" class="v293-product-wishlist v293-product-wishlist--custom" data-v29-wishlist
         data-handle="{{ product.handle }}" data-title="{{ product.title | escape }}"
@@ -201,6 +229,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }else{
         price.innerHTML='<span class="vp-product__sale-price">'+selling+'</span>';
       }
+      var stickyPrice=root.querySelector('[data-vp-sticky-price]');
+      if(stickyPrice)stickyPrice.textContent=selling;
       var add=root.querySelector('[data-vp-add]');
       if(add){
         var available=option.dataset.available==='true';
@@ -257,6 +287,81 @@ document.addEventListener('DOMContentLoaded', function () {
     color:#6d5336;
     font-size:22px;
     font-weight:700;
+  }
+  .template-product .vp-product__reviews-link{
+    margin-left:8px;
+    color:#6d5336;
+    text-decoration:underline;
+    text-underline-offset:3px;
+    font-size:13px;
+  }
+  .template-product .vp-product__benefits{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:10px 0 12px;
+  }
+  .template-product .vp-product__benefits span{
+    padding:7px 10px;
+    border:1px solid #d9cfbf;
+    border-radius:999px;
+    background:#fbf8f2;
+    color:#594835;
+    font-size:12px;
+    line-height:1.2;
+  }
+  .template-product .vp-product__price-guide{
+    margin:7px 0 14px;
+    color:#665a4e;
+    font-size:13px;
+    line-height:1.45;
+  }
+  .template-product .vp-variant-option small{
+    display:block;
+    margin-top:2px;
+    color:#766a5e;
+    font-size:11px;
+    font-weight:500;
+  }
+  .template-product .vp-product__buy-now{
+    margin-top:10px;
+  }
+  .template-product .vp-product__buy-now .shopify-payment-button__button{
+    min-height:48px;
+    border-radius:0;
+  }
+  .template-product .vp-product__trust-strip{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px;
+    margin:14px 0 0;
+  }
+  .template-product .vp-product__trust-strip span{
+    padding:9px 10px;
+    border:1px solid #e2d8c9;
+    background:#fcfaf6;
+    color:#4f4338;
+    font-size:11px;
+    line-height:1.35;
+    text-align:center;
+  }
+  .template-product .vp-product__cod-note{
+    margin:8px 0 0;
+    color:#7b6a59;
+    font-size:11px;
+    line-height:1.4;
+  }
+  @media(max-width:749px){
+    .template-product .vp-product__trust-strip{
+      grid-template-columns:1fr;
+      gap:6px;
+    }
+    .template-product .vp-product__trust-strip span{
+      text-align:left;
+    }
+    .template-product .vp-product__benefits{
+      gap:6px;
+    }
   }
 </style>
 
