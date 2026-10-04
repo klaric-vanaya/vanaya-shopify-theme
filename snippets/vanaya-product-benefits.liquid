@@ -1,0 +1,40 @@
+{% doc %}
+Renders product benefit chips from the existing Vanaya product content.
+@param {product} product - The product to display.
+{% enddoc %}
+{% assign benefit_product_name = product.title | downcase %}
+{% assign benefit_family = '' %}
+{% if product.handle == 'vanaya-seabuckthorn-kansa-sculpt-ritual' %}
+  {% assign benefit_family = 'sea' %}
+{% elsif benefit_product_name contains 'sea buckthorn' %}
+  {% assign benefit_family = 'sea' %}
+{% elsif benefit_product_name contains 'kumkumadi tailam' %}
+  {% assign benefit_family = 'kumkumadi' %}
+{% elsif benefit_product_name contains 'haridra' %}
+  {% assign benefit_family = 'haridra' %}
+{% elsif benefit_product_name contains 'kanak tailam' %}
+  {% assign benefit_family = 'kanak' %}
+{% elsif benefit_product_name contains 'nayan tara' or benefit_product_name contains 'dark circle repair' or benefit_product_name contains 'under eye cream' %}
+  {% assign benefit_family = 'eye' %}
+{% elsif benefit_product_name contains 'ratri glow' %}
+  {% assign benefit_family = 'night' %}
+{% elsif benefit_product_name contains 'tara sitara' or benefit_product_name contains 'exfoliating cream' %}
+  {% assign benefit_family = 'scrub' %}
+{% elsif benefit_product_name contains 'chamak damak' or benefit_product_name contains 'resurfacing mask' %}
+  {% assign benefit_family = 'mask' %}
+{% elsif benefit_product_name contains 'complete ritual' or benefit_product_name contains 'raksha bandhan gifting' %}
+  {% assign benefit_family = 'gift' %}
+{% elsif benefit_product_name contains 'glow essentials' %}
+  {% assign benefit_family = 'gift' %}
+{% elsif benefit_product_name contains 'kansa' or benefit_product_name contains 'kaansa' %}
+  {% assign benefit_family = 'wand' %}
+{% endif %}
+{% if benefit_family != blank %}
+  <div class="vp-product__benefits" aria-label="{{ 'vanaya_cro.benefits_label' | t }}">
+    {% assign benefit_numbers = '1,2,3' | split: ',' %}
+    {% for benefit_number in benefit_numbers %}
+      {% assign benefit_key = 'vanaya_cro.' | append: benefit_family | append: benefit_number %}
+      <span>{{ benefit_key | t }}</span>
+    {% endfor %}
+  </div>
+{% endif %}
