@@ -4,6 +4,10 @@
       "type": "vanaya-product-main",
       "settings": {}
     },
+    "vanaya-ugc-proof": {
+      "type": "vanaya-ugc-proof",
+      "settings": {}
+    },
     "1654858435570866da": {
       "type": "section-faq",
       "blocks": {
@@ -86,6 +90,7 @@
   },
   "order": [
     "main-product",
+    "vanaya-ugc-proof",
     "1654858435570866da",
     "recommendations"
   ]
