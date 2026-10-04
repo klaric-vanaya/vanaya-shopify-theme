@@ -1,0 +1,65 @@
+{% liquid
+  assign ugc_count = 0
+  for media in product.media
+    if media.media_type == 'video' or media.media_type == 'external_video'
+      assign ugc_count = ugc_count | plus: 1
+    endif
+  endfor
+%}
+
+{% if product.handle == 'sea-buckthorn-oil-30ml' and ugc_count > 0 %}
+<section class="vugc" aria-label="Sea Buckthorn customer and creator videos">
+  <div class="vugc__inner">
+    <div class="vugc__head">
+      <p class="vugc__eyebrow">See the ritual in action</p>
+      <h2>Real routines. Real Vanaya rituals.</h2>
+      <p>Watch how Sea Buckthorn Oil fits into a simple everyday skincare ritual.</p>
+    </div>
+    <div class="vugc__grid">
+      {% assign shown = 0 %}
+      {% for media in product.media %}
+        {% if media.media_type == 'video' or media.media_type == 'external_video' %}
+          {% assign shown = shown | plus: 1 %}
+          <article class="vugc__card">
+            <div class="vugc__media">
+              {% if media.media_type == 'video' %}
+                {{ media | video_tag: controls: true, preload: 'metadata', image_size: '900x' }}
+              {% else %}
+                {{ media | external_video_tag }}
+              {% endif %}
+            </div>
+            <p class="vugc__caption">Sea Buckthorn ritual</p>
+          </article>
+          {% if shown >= 3 %}{% break %}{% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    <a class="vugc__reviews" href="#vanaya-customer-reviews">Read verified customer reviews →</a>
+  </div>
+</section>
+
+<style>
+.vugc{padding:34px 0 18px;background:#faf7f1}
+.vugc__inner{width:min(1180px,calc(100% - 40px));margin:0 auto}
+.vugc__head{text-align:center;max-width:720px;margin:0 auto 22px}
+.vugc__eyebrow{margin:0 0 6px;text-transform:uppercase;letter-spacing:.12em;font-size:11px;color:#8b6f4d}
+.vugc__head h2{margin:0 0 8px;color:#4d3a29;font-size:clamp(24px,3vw,38px);font-weight:600}
+.vugc__head p{margin:0;color:#74685d;font-size:14px}
+.vugc__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.vugc__card{margin:0;background:#fff;border:1px solid #e7dfd2}
+.vugc__media{aspect-ratio:9/16;background:#eee;overflow:hidden}
+.vugc__media video,.vugc__media iframe{width:100%;height:100%;object-fit:cover;display:block;border:0}
+.vugc__caption{margin:0;padding:10px 12px;color:#4f4338;font-size:12px;text-align:center}
+.vugc__reviews{display:block;width:max-content;margin:18px auto 0;color:#6d5336;text-decoration:underline;text-underline-offset:3px;font-size:13px}
+@media(max-width:749px){
+  .vugc{padding:26px 0 8px}
+  .vugc__inner{width:calc(100% - 28px)}
+  .vugc__grid{display:flex;overflow-x:auto;gap:10px;scroll-snap-type:x mandatory;padding-bottom:6px}
+  .vugc__card{flex:0 0 78%;scroll-snap-align:start}
+  .vugc__head{text-align:left}
+}
+</style>
+
+{% schema %}
+{"name":"Vanaya UGC proof","settings":[],"presets":[{"name":"Vanaya UGC proof"}]}
+{% endschema %}
