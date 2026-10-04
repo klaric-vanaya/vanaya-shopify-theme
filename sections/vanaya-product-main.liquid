@@ -4,12 +4,8 @@
   assign vanaya_product_title = product.title | downcase
   assign is_kansa_wand = false
   assign is_seabuckthorn_kansa_ritual = false
-  assign is_sea_buckthorn = false
   if product.handle == 'vanaya-seabuckthorn-kansa-sculpt-ritual'
     assign is_seabuckthorn_kansa_ritual = true
-  endif
-  if product.handle == 'sea-buckthorn-oil-30ml'
-    assign is_sea_buckthorn = true
   endif
   if vanaya_product_title contains 'kansa' or vanaya_product_title contains 'kaansa' or vanaya_product_title contains 'sculpting wand'
     assign is_kansa_wand = true
@@ -68,17 +64,11 @@
       <p class="vp-product__eyebrow">The Vanaya Ayurvedic ritual</p>
       <h1>{{ product.title }}</h1>
       {% if product.metafields.reviews.rating.value != blank %}
-        <p class="vp-product__rating">★★★★★ <span>{{ product.metafields.reviews.rating.value }} / 5</span> <a href="#vanaya-customer-reviews" class="vp-product__reviews-link">See verified reviews</a></p>
-      {% elsif is_sea_buckthorn %}
-        <p class="vp-product__rating"><a href="#vanaya-customer-reviews" class="vp-product__reviews-link">See verified reviews</a></p>
+        <p class="vp-product__rating">★★★★★ <span>{{ product.metafields.reviews.rating.value }} / 5</span> <a href="#vanaya-customer-reviews" class="vp-product__reviews-link">{{ 'vanaya_cro.reviews' | t }}</a></p>
+      {% else %}
+        <p class="vp-product__rating"><a href="#vanaya-customer-reviews" class="vp-product__reviews-link">{{ 'vanaya_cro.reviews' | t }}</a></p>
       {% endif %}
-      {% if is_sea_buckthorn %}
-        <div class="vp-product__benefits" aria-label="Sea Buckthorn Oil benefits">
-          <span>Replenishes barrier</span>
-          <span>Restores glow</span>
-          <span>Supports elasticity</span>
-        </div>
-      {% endif %}
+      {% render 'vanaya-product-benefits', product: product %}
       <div class="vp-product__price" data-vp-price>
         {% if current_variant.compare_at_price > current_variant.price %}
           <span class="vp-product__mrp">
@@ -90,9 +80,7 @@
           <span class="vp-product__sale-price">{{ current_variant.price | money }}</span>
         {% endif %}
       </div>
-      {% if is_sea_buckthorn %}
-        <p class="vp-product__price-guide">Starting at <strong>₹899</strong> for 5ml trial size · 10ml ₹1,348 · 30ml ₹1,613</p>
-      {% endif %}
+
 
       {% if product.description != blank %}
         <div class="vp-product__intro{% if is_kansa_wand %} vp-product__intro--full{% endif %}">{{ product.description }}</div>
@@ -146,19 +134,15 @@
             <span>{% if current_variant.available %}Add to bag{% else %}Sold out{% endif %}</span><span>→</span>
           </button>
         </div>
-        {% if is_sea_buckthorn %}
-          <div class="vp-product__buy-now">{{ form | payment_button }}</div>
-        {% endif %}
+        <div class="vp-product__buy-now">{{ form | payment_button }}</div>
       {% endform %}
 
-      {% if is_sea_buckthorn %}
-        <div class="vp-product__trust-strip">
-          <span>✓ Free shipping above ₹999</span>
-          <span>✓ Prepaid checkout</span>
-          <span>✓ Dispatch in 1–2 working days</span>
-        </div>
-        <p class="vp-product__cod-note">COD is currently unavailable to protect customers and the brand from fraudulent orders.</p>
-      {% endif %}
+      <div class="vp-product__trust-strip">
+        <span>✓ {{ 'vanaya_cro.shipping' | t }}</span>
+        <span>✓ {{ 'vanaya_cro.payment' | t }}</span>
+        <span>✓ {{ 'vanaya_cro.dispatch' | t }}</span>
+      </div>
+      <p class="vp-product__cod-note">{{ 'vanaya_cro.prepaid' | t }}</p>
 
       <button type="button" class="v293-product-wishlist v293-product-wishlist--custom" data-v29-wishlist
         data-handle="{{ product.handle }}" data-title="{{ product.title | escape }}"
@@ -316,7 +300,8 @@ document.addEventListener('DOMContentLoaded', function () {
     font-size:13px;
     line-height:1.45;
   }
-  .template-product .vp-variant-option small{
+  .template-product .vp-variant-option small,
+  .template-product .vp-related-sizes__options small{
     display:block;
     margin-top:2px;
     color:#766a5e;

@@ -63,7 +63,7 @@
               href="{{ size_product.url }}"
               class="{% if size_product.handle == product.handle %}is-active{% endif %}"
               {% if size_product.handle == product.handle %}aria-current="page"{% endif %}
-            >{{ size_label }}</a>
+            >{{ size_label }} <small>{{ size_product.price | money }}</small></a>
           {% endif %}
         {% endfor %}
       </div>
