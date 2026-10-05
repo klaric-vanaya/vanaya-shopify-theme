@@ -365,11 +365,11 @@
     "vanaya_complete_ritual_offer": {
       "type": "vanaya-complete-ritual-offer",
       "settings": {
-        "eyebrow": "A Little Gift, On Us",
-        "heading": "Your Ritual Comes With Something Extra.",
-        "text": "Build your Vanaya ritual and choose a complimentary gift when your cart reaches the qualifying value.",
+        "eyebrow": "Build Your Ritual & Save",
+        "heading": "More Rituals. More Savings.",
+        "text": "Enjoy up to 20% off eligible items. Your discount applies automatically in the cart and at checkout.",
         "link": "/collections/all",
-        "link_text": "Shop & Unlock Your Gift"
+        "link_text": "Shop & Save"
       }
     },
     "vanaya_diwali": {

@@ -602,5 +602,12 @@
     "wand1": "Gentle facial massage",
     "wand2": "At-home skincare ritual",
     "wand3": "Dual-ended design"
+  },
+  "vanaya_offer": {
+    "saving": "{{ percent }}% off",
+    "buy_four": "Buy 4 or more items",
+    "buy_items": "Buy {{ count }} items",
+    "eligible_items": "On eligible items",
+    "terms": "Automatic discount · Highest eligible offer applies · No code needed · Excludes already discounted items and promotional sets · Cannot combine with other offers"
   }
 }
