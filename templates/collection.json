@@ -12,8 +12,14 @@
       "settings": {}
     },
     "shop-free-gift-banner": {
-      "type": "vanaya-shop-free-gift-banner",
-      "settings": {}
+      "type": "vanaya-complete-ritual-offer",
+      "settings": {
+        "eyebrow": "Build Your Ritual & Save",
+        "heading": "More Rituals. More Savings.",
+        "text": "Enjoy up to 20% off eligible items. Your discount applies automatically in the cart and at checkout.",
+        "link": "/collections/all",
+        "link_text": "Shop & Save"
+      }
     }
   },
   "order": [

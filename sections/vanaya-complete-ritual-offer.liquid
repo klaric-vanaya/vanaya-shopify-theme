@@ -1,4 +1,4 @@
-<section class="vcr-offer" id="free-gift-offer">
+<section class="vcr-offer" id="quantity-offer-{{ section.id }}">
   <div class="vcr-offer__inner">
     <div class="vcr-offer__intro">
       <span class="vcr-offer__eyebrow">{{ section.settings.eyebrow }}</span>
@@ -7,34 +7,34 @@
     </div>
 
     <div class="vcr-offer__tiers">
-      <div class="vcr-offer__tier">
-        <span class="vcr-offer__amount">₹1,599+</span>
-        <div>
-          <b>Choose a FREE gift</b>
-          <p>Pick any eligible product up to ₹349.</p>
+      {% for tier in (2..4) %}
+        {% assign saving = tier | minus: 1 | times: 5 | plus: 5 %}
+        <div class="vcr-offer__tier{% if tier == 4 %} vcr-offer__tier--best{% endif %}">
+          <span class="vcr-offer__amount">{{ 'vanaya_offer.saving' | t: percent: saving }}</span>
+          <div>
+            {% if tier == 4 %}
+              <b>{{ 'vanaya_offer.buy_four' | t }}</b>
+            {% else %}
+              <b>{{ 'vanaya_offer.buy_items' | t: count: tier }}</b>
+            {% endif %}
+            <p>{{ 'vanaya_offer.eligible_items' | t }}</p>
+          </div>
         </div>
-      </div>
-      <div class="vcr-offer__tier vcr-offer__tier--best">
-        <span class="vcr-offer__amount">₹2,599+</span>
-        <div>
-          <b>Unlock a bigger FREE gift</b>
-          <p>Pick any eligible product up to ₹899.</p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
 
     <a class="vcr-offer__cta" href="{{ section.settings.link | default: routes.all_products_collection_url }}">
       {{ section.settings.link_text }} <span aria-hidden="true">→</span>
     </a>
   </div>
-  <div class="vcr-offer__foot">One free gift per order · Automatically applied when your cart qualifies</div>
+  <div class="vcr-offer__foot">{{ 'vanaya_offer.terms' | t }}</div>
 </section>
 
 <style>
   #shopify-section-{{ section.id }}{margin:0!important;padding:0!important;background:#d4d2b4}
   #shopify-section-{{ section.id }} .vcr-offer{margin:0!important;background:#d4d2b4;color:#4b3929}
   #shopify-section-{{ section.id }} .vcr-offer__inner{
-    display:grid;grid-template-columns:1.05fr 1.55fr auto;gap:28px;align-items:center;
+    display:grid;grid-template-columns:1fr 2fr auto;gap:28px;align-items:center;
     padding:18px max(26px,4vw) 16px
   }
   #shopify-section-{{ section.id }} .vcr-offer__intro{min-width:0}
@@ -46,9 +46,9 @@
     margin:0 0 5px;color:#4b3929;font:500 clamp(24px,2.3vw,36px)/1 Georgia,"Times New Roman",serif
   }
   #shopify-section-{{ section.id }} .vcr-offer__intro p{margin:0;max-width:520px;color:#6a543c;font-size:11px;line-height:1.45}
-  #shopify-section-{{ section.id }} .vcr-offer__tiers{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  #shopify-section-{{ section.id }} .vcr-offer__tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
   #shopify-section-{{ section.id }} .vcr-offer__tier{
-    display:flex;align-items:center;gap:13px;min-height:74px;padding:12px 15px;
+    display:flex;align-items:center;gap:10px;min-height:74px;padding:12px 10px;
     border:1px solid rgba(90,70,50,.2);background:rgba(255,250,240,.42)
   }
   #shopify-section-{{ section.id }} .vcr-offer__tier--best{background:#5a4632;color:#fff8e9}
@@ -89,14 +89,14 @@
 
 {% schema %}
 {
-  "name":"Vanaya Free Gift Offer",
+  "name":"Vanaya Quantity Offer",
   "settings":[
-    {"type":"text","id":"eyebrow","label":"Eyebrow","default":"A Little Gift, On Us"},
-    {"type":"text","id":"heading","label":"Heading","default":"Your Ritual Comes With Something Extra."},
-    {"type":"textarea","id":"text","label":"Text","default":"Build your Vanaya ritual and choose a complimentary gift when your cart reaches the qualifying value."},
+    {"type":"text","id":"eyebrow","label":"Eyebrow","default":"Build Your Ritual & Save"},
+    {"type":"text","id":"heading","label":"Heading","default":"More Rituals. More Savings."},
+    {"type":"textarea","id":"text","label":"Text","default":"Enjoy up to 20% off eligible items. Your discount applies automatically in the cart and at checkout."},
     {"type":"url","id":"link","label":"Shop link"},
-    {"type":"text","id":"link_text","label":"Button text","default":"Shop & Unlock Your Gift"}
+    {"type":"text","id":"link_text","label":"Button text","default":"Shop & Save"}
   ],
-  "presets":[{"name":"Vanaya Free Gift Offer"}]
+  "presets":[{"name":"Vanaya Quantity Offer"}]
 }
 {% endschema %}
