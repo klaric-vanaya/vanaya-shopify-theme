@@ -1,0 +1,69 @@
+{% doc %}
+  Displays the quantity offer using the variants configured in the Shopify automatic discounts.
+  @param {object} cart - The current shopping cart.
+{% enddoc %}
+
+{% liquid
+  assign eligible_ids = '49981744742643,49996749209843,49996794593523,49996861538547,50757096276211,50757096308979,50757362614515,50757362647283,50757454233843,50757454266611,50757399707891,50757399740659,50508649365747,50508779487475,50508786303219,50508794265843' | split: ','
+  assign eligible_count = 0
+  assign legacy_gift = false
+  for item in cart.items
+    assign variant_id = item.variant.id | append: ''
+    if eligible_ids contains variant_id
+      assign eligible_count = eligible_count | plus: item.quantity
+    endif
+    if item.properties['_vanaya_free_gift'] == 'true'
+      assign legacy_gift = true
+    endif
+  endfor
+  assign discount_percent = 0
+  assign next_percent = 10
+  assign next_count = 2 | minus: eligible_count
+  if eligible_count >= 4
+    assign discount_percent = 20
+  elsif eligible_count == 3
+    assign discount_percent = 15
+    assign next_percent = 20
+    assign next_count = 1
+  elsif eligible_count == 2
+    assign discount_percent = 10
+    assign next_percent = 15
+    assign next_count = 1
+  endif
+%}
+
+<aside class="vanaya-cart-offer" aria-label="{{ 'vanaya_offer.cart_eyebrow' | t | escape }}">
+  <span class="vanaya-cart-offer__eyebrow">{{ 'vanaya_offer.cart_eyebrow' | t }}</span>
+  {% if discount_percent > 0 %}
+    <h2>{{ 'vanaya_offer.cart_qualified' | t: percent: discount_percent }}</h2>
+  {% endif %}
+  <p>{{ 'vanaya_offer.cart_count' | t: count: eligible_count }}</p>
+  <div class="vanaya-cart-offer__tiers">
+    {% for tier in (2..4) %}
+      {% assign percent = tier | times: 5 %}
+      <div class="vanaya-cart-offer__tier{% if percent == discount_percent %} vanaya-cart-offer__tier--current{% endif %}">
+        <strong>{{ 'vanaya_offer.saving' | t: percent: percent }}</strong>
+        <span>{% if tier == 4 %}{{ 'vanaya_offer.buy_four' | t }}{% else %}{{ 'vanaya_offer.buy_items' | t: count: tier }}{% endif %}</span>
+      </div>
+    {% endfor %}
+  </div>
+  <p class="vanaya-cart-offer__next">{% if eligible_count >= 4 %}{{ 'vanaya_offer.cart_max' | t }}{% else %}{{ 'vanaya_offer.cart_add' | t: count: next_count, percent: next_percent }}{% endif %}</p>
+  <p class="vanaya-cart-offer__terms">{{ 'vanaya_offer.terms' | t }}</p>
+  {% if legacy_gift %}<p class="vanaya-cart-offer__legacy" role="status">{{ 'vanaya_offer.cart_legacy_gift' | t }}</p>{% endif %}
+</aside>
+
+{% stylesheet %}
+  .vanaya-cart-offer{margin:18px 0 22px;padding:22px;border:1px solid #cfc7b8;border-radius:18px;background:#f5f1e5;color:#493825}
+  .vanaya-cart-offer__eyebrow{display:block;margin-bottom:8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+  .vanaya-cart-offer h2{margin:0 0 8px;font-size:24px;line-height:1.25}
+  .vanaya-cart-offer p{margin:8px 0;font-size:14px;line-height:1.5}
+  .vanaya-cart-offer__tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
+  .vanaya-cart-offer__tier{display:flex;flex-direction:column;gap:6px;padding:16px 10px;border:1px solid #cfc7b8;border-radius:10px;background:#fffaf0;text-align:center}
+  .vanaya-cart-offer__tier strong{font:500 26px/1.2 Georgia,serif}
+  .vanaya-cart-offer__tier span{font-size:12px}
+  .vanaya-cart-offer__tier--current{background:#55422f;color:#fffaf0;border-color:#55422f}
+  .vanaya-cart-offer .vanaya-cart-offer__next{font-weight:700}
+  .vanaya-cart-offer .vanaya-cart-offer__terms{font-size:12px;color:#665944}
+  .vanaya-cart-offer .vanaya-cart-offer__legacy{padding:12px;border:1px solid #c7aa75;background:#fff4d9}
+  @media(max-width:480px){.vanaya-cart-offer{padding:17px 14px}.vanaya-cart-offer h2{font-size:21px}.vanaya-cart-offer__tiers{gap:6px}.vanaya-cart-offer__tier{padding:13px 5px}.vanaya-cart-offer__tier strong{font-size:23px}.vanaya-cart-offer__tier span{font-size:11px}}
+{% endstylesheet %}
