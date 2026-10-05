@@ -608,6 +608,12 @@
     "buy_four": "Buy 4 or more items",
     "buy_items": "Buy {{ count }} items",
     "eligible_items": "On eligible items",
-    "terms": "Automatic discount · Highest eligible offer applies · No code needed · Excludes already discounted items and promotional sets · Cannot combine with other offers"
+    "terms": "Automatic discount · Highest eligible offer applies · No code needed · Excludes already discounted items and promotional sets · Cannot combine with other offers",
+    "cart_eyebrow": "Build your ritual & save",
+    "cart_count": "Eligible items in your cart: {{ count }}",
+    "cart_qualified": "Your cart qualifies for {{ percent }}% off.",
+    "cart_add": "Add {{ count }} more eligible item(s) to qualify for {{ percent }}% off.",
+    "cart_max": "You have reached the highest quantity discount.",
+    "cart_legacy_gift": "The free gift offer has ended. A previously selected gift is still in your cart as a paid item. Remove it below if you do not want to purchase it."
   }
 }
