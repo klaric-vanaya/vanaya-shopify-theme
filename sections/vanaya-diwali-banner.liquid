@@ -1,26 +1,118 @@
-<section class="vanaya-diwali-banner" aria-label="Vanaya Diwali gifting">
-  <a href="/pages/gifting" class="vanaya-diwali-banner__link">
-    <img
-      src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/vanaya-diwali-bulk-orders-banner.jpg?v=1790670087"
-      width="1600"
-      height="540"
-      loading="lazy"
-      alt="Vanaya Diwali corporate gifting — now accepting bulk orders"
-    >
-  </a>
-</section>
+<vanaya-promo-carousel class="vanaya-promo" role="region" aria-label="{{ 'vanaya_promo.label' | t }}" aria-roledescription="carousel" data-interval="{{ section.settings.interval | times: 1000 }}">
+  <div class="vanaya-promo__viewport">
+    <div class="vanaya-promo__track">
+      <a href="{{ section.settings.offer_link | default: routes.all_products_collection_url }}" class="vanaya-promo__slide" aria-label="{{ 'vanaya_promo.offer_alt' | t }}">
+        {% if section.settings.offer_image != blank %}
+          {{ section.settings.offer_image | image_url: width: 2200 | image_tag: loading: 'lazy', widths: '640, 960, 1440, 2048', sizes: '100vw', alt: section.settings.offer_image.alt }}
+        {% else %}
+          <img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/vanaya-quantity-discount-banner.jpg?v=1791287206" width="2048" height="692" loading="lazy" alt="{{ 'vanaya_promo.offer_alt' | t }}">
+        {% endif %}
+      </a>
+      <a href="{{ section.settings.gift_link | default: '/pages/gifting' }}" class="vanaya-promo__slide" aria-label="{{ 'vanaya_promo.gift_alt' | t }}" inert aria-hidden="true">
+        {% if section.settings.gift_image != blank %}
+          {{ section.settings.gift_image | image_url: width: 2200 | image_tag: loading: 'lazy', widths: '640, 960, 1440, 1600', sizes: '100vw', alt: section.settings.gift_image.alt }}
+        {% else %}
+          <img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/vanaya-diwali-bulk-orders-banner.jpg?v=1790670087" width="1600" height="540" loading="lazy" alt="{{ 'vanaya_promo.gift_alt' | t }}">
+        {% endif %}
+      </a>
+    </div>
+  </div>
+  <button class="vanaya-promo__arrow vanaya-promo__arrow--prev vanaya-control-v20" type="button" data-promo-move="-1" aria-label="{{ 'vanaya_promo.previous' | t }}">←</button>
+  <button class="vanaya-promo__arrow vanaya-promo__arrow--next vanaya-control-v20" type="button" data-promo-move="1" aria-label="{{ 'vanaya_promo.next' | t }}">→</button>
+  <div class="vanaya-promo__footer">
+    <small>{{ 'vanaya_offer.terms' | t }}</small>
+    <button class="vanaya-promo__pause" type="button" aria-pressed="false" data-promo-pause data-play-label="{{ 'vanaya_promo.play' | t }}" data-pause-label="{{ 'vanaya_promo.pause' | t }}">{{ 'vanaya_promo.pause' | t }}</button>
+  </div>
+</vanaya-promo-carousel>
 
-<style>
-  #shopify-section-{{ section.id }}{margin:0!important;padding:0!important;background:#fffaf0}
-  #shopify-section-{{ section.id }} .vanaya-diwali-banner{width:100%;margin:0;padding:0;overflow:hidden;background:#fffaf0}
-  #shopify-section-{{ section.id }} .vanaya-diwali-banner__link{display:block;width:100%}
-  #shopify-section-{{ section.id }} .vanaya-diwali-banner img{display:block;width:100%;height:auto}
-</style>
+{% stylesheet %}
+  .vanaya-promo {display:block;position:relative;background:#fffaf0;width:100%;margin:0;padding:0;}
+  .vanaya-promo__viewport {overflow:hidden;}
+  .vanaya-promo__track {display:flex;transition:transform .65s ease;}
+  .vanaya-promo__slide {display:block;flex:0 0 100%;min-width:0;}
+  .vanaya-promo__slide img {display:block;width:100%;height:auto;aspect-ratio:2048/692;object-fit:contain;}
+  .vanaya-promo__arrow {position:absolute;top:calc(50% - 24px);z-index:2;}
+  .vanaya-promo__arrow--prev {left:14px;}
+  .vanaya-promo__arrow--next {right:14px;}
+  .vanaya-promo__footer {display:flex;gap:12px;align-items:center;justify-content:space-between;padding:8px 16px;color:#4b4136;}
+  .vanaya-promo__footer small {font-size:10px;line-height:1.4;}
+  .vanaya-promo .vanaya-promo__pause {min-width:0!important;min-height:28px!important;margin:0!important;padding:4px 8px!important;border:1px solid #4b4136!important;border-radius:4px!important;background:transparent!important;color:#4b4136!important;font-size:10px!important;white-space:nowrap;}
+  @media(max-width:600px) {.vanaya-promo__arrow--prev {left:6px;} .vanaya-promo__arrow--next {right:6px;} .vanaya-promo__footer {padding:6px 10px;} .vanaya-promo__footer small {font-size:9px;}}
+  @media(prefers-reduced-motion:reduce) {.vanaya-promo__track {transition:none;}}
+{% endstylesheet %}
+
+{% javascript %}
+  if (!customElements.get('vanaya-promo-carousel')) {
+    customElements.define('vanaya-promo-carousel', class extends HTMLElement {
+      connectedCallback() {
+        if (this.controller) return;
+        this.controller = new AbortController();
+        const options = {signal:this.controller.signal};
+        this.track = this.querySelector('.vanaya-promo__track');
+        this.slides = [...this.querySelectorAll('.vanaya-promo__slide')];
+        this.index = 0;
+        this.paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        this.visible = false;
+        this.hovered = false;
+        this.pauseButton = this.querySelector('[data-promo-pause]');
+        this.updatePause();
+        this.querySelectorAll('[data-promo-move]').forEach(button => button.addEventListener('click', () => {
+          this.move(Number(button.dataset.promoMove));
+          this.restart();
+        }, options));
+        this.pauseButton.addEventListener('click', () => {
+          this.paused = !this.paused;
+          this.updatePause();
+        }, options);
+        this.addEventListener('pointerenter', () => {this.hovered = true;}, options);
+        this.addEventListener('pointerleave', () => {this.hovered = false;}, options);
+        this.addEventListener('touchstart', event => {this.touchX = event.touches[0].clientX;}, {...options,passive:true});
+        this.addEventListener('touchend', event => {
+          const delta = event.changedTouches[0].clientX - this.touchX;
+          if (Math.abs(delta) > 45) {this.move(delta < 0 ? 1 : -1);this.restart();}
+        }, options);
+        this.observer = new IntersectionObserver(entries => {this.visible = entries[0].isIntersecting;}, {threshold:.25});
+        this.observer.observe(this);
+        this.restart();
+      }
+      move(direction) {
+        this.index = (this.index + direction + this.slides.length) % this.slides.length;
+        this.track.style.transform = `translateX(-${this.index * 100}%)`;
+        this.slides.forEach((slide,index) => {
+          slide.inert = index !== this.index;
+          slide.setAttribute('aria-hidden', String(index !== this.index));
+        });
+      }
+      updatePause() {
+        this.pauseButton.setAttribute('aria-pressed', String(this.paused));
+        this.pauseButton.textContent = this.paused ? this.pauseButton.dataset.playLabel : this.pauseButton.dataset.pauseLabel;
+      }
+      restart() {
+        clearInterval(this.timer);
+        this.timer = setInterval(() => {
+          if (!this.paused && this.visible && !this.hovered && !this.contains(document.activeElement) && !document.hidden) this.move(1);
+        }, Number(this.dataset.interval) || 6000);
+      }
+      disconnectedCallback() {
+        clearInterval(this.timer);
+        this.observer?.disconnect();
+        this.controller?.abort();
+        this.controller = null;
+      }
+    });
+  }
+{% endjavascript %}
 
 {% schema %}
 {
-  "name":"Vanaya Diwali Banner",
-  "settings":[],
-  "presets":[{"name":"Vanaya Diwali Banner"}]
+  "name":"Vanaya offer banners",
+  "settings":[
+    {"type":"image_picker","id":"offer_image","label":"Discount banner"},
+    {"type":"url","id":"offer_link","label":"Discount banner link","default":"/collections/all"},
+    {"type":"image_picker","id":"gift_image","label":"Diwali banner"},
+    {"type":"url","id":"gift_link","label":"Diwali banner link","default":"/pages/gifting"},
+    {"type":"range","id":"interval","label":"Seconds between banners","min":4,"max":12,"step":1,"default":6}
+  ],
+  "presets":[{"name":"Vanaya offer banners"}]
 }
 {% endschema %}
