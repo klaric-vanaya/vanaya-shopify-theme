@@ -31,8 +31,10 @@
   .vanaya-promo__arrow {position:absolute;top:calc(50% - 21px);z-index:2;}
   .vanaya-promo__arrow--prev {left:14px;}
   .vanaya-promo__arrow--next {right:14px;}
-  .vanaya-promo .vanaya-promo__pause {position:absolute;right:14px;bottom:10px;z-index:2;width:28px!important;min-width:28px!important;height:28px!important;min-height:28px!important;margin:0!important;padding:0!important;border:1px solid #4b4136!important;border-radius:50%!important;background:#fffaf0!important;color:#4b4136!important;font:14px/1 Arial,sans-serif!important;display:grid!important;place-items:center;}
-  .vanaya-promo__pause::before,.vanaya-promo__pause::after {content:none!important;}
+  .vanaya-promo .vanaya-promo__pause {position:absolute;right:14px;bottom:10px;z-index:2;width:28px!important;min-width:28px!important;height:28px!important;min-height:28px!important;margin:0!important;padding:0!important;border:1px solid #4b4136!important;border-radius:50%!important;background:#fffaf0!important;color:#4b4136!important;font:0/1 Arial,sans-serif!important;display:grid!important;place-items:center;}
+  .vanaya-promo__pause::before,.vanaya-promo__pause span {display:none!important;}
+  .vanaya-promo .vanaya-promo__pause::after {content:'Ⅱ'!important;display:block!important;position:static!important;transform:none!important;background:none!important;color:#4b4136!important;font:14px/1 Arial,sans-serif!important;}
+  .vanaya-promo .vanaya-promo__pause[aria-pressed="true"]::after {content:'▶'!important;}
   @media(max-width:600px) {.vanaya-promo__arrow--prev {left:6px;} .vanaya-promo__arrow--next {right:6px;} .vanaya-promo .vanaya-promo__pause {right:6px;bottom:6px;}}
   @media(prefers-reduced-motion:reduce) {.vanaya-promo__track {transition:none;}}
 {% endstylesheet %}
@@ -82,7 +84,6 @@
       updatePause() {
         this.pauseButton.setAttribute('aria-pressed', String(this.paused));
         this.pauseButton.setAttribute('aria-label', this.paused ? this.pauseButton.dataset.playLabel : this.pauseButton.dataset.pauseLabel);
-        this.pauseButton.querySelector('span').textContent = this.paused ? '▶' : 'Ⅱ';
       }
       restart() {
         clearInterval(this.timer);
