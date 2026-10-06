@@ -19,10 +19,7 @@
   </div>
   <button class="vanaya-promo__arrow vanaya-promo__arrow--prev vanaya-control-v20" type="button" data-promo-move="-1" aria-label="{{ 'vanaya_promo.previous' | t }}">←</button>
   <button class="vanaya-promo__arrow vanaya-promo__arrow--next vanaya-control-v20" type="button" data-promo-move="1" aria-label="{{ 'vanaya_promo.next' | t }}">→</button>
-  <div class="vanaya-promo__footer">
-    <small>{{ 'vanaya_offer.terms' | t }}</small>
-    <button class="vanaya-promo__pause" type="button" aria-pressed="false" data-promo-pause data-play-label="{{ 'vanaya_promo.play' | t }}" data-pause-label="{{ 'vanaya_promo.pause' | t }}">{{ 'vanaya_promo.pause' | t }}</button>
-  </div>
+  <button class="vanaya-promo__pause" type="button" aria-pressed="false" aria-label="{{ 'vanaya_promo.pause' | t }}" data-promo-pause data-play-label="{{ 'vanaya_promo.play' | t }}" data-pause-label="{{ 'vanaya_promo.pause' | t }}"><span aria-hidden="true">Ⅱ</span></button>
 </vanaya-promo-carousel>
 
 {% stylesheet %}
@@ -31,13 +28,12 @@
   .vanaya-promo__track {display:flex;transition:transform .65s ease;}
   .vanaya-promo__slide {display:block;flex:0 0 100%;min-width:0;}
   .vanaya-promo__slide img {display:block;width:100%;height:auto;aspect-ratio:2048/692;object-fit:contain;}
-  .vanaya-promo__arrow {position:absolute;top:calc(50% - 24px);z-index:2;}
+  .vanaya-promo__arrow {position:absolute;top:calc(50% - 21px);z-index:2;}
   .vanaya-promo__arrow--prev {left:14px;}
   .vanaya-promo__arrow--next {right:14px;}
-  .vanaya-promo__footer {display:flex;gap:12px;align-items:center;justify-content:space-between;padding:8px 16px;color:#4b4136;}
-  .vanaya-promo__footer small {font-size:10px;line-height:1.4;}
-  .vanaya-promo .vanaya-promo__pause {min-width:0!important;min-height:28px!important;margin:0!important;padding:4px 8px!important;border:1px solid #4b4136!important;border-radius:4px!important;background:transparent!important;color:#4b4136!important;font-size:10px!important;white-space:nowrap;}
-  @media(max-width:600px) {.vanaya-promo__arrow--prev {left:6px;} .vanaya-promo__arrow--next {right:6px;} .vanaya-promo__footer {padding:6px 10px;} .vanaya-promo__footer small {font-size:9px;}}
+  .vanaya-promo .vanaya-promo__pause {position:absolute;right:14px;bottom:10px;z-index:2;width:28px!important;min-width:28px!important;height:28px!important;min-height:28px!important;margin:0!important;padding:0!important;border:1px solid #4b4136!important;border-radius:50%!important;background:#fffaf0!important;color:#4b4136!important;font:14px/1 Arial,sans-serif!important;display:grid!important;place-items:center;}
+  .vanaya-promo__pause::before,.vanaya-promo__pause::after {content:none!important;}
+  @media(max-width:600px) {.vanaya-promo__arrow--prev {left:6px;} .vanaya-promo__arrow--next {right:6px;} .vanaya-promo .vanaya-promo__pause {right:6px;bottom:6px;}}
   @media(prefers-reduced-motion:reduce) {.vanaya-promo__track {transition:none;}}
 {% endstylesheet %}
 
@@ -85,13 +81,14 @@
       }
       updatePause() {
         this.pauseButton.setAttribute('aria-pressed', String(this.paused));
-        this.pauseButton.textContent = this.paused ? this.pauseButton.dataset.playLabel : this.pauseButton.dataset.pauseLabel;
+        this.pauseButton.setAttribute('aria-label', this.paused ? this.pauseButton.dataset.playLabel : this.pauseButton.dataset.pauseLabel);
+        this.pauseButton.querySelector('span').textContent = this.paused ? '▶' : 'Ⅱ';
       }
       restart() {
         clearInterval(this.timer);
         this.timer = setInterval(() => {
           if (!this.paused && this.visible && !this.hovered && !this.contains(document.activeElement) && !document.hidden) this.move(1);
-        }, Number(this.dataset.interval) || 6000);
+        }, Number(this.dataset.interval) || 4000);
       }
       disconnectedCallback() {
         clearInterval(this.timer);
@@ -111,7 +108,7 @@
     {"type":"url","id":"offer_link","label":"Discount banner link","default":"/collections/all"},
     {"type":"image_picker","id":"gift_image","label":"Diwali banner"},
     {"type":"url","id":"gift_link","label":"Diwali banner link"},
-    {"type":"range","id":"interval","label":"Seconds between banners","min":4,"max":12,"step":1,"default":6}
+    {"type":"range","id":"interval","label":"Seconds between banners","min":4,"max":12,"step":1,"default":4}
   ],
   "presets":[{"name":"Vanaya offer banners"}]
 }

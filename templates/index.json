@@ -374,7 +374,7 @@
     },
     "vanaya_diwali": {
       "type": "vanaya-diwali-banner",
-      "settings": {}
+      "settings": {"interval": 4}
     }
   },
   "order": [
