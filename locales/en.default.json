@@ -615,5 +615,14 @@
     "cart_add": "Add {{ count }} more eligible item(s) to qualify for {{ percent }}% off.",
     "cart_max": "You have reached the highest quantity discount.",
     "cart_legacy_gift": "The free gift offer has ended. A previously selected gift is still in your cart as a paid item. Remove it below if you do not want to purchase it."
+  },
+  "vanaya_promo": {
+    "label": "Vanaya offers and Diwali gifting",
+    "offer_alt": "The more you add, the more you save. Buy 2 eligible items: 10% off; buy 3: 15% off; buy 4 or more: 20% off. Shop now.",
+    "gift_alt": "Vanaya Diwali corporate gifting — now accepting bulk orders",
+    "previous": "Previous offer banner",
+    "next": "Next offer banner",
+    "pause": "Pause slideshow",
+    "play": "Play slideshow"
   }
 }
