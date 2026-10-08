@@ -1,6 +1,6 @@
 {% liquid
   assign current_variant = product.selected_variant
-  if current_variant == blank and product.handle == 'sea-buckthorn-oil-30ml'
+  if current_variant == blank
     for variant in product.variants
       if variant.available
         if current_variant == blank or variant.price < current_variant.price
