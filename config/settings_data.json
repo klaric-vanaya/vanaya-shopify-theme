@@ -73,7 +73,7 @@
     "stock_label_qty": 3,
     "show_product_stock": true,
     "enable_free_shipping": true,
-    "free_shipping_amount": 999,
+    "free_shipping_amount": 499,
     "default_product_deliverytime_in_stock": "Delivery in 1-3 days",
     "default_product_deliverytime_not_in_stock": "Not in stock - Pre order",
     "enable_cart_drawer_undo_remove": true,
