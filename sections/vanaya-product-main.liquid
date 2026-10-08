@@ -1,5 +1,17 @@
 {% liquid
-  assign current_variant = product.selected_or_first_available_variant
+  assign current_variant = product.selected_variant
+  if current_variant == blank and product.handle == 'sea-buckthorn-oil-30ml'
+    for variant in product.variants
+      if variant.available
+        if current_variant == blank or variant.price < current_variant.price
+          assign current_variant = variant
+        endif
+      endif
+    endfor
+  endif
+  if current_variant == blank
+    assign current_variant = product.selected_or_first_available_variant
+  endif
   assign product_form_id = 'vanaya-product-form-' | append: section.id
   assign vanaya_product_title = product.title | downcase
   assign is_kansa_wand = false
