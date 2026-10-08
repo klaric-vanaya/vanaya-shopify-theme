@@ -101,6 +101,7 @@
       {% endif %}
 
       {% form 'product', product, id: product_form_id, class: 'vp-product__form' %}
+        <input type="hidden" name="id" value="{{ current_variant.id }}" data-vp-variant-id>
         {% if product.variants.size > 1 %}
           <fieldset class="vp-variant-options" data-vp-variants>
             <legend>Select size</legend>
@@ -117,7 +118,7 @@
               <label class="vp-variant-option{% unless variant.available %} is-unavailable{% endunless %}">
                 <input
                   type="radio"
-                  name="id"
+                  name="vanaya_variant_{{ section.id }}"
                   value="{{ variant.id }}"
                   data-price="{{ variant.price | money | escape }}"
                   data-compare-price="{% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money | escape }}{% endif %}"
@@ -131,7 +132,6 @@
             {% endfor %}
           </fieldset>
         {% else %}
-          <input type="hidden" name="id" value="{{ current_variant.id }}">
           {% render 'vanaya-related-sizes', product: product %}
         {% endif %}
 
@@ -215,9 +215,19 @@ document.addEventListener('DOMContentLoaded', function () {
     if(prev)prev.addEventListener('click',function(){show(current-1)});
     if(next)next.addEventListener('click',function(){show(current+1)});
     var variants=root.querySelector('[data-vp-variants]'),price=root.querySelector('[data-vp-price]');
+    var form=root.querySelector('.vp-product__form');
+    var variantId=form&&form.querySelector('[data-vp-variant-id]');
+    function syncVariant(){
+      var selected=variants&&variants.querySelector('input[type="radio"]:checked');
+      if(selected&&variantId)variantId.value=selected.value;
+    }
+    syncVariant();
+    if(form)form.addEventListener('submit',syncVariant,true);
     if(variants&&price)variants.addEventListener('change',function(event){
-      var option=event.target.closest('input[name="id"]');
+      var option=event.target.closest('input[type="radio"]');
       if(!option)return;
+      syncVariant();
+      if(variantId)variantId.dispatchEvent(new Event('change',{bubbles:true}));
       var selling=option.dataset.price||'';
       var compare=option.dataset.comparePrice||'';
       if(compare){
@@ -241,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.history.replaceState({},'',url.toString());
       }
     });
-    var selectedVariant=root.querySelector('[data-vp-variants] input[name="id"]:checked');
+    var selectedVariant=root.querySelector('[data-vp-variants] input[type="radio"]:checked');
     if(selectedVariant&&selectedVariant.dataset.mediaIndex!==undefined){
       show(Number(selectedVariant.dataset.mediaIndex));
     }
