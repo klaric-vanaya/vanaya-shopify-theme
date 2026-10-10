@@ -22,60 +22,147 @@
 </vanaya-promo-carousel>
 
 {% stylesheet %}
-  .vanaya-promo {display:block;position:relative;background:#fffaf0;width:100%;margin:0;padding:0;}
-  .vanaya-promo__viewport {overflow:hidden;}
-  .vanaya-promo__track {display:flex;transition:transform .65s ease;}
-  .vanaya-promo__slide {display:block;flex:0 0 100%;min-width:0;}
-  .vanaya-promo__slide img {display:block;width:100%;height:auto;aspect-ratio:2048/692;object-fit:contain;}
-  .vanaya-promo__arrow {position:absolute;top:50%;z-index:2;display:grid!important;place-items:center!important;width:18px!important;min-width:18px!important;max-width:18px!important;height:18px!important;min-height:18px!important;max-height:18px!important;margin:0!important;padding:0!important;transform:translateY(-50%)!important;border:1px solid rgba(75,65,54,.45)!important;border-radius:50%!important;background:rgba(255,250,240,.88)!important;color:#4b4136!important;font:700 10px/1 Arial,sans-serif!important;box-shadow:none!important;}
-  .vanaya-promo__arrow--prev {left:14px;}
-  .vanaya-promo__arrow--next {right:14px;}
-  @media(max-width:600px) {.vanaya-promo__arrow--prev {left:4px;} .vanaya-promo__arrow--next {right:4px;}} .vanaya-promo__arrow--next {right:6px;} .vanaya-promo .vanaya-promo__pause {right:6px;bottom:6px;}}
-  @media(prefers-reduced-motion:reduce) {.vanaya-promo__track {transition:none;}}
+  .vanaya-promo{
+    display:block;
+    position:relative;
+    width:100%;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    background:#fffaf0;
+  }
+  .vanaya-promo__viewport{
+    width:100%;
+    overflow:hidden;
+  }
+  .vanaya-promo__track{
+    display:flex;
+    width:100%;
+    transform:translate3d(0,0,0);
+    transition:transform .6s ease;
+    will-change:transform;
+  }
+  .vanaya-promo__slide{
+    display:block;
+    flex:0 0 100%;
+    width:100%;
+    min-width:100%;
+  }
+  .vanaya-promo__slide img{
+    display:block;
+    width:100%;
+    height:auto;
+    aspect-ratio:2048/692;
+    object-fit:contain;
+  }
+  .vanaya-promo__arrow{
+    position:absolute;
+    top:50%;
+    z-index:4;
+    display:grid!important;
+    place-items:center!important;
+    width:13px!important;
+    min-width:13px!important;
+    max-width:13px!important;
+    height:13px!important;
+    min-height:13px!important;
+    max-height:13px!important;
+    margin:0!important;
+    padding:0!important;
+    transform:translateY(-50%)!important;
+    border:1px solid rgba(75,65,54,.45)!important;
+    border-radius:50%!important;
+    background:rgba(255,250,240,.9)!important;
+    color:#4b4136!important;
+    font:700 8px/1 Arial,sans-serif!important;
+    box-shadow:none!important;
+    cursor:pointer;
+  }
+  .vanaya-promo__arrow--prev{left:5px!important}
+  .vanaya-promo__arrow--next{right:5px!important}
+  @media(max-width:600px){
+    .vanaya-promo__arrow{
+      width:12px!important;
+      min-width:12px!important;
+      max-width:12px!important;
+      height:12px!important;
+      min-height:12px!important;
+      max-height:12px!important;
+      font-size:7px!important;
+    }
+    .vanaya-promo__arrow--prev{left:3px!important}
+    .vanaya-promo__arrow--next{right:3px!important}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .vanaya-promo__track{transition:none}
+  }
 {% endstylesheet %}
 
 {% javascript %}
   if (!customElements.get('vanaya-promo-carousel')) {
     customElements.define('vanaya-promo-carousel', class extends HTMLElement {
       connectedCallback() {
-        if (this.controller) return;
-        this.controller = new AbortController();
-        const options = {signal:this.controller.signal};
+        if (this._ready) return;
+        this._ready = true;
         this.track = this.querySelector('.vanaya-promo__track');
-        this.slides = [...this.querySelectorAll('.vanaya-promo__slide')];
+        this.slides = Array.from(this.querySelectorAll('.vanaya-promo__slide'));
         this.index = 0;
-        this.visible = false;
-        this.hovered = false;
-        this.addEventListener('pointerenter', () => {this.hovered = true;}, options);
-        this.addEventListener('pointerleave', () => {this.hovered = false;}, options);
-        this.addEventListener('touchstart', event => {this.touchX = event.touches[0].clientX;}, {...options,passive:true});
-        this.addEventListener('touchend', event => {
-          const delta = event.changedTouches[0].clientX - this.touchX;
-          if (Math.abs(delta) > 45) {this.move(delta < 0 ? 1 : -1);this.restart();}
-        }, options);
-        this.observer = new IntersectionObserver(entries => {this.visible = entries[0].isIntersecting;}, {threshold:.25});
-        this.observer.observe(this);
+        this.timer = null;
+
+        if (!this.track || this.slides.length < 2) return;
+
+        this.querySelectorAll('[data-promo-move]').forEach((button) => {
+          button.addEventListener('click', () => {
+            this.move(Number(button.dataset.promoMove || 1));
+            this.restart();
+          });
+        });
+
+        this.addEventListener('mouseenter', () => clearInterval(this.timer));
+        this.addEventListener('mouseleave', () => this.restart());
+
+        let touchX = null;
+        this.addEventListener('touchstart', (event) => {
+          touchX = event.touches[0].clientX;
+          clearInterval(this.timer);
+        }, {passive:true});
+
+        this.addEventListener('touchend', (event) => {
+          if (touchX !== null) {
+            const delta = event.changedTouches[0].clientX - touchX;
+            if (Math.abs(delta) > 40) this.move(delta < 0 ? 1 : -1);
+          }
+          touchX = null;
+          this.restart();
+        }, {passive:true});
+
+        this.show(0);
         this.restart();
       }
-      move(direction) {
-        this.index = (this.index + direction + this.slides.length) % this.slides.length;
-        this.track.style.transform = `translateX(-${this.index * 100}%)`;
-        this.slides.forEach((slide,index) => {
-          slide.inert = index !== this.index;
-          slide.setAttribute('aria-hidden', String(index !== this.index));
+
+      show(index) {
+        this.index = (index + this.slides.length) % this.slides.length;
+        this.track.style.transform = 'translate3d(-' + (this.index * 100) + '%,0,0)';
+        this.slides.forEach((slide, i) => {
+          slide.toggleAttribute('inert', i !== this.index);
+          slide.setAttribute('aria-hidden', i === this.index ? 'false' : 'true');
         });
       }
+
+      move(direction) {
+        this.show(this.index + direction);
+      }
+
       restart() {
         clearInterval(this.timer);
         this.timer = setInterval(() => {
-          if (this.visible && !this.hovered && !this.contains(document.activeElement) && !document.hidden) this.move(1);
+          if (!document.hidden) this.move(1);
         }, Number(this.dataset.interval) || 4000);
       }
+
       disconnectedCallback() {
         clearInterval(this.timer);
-        this.observer?.disconnect();
-        this.controller?.abort();
-        this.controller = null;
+        this._ready = false;
       }
     });
   }
