@@ -1,29 +1,65 @@
 <section class="vanaya-section vanaya-bloggers" data-vanaya-bloggers>
   <style>
-    /* Desktop: 5 equal cards. */
-    @media screen and (min-width: 901px) {
-      #shopify-section-{{ section.id }} .vanaya-blog-grid {
-        display: grid !important;
-        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-        grid-auto-flow: row !important;
-        width: 100% !important;
-        max-width: 1500px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        gap: 12px !important;
-        align-items: start !important;
-      }
-      #shopify-section-{{ section.id }} .vanaya-blog-grid > article {
-        width: 100% !important;
-        min-width: 0 !important;
-        max-width: none !important;
-        flex: none !important;
-        margin: 0 !important;
-      }
+    #shopify-section-{{ section.id }} .vanaya-blogger-shell{
+      position:relative;
+      max-width:1480px;
+      margin:0 auto;
     }
+    #shopify-section-{{ section.id }} .vanaya-blog-grid{
+      display:flex!important;
+      gap:14px!important;
+      width:100%!important;
+      max-width:none!important;
+      margin:0!important;
+      padding:0!important;
+      overflow-x:auto!important;
+      overflow-y:hidden!important;
+      scroll-snap-type:x mandatory;
+      scroll-behavior:smooth;
+      scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;
+    }
+    #shopify-section-{{ section.id }} .vanaya-blog-grid::-webkit-scrollbar{display:none}
+    #shopify-section-{{ section.id }} .vanaya-blog-grid > article{
+      position:relative;
+      flex:0 0 calc((100% - 42px)/4)!important;
+      width:calc((100% - 42px)/4)!important;
+      min-width:0!important;
+      max-width:none!important;
+      margin:0!important;
+      scroll-snap-align:start;
+      aspect-ratio:9/16;
+      overflow:hidden;
+      border-radius:46px 46px 16px 16px!important;
+    }
+    #shopify-section-{{ section.id }} .vanaya-blog-grid video{
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    #shopify-section-{{ section.id }} .vanaya-blogger-arrow{
+      position:absolute;
+      z-index:8;
+      top:50%;
+      display:grid;
+      place-items:center;
+      width:28px;
+      height:28px;
+      padding:0;
+      transform:translateY(-50%);
+      border:1px solid rgba(65,56,45,.32);
+      border-radius:50%;
+      background:rgba(255,250,240,.92);
+      color:#41382d;
+      font:500 18px/1 Arial,sans-serif;
+      cursor:pointer;
+      box-shadow:0 4px 12px rgba(45,38,30,.08);
+    }
+    #shopify-section-{{ section.id }} .vanaya-blogger-arrow--prev{left:-14px}
+    #shopify-section-{{ section.id }} .vanaya-blogger-arrow--next{right:-14px}
 
-    /* Mobile creator rail: readable portrait videos instead of five tiny desktop cards. */
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width:900px){
       #shopify-section-{{ section.id }} .vanaya-bloggers{
         padding-left:0!important;
         padding-right:0!important;
@@ -39,45 +75,32 @@
         line-height:1.02!important;
         letter-spacing:-.035em!important;
       }
-      #shopify-section-{{ section.id }} .vanaya-blog-grid{
-        display:flex!important;
-        width:auto!important;
-        max-width:none!important;
-        gap:12px!important;
-        margin:0!important;
-        padding:0 20px 12px!important;
-        overflow-x:auto!important;
-        overflow-y:hidden!important;
-        scroll-snap-type:x mandatory;
-        scroll-padding-left:20px;
-        -webkit-overflow-scrolling:touch;
-        scrollbar-width:none;
+      #shopify-section-{{ section.id }} .vanaya-blogger-shell{
+        max-width:none;
+        margin:0;
       }
-      #shopify-section-{{ section.id }} .vanaya-blog-grid::-webkit-scrollbar{display:none}
+      #shopify-section-{{ section.id }} .vanaya-blog-grid{
+        gap:12px!important;
+        padding:0 20px 12px!important;
+        scroll-padding-left:20px;
+      }
       #shopify-section-{{ section.id }} .vanaya-blog-grid > article{
-        flex:0 0 min(58vw,235px)!important;
-        width:min(58vw,235px)!important;
-        min-width:min(58vw,235px)!important;
-        max-width:min(58vw,235px)!important;
-        margin:0!important;
-        scroll-snap-align:start;
+        flex:0 0 78vw!important;
+        width:78vw!important;
+        min-width:78vw!important;
+        max-width:78vw!important;
         border-radius:54px 54px 16px 16px!important;
       }
-      #shopify-section-{{ section.id }} .vanaya-blog-video-hint{
-        right:10px!important;
-        bottom:10px!important;
-        max-width:calc(100% - 20px);
-        padding:8px 10px!important;
-        font-size:9px!important;
-        line-height:1.15!important;
+      #shopify-section-{{ section.id }} .vanaya-blogger-arrow{
+        display:none!important;
       }
     }
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width:480px){
       #shopify-section-{{ section.id }} .vanaya-blog-grid > article{
-        flex-basis:66vw!important;
-        width:66vw!important;
-        min-width:66vw!important;
-        max-width:66vw!important;
+        flex-basis:80vw!important;
+        width:80vw!important;
+        min-width:80vw!important;
+        max-width:80vw!important;
       }
     }
   </style>
@@ -88,7 +111,9 @@
     </div>
   </div>
 
-  <div class="vanaya-blog-grid">
+  <div class="vanaya-blogger-shell">
+    <button type="button" class="vanaya-blogger-arrow vanaya-blogger-arrow--prev" data-blogger-prev aria-label="Previous video">‹</button>
+    <div class="vanaya-blog-grid" data-blogger-track>
     {% assign legacy_sources = 'https://cdn.shopify.com/videos/c/o/v/5426c64ecf8d4133aec565ab4c7a835a.mp4|https://cdn.shopify.com/videos/c/o/v/a8bc644b3fc2426f865202dc5b64daf6.mp4|https://cdn.shopify.com/videos/c/o/v/e91a23ab717a47ed9a1e1f695289b5e8.mp4|https://cdn.shopify.com/videos/c/o/v/e4bde69316074a989c13395577e7de5d.mov' | split: '|' %}
     {% for block in section.blocks %}
       {% assign video_src = '' %}
@@ -114,7 +139,7 @@
           data-vanaya-video-card
           tabindex="0"
           role="button"
-          aria-label="Play Vanaya creator video {{ forloop.index }} with sound"
+          aria-label="View Vanaya creator video {{ forloop.index }}"
           {{ block.shopify_attributes }}
         >
           <video
@@ -127,10 +152,11 @@
             preload="metadata"
             aria-label="Vanaya creator video {{ forloop.index }}"
           ></video>
-          <span class="vanaya-blog-video-hint">▶ Play with sound</span>
         </article>
       {% endif %}
     {% endfor %}
+    </div>
+    <button type="button" class="vanaya-blogger-arrow vanaya-blogger-arrow--next" data-blogger-next aria-label="Next video">›</button>
   </div>
 
   <div class="vanaya-video-lightbox" data-vanaya-video-lightbox aria-hidden="true">
@@ -150,6 +176,37 @@
   const stage = root.querySelector('[data-vanaya-video-stage]');
   const close = root.querySelector('[data-vanaya-video-close]');
   const cards = root.querySelectorAll('[data-vanaya-video-card]');
+
+  const track = root.querySelector('[data-blogger-track]');
+  const prevButton = root.querySelector('[data-blogger-prev]');
+  const nextButton = root.querySelector('[data-blogger-next]');
+  let carouselIndex = 0;
+  let carouselTimer = null;
+
+  const visibleCards = () => window.innerWidth <= 900 ? 1 : 4;
+  const maxCarouselIndex = () => Math.max(0, cards.length - visibleCards());
+  const goToCarouselIndex = (nextIndex) => {
+    if (!track || !cards.length) return;
+    const max = maxCarouselIndex();
+    carouselIndex = nextIndex > max ? 0 : nextIndex < 0 ? max : nextIndex;
+    const card = cards[carouselIndex];
+    if (card) track.scrollTo({ left: card.offsetLeft - (window.innerWidth <= 900 ? 20 : 0), behavior: 'smooth' });
+  };
+  const restartCarousel = () => {
+    clearInterval(carouselTimer);
+    if (cards.length <= visibleCards()) return;
+    carouselTimer = setInterval(() => goToCarouselIndex(carouselIndex + 1), 4500);
+  };
+
+  prevButton?.addEventListener('click', () => { goToCarouselIndex(carouselIndex - 1); restartCarousel(); });
+  nextButton?.addEventListener('click', () => { goToCarouselIndex(carouselIndex + 1); restartCarousel(); });
+  track?.addEventListener('mouseenter', () => clearInterval(carouselTimer));
+  track?.addEventListener('mouseleave', restartCarousel);
+  track?.addEventListener('touchstart', () => clearInterval(carouselTimer), {passive:true});
+  track?.addEventListener('touchend', restartCarousel, {passive:true});
+  window.addEventListener('resize', () => { goToCarouselIndex(0); restartCarousel(); }, {passive:true});
+  restartCarousel();
+
 
   const closeModal = () => {
     const video = stage.querySelector('video');
