@@ -19,7 +19,6 @@
   </div>
   <button class="vanaya-promo__arrow vanaya-promo__arrow--prev vanaya-control-v20" type="button" data-promo-move="-1" aria-label="{{ 'vanaya_promo.previous' | t }}">←</button>
   <button class="vanaya-promo__arrow vanaya-promo__arrow--next vanaya-control-v20" type="button" data-promo-move="1" aria-label="{{ 'vanaya_promo.next' | t }}">→</button>
-  <button class="vanaya-promo__pause" type="button" aria-pressed="false" aria-label="{{ 'vanaya_promo.pause' | t }}" data-promo-pause data-play-label="{{ 'vanaya_promo.play' | t }}" data-pause-label="{{ 'vanaya_promo.pause' | t }}"><span aria-hidden="true">Ⅱ</span></button>
 </vanaya-promo-carousel>
 
 {% stylesheet %}
@@ -28,14 +27,10 @@
   .vanaya-promo__track {display:flex;transition:transform .65s ease;}
   .vanaya-promo__slide {display:block;flex:0 0 100%;min-width:0;}
   .vanaya-promo__slide img {display:block;width:100%;height:auto;aspect-ratio:2048/692;object-fit:contain;}
-  .vanaya-promo__arrow {position:absolute;top:calc(50% - 21px);z-index:2;}
+  .vanaya-promo__arrow {position:absolute;top:50%;z-index:2;display:grid!important;place-items:center!important;width:18px!important;min-width:18px!important;max-width:18px!important;height:18px!important;min-height:18px!important;max-height:18px!important;margin:0!important;padding:0!important;transform:translateY(-50%)!important;border:1px solid rgba(75,65,54,.45)!important;border-radius:50%!important;background:rgba(255,250,240,.88)!important;color:#4b4136!important;font:700 10px/1 Arial,sans-serif!important;box-shadow:none!important;}
   .vanaya-promo__arrow--prev {left:14px;}
   .vanaya-promo__arrow--next {right:14px;}
-  .vanaya-promo .vanaya-promo__pause {position:absolute;right:14px;bottom:10px;z-index:2;width:28px!important;min-width:28px!important;height:28px!important;min-height:28px!important;margin:0!important;padding:0!important;border:1px solid #4b4136!important;border-radius:50%!important;background:#fffaf0!important;color:#4b4136!important;font:0/1 Arial,sans-serif!important;display:grid!important;place-items:center;}
-  .vanaya-promo__pause::before,.vanaya-promo__pause span {display:none!important;}
-  .vanaya-promo .vanaya-promo__pause::after {content:'Ⅱ'!important;display:block!important;position:static!important;transform:none!important;background:none!important;color:#4b4136!important;font:14px/1 Arial,sans-serif!important;}
-  .vanaya-promo .vanaya-promo__pause[aria-pressed="true"]::after {content:'▶'!important;}
-  @media(max-width:600px) {.vanaya-promo__arrow--prev {left:6px;} .vanaya-promo__arrow--next {right:6px;} .vanaya-promo .vanaya-promo__pause {right:6px;bottom:6px;}}
+  @media(max-width:600px) {.vanaya-promo__arrow--prev {left:4px;} .vanaya-promo__arrow--next {right:4px;}} .vanaya-promo__arrow--next {right:6px;} .vanaya-promo .vanaya-promo__pause {right:6px;bottom:6px;}}
   @media(prefers-reduced-motion:reduce) {.vanaya-promo__track {transition:none;}}
 {% endstylesheet %}
 
@@ -49,19 +44,8 @@
         this.track = this.querySelector('.vanaya-promo__track');
         this.slides = [...this.querySelectorAll('.vanaya-promo__slide')];
         this.index = 0;
-        this.paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         this.visible = false;
         this.hovered = false;
-        this.pauseButton = this.querySelector('[data-promo-pause]');
-        this.updatePause();
-        this.querySelectorAll('[data-promo-move]').forEach(button => button.addEventListener('click', () => {
-          this.move(Number(button.dataset.promoMove));
-          this.restart();
-        }, options));
-        this.pauseButton.addEventListener('click', () => {
-          this.paused = !this.paused;
-          this.updatePause();
-        }, options);
         this.addEventListener('pointerenter', () => {this.hovered = true;}, options);
         this.addEventListener('pointerleave', () => {this.hovered = false;}, options);
         this.addEventListener('touchstart', event => {this.touchX = event.touches[0].clientX;}, {...options,passive:true});
@@ -81,14 +65,10 @@
           slide.setAttribute('aria-hidden', String(index !== this.index));
         });
       }
-      updatePause() {
-        this.pauseButton.setAttribute('aria-pressed', String(this.paused));
-        this.pauseButton.setAttribute('aria-label', this.paused ? this.pauseButton.dataset.playLabel : this.pauseButton.dataset.pauseLabel);
-      }
       restart() {
         clearInterval(this.timer);
         this.timer = setInterval(() => {
-          if (!this.paused && this.visible && !this.hovered && !this.contains(document.activeElement) && !document.hidden) this.move(1);
+          if (this.visible && !this.hovered && !this.contains(document.activeElement) && !document.hidden) this.move(1);
         }, Number(this.dataset.interval) || 4000);
       }
       disconnectedCallback() {
