@@ -373,8 +373,10 @@
       }
     },
     "vanaya_diwali": {
-      "type": "vanaya-diwali-banner",
-      "settings": {"interval": 4}
+      "type": "vanaya-promo-carousel-v2",
+      "settings": {
+        "interval": 4
+      }
     }
   },
   "order": [
