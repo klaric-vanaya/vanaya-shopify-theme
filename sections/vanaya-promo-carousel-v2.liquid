@@ -1,0 +1,101 @@
+<section class="vanaya-promo-v2" data-vanaya-promo-v2 data-interval="{{ section.settings.interval | times: 1000 }}" aria-label="Vanaya promotional banners">
+  <div class="vanaya-promo-v2__viewport">
+    <div class="vanaya-promo-v2__track">
+      <a class="vanaya-promo-v2__slide" href="{{ section.settings.offer_link | default: routes.all_products_collection_url }}">
+        {% if section.settings.offer_image != blank %}
+          {{ section.settings.offer_image | image_url: width: 2200 | image_tag: loading: 'lazy', widths: '640,960,1440,2048', sizes: '100vw', alt: section.settings.offer_image.alt }}
+        {% else %}
+          <img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/vanaya-quantity-discount-banner.jpg?v=1791287206" width="2048" height="692" loading="lazy" alt="Vanaya special offer">
+        {% endif %}
+      </a>
+      <a class="vanaya-promo-v2__slide" href="{{ section.settings.gift_link | default: '/pages/gifting' }}">
+        {% if section.settings.gift_image != blank %}
+          {{ section.settings.gift_image | image_url: width: 2200 | image_tag: loading: 'lazy', widths: '640,960,1440,1600', sizes: '100vw', alt: section.settings.gift_image.alt }}
+        {% else %}
+          <img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/vanaya-diwali-bulk-orders-banner.jpg?v=1790670087" width="1600" height="540" loading="lazy" alt="Vanaya Diwali gifting">
+        {% endif %}
+      </a>
+    </div>
+  </div>
+  <button type="button" class="vanaya-promo-v2__arrow vanaya-promo-v2__arrow--prev" data-promo-prev aria-label="Previous banner">‹</button>
+  <button type="button" class="vanaya-promo-v2__arrow vanaya-promo-v2__arrow--next" data-promo-next aria-label="Next banner">›</button>
+</section>
+
+<style>
+#shopify-section-{{ section.id }}{margin:0!important;padding:0!important}
+#shopify-section-{{ section.id }} .vanaya-promo-v2{position:relative;width:100%;overflow:hidden;background:#fffaf0}
+#shopify-section-{{ section.id }} .vanaya-promo-v2__viewport{width:100%;overflow:hidden}
+#shopify-section-{{ section.id }} .vanaya-promo-v2__track{display:flex;width:100%;transform:translate3d(0,0,0);transition:transform .6s ease;will-change:transform}
+#shopify-section-{{ section.id }} .vanaya-promo-v2__slide{display:block;flex:0 0 100%;width:100%;min-width:100%}
+#shopify-section-{{ section.id }} .vanaya-promo-v2__slide img{display:block;width:100%;height:auto;aspect-ratio:2048/692;object-fit:contain}
+#shopify-section-{{ section.id }} .vanaya-promo-v2__arrow{
+  position:absolute;top:50%;z-index:5;display:grid;place-items:center;
+  width:10px!important;min-width:10px!important;max-width:10px!important;
+  height:10px!important;min-height:10px!important;max-height:10px!important;
+  margin:0!important;padding:0!important;transform:translateY(-50%)!important;
+  border:0!important;border-radius:0!important;background:transparent!important;
+  color:#2e291f!important;font:700 10px/1 Arial,sans-serif!important;box-shadow:none!important;
+  cursor:pointer;
+}
+#shopify-section-{{ section.id }} .vanaya-promo-v2__arrow--prev{left:4px}
+#shopify-section-{{ section.id }} .vanaya-promo-v2__arrow--next{right:4px}
+@media(max-width:600px){
+  #shopify-section-{{ section.id }} .vanaya-promo-v2__arrow{
+    width:9px!important;min-width:9px!important;max-width:9px!important;
+    height:9px!important;min-height:9px!important;max-height:9px!important;
+    font-size:9px!important;
+  }
+  #shopify-section-{{ section.id }} .vanaya-promo-v2__arrow--prev{left:2px}
+  #shopify-section-{{ section.id }} .vanaya-promo-v2__arrow--next{right:2px}
+}
+</style>
+
+<script>
+(function(){
+  var root=document.currentScript.previousElementSibling.previousElementSibling;
+  if(!root || !root.matches('[data-vanaya-promo-v2]')) return;
+  var track=root.querySelector('.vanaya-promo-v2__track');
+  var slides=root.querySelectorAll('.vanaya-promo-v2__slide');
+  var prev=root.querySelector('[data-promo-prev]');
+  var next=root.querySelector('[data-promo-next]');
+  if(!track || slides.length<2) return;
+
+  var index=0,timer=null,touchX=null;
+  function show(i){
+    index=(i+slides.length)%slides.length;
+    track.style.transform='translate3d(-'+(index*100)+'%,0,0)';
+  }
+  function move(by){show(index+by);}
+  function start(){
+    clearInterval(timer);
+    timer=setInterval(function(){if(!document.hidden) move(1);},Number(root.dataset.interval)||4000);
+  }
+  prev.addEventListener('click',function(){move(-1);start();});
+  next.addEventListener('click',function(){move(1);start();});
+  root.addEventListener('mouseenter',function(){clearInterval(timer);});
+  root.addEventListener('mouseleave',start);
+  root.addEventListener('touchstart',function(e){touchX=e.touches[0].clientX;clearInterval(timer);},{passive:true});
+  root.addEventListener('touchend',function(e){
+    if(touchX!==null){
+      var d=e.changedTouches[0].clientX-touchX;
+      if(Math.abs(d)>35) move(d<0?1:-1);
+    }
+    touchX=null;start();
+  },{passive:true});
+  show(0);start();
+})();
+</script>
+
+{% schema %}
+{
+  "name":"Vanaya Promo Carousel V2",
+  "settings":[
+    {"type":"image_picker","id":"offer_image","label":"Offer banner"},
+    {"type":"url","id":"offer_link","label":"Offer banner link","default":"/collections/all"},
+    {"type":"image_picker","id":"gift_image","label":"Diwali banner"},
+    {"type":"url","id":"gift_link","label":"Diwali banner link"},
+    {"type":"range","id":"interval","label":"Seconds between banners","min":4,"max":12,"step":1,"default":4}
+  ],
+  "presets":[{"name":"Vanaya Promo Carousel V2"}]
+}
+{% endschema %}
