@@ -1,5 +1,6 @@
 <section class="vanaya-section vanaya-bloggers" data-vanaya-bloggers>
   <style>
+    /* Desktop: 5 equal cards. */
     @media screen and (min-width: 901px) {
       #shopify-section-{{ section.id }} .vanaya-blog-grid {
         display: grid !important;
@@ -20,6 +21,65 @@
         margin: 0 !important;
       }
     }
+
+    /* Mobile creator rail: readable portrait videos instead of five tiny desktop cards. */
+    @media screen and (max-width: 900px) {
+      #shopify-section-{{ section.id }} .vanaya-bloggers{
+        padding-left:0!important;
+        padding-right:0!important;
+        overflow:hidden;
+      }
+      #shopify-section-{{ section.id }} .vanaya-heading{
+        padding-left:20px!important;
+        padding-right:20px!important;
+        margin-bottom:18px!important;
+      }
+      #shopify-section-{{ section.id }} .vanaya-heading h2{
+        font-size:clamp(34px,9.8vw,48px)!important;
+        line-height:1.02!important;
+        letter-spacing:-.035em!important;
+      }
+      #shopify-section-{{ section.id }} .vanaya-blog-grid{
+        display:flex!important;
+        width:auto!important;
+        max-width:none!important;
+        gap:12px!important;
+        margin:0!important;
+        padding:0 20px 12px!important;
+        overflow-x:auto!important;
+        overflow-y:hidden!important;
+        scroll-snap-type:x mandatory;
+        scroll-padding-left:20px;
+        -webkit-overflow-scrolling:touch;
+        scrollbar-width:none;
+      }
+      #shopify-section-{{ section.id }} .vanaya-blog-grid::-webkit-scrollbar{display:none}
+      #shopify-section-{{ section.id }} .vanaya-blog-grid > article{
+        flex:0 0 min(58vw,235px)!important;
+        width:min(58vw,235px)!important;
+        min-width:min(58vw,235px)!important;
+        max-width:min(58vw,235px)!important;
+        margin:0!important;
+        scroll-snap-align:start;
+        border-radius:54px 54px 16px 16px!important;
+      }
+      #shopify-section-{{ section.id }} .vanaya-blog-video-hint{
+        right:10px!important;
+        bottom:10px!important;
+        max-width:calc(100% - 20px);
+        padding:8px 10px!important;
+        font-size:9px!important;
+        line-height:1.15!important;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      #shopify-section-{{ section.id }} .vanaya-blog-grid > article{
+        flex-basis:66vw!important;
+        width:66vw!important;
+        min-width:66vw!important;
+        max-width:66vw!important;
+      }
+    }
   </style>
   <div class="vanaya-heading">
     <div>
@@ -28,7 +88,7 @@
     </div>
   </div>
 
-  <div class="vanaya-blog-grid" style="display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;grid-auto-flow:row!important;width:100%!important;max-width:1500px!important;gap:12px!important;margin-left:auto!important;margin-right:auto!important;align-items:start!important;">
+  <div class="vanaya-blog-grid">
     {% assign legacy_sources = 'https://cdn.shopify.com/videos/c/o/v/5426c64ecf8d4133aec565ab4c7a835a.mp4|https://cdn.shopify.com/videos/c/o/v/a8bc644b3fc2426f865202dc5b64daf6.mp4|https://cdn.shopify.com/videos/c/o/v/e91a23ab717a47ed9a1e1f695289b5e8.mp4|https://cdn.shopify.com/videos/c/o/v/e4bde69316074a989c13395577e7de5d.mov' | split: '|' %}
     {% for block in section.blocks %}
       {% assign video_src = '' %}
@@ -50,7 +110,7 @@
       {% endif %}
 
       {% if video_src != blank %}
-        <article style="width:100%!important;min-width:0!important;max-width:none!important;flex:none!important;margin:0!important;"
+        <article
           data-vanaya-video-card
           tabindex="0"
           role="button"
