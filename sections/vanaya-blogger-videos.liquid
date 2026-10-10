@@ -167,6 +167,58 @@
   </div>
 </section>
 
+
+<style id="vanaya-blogger-desktop-carousel-fix">
+@media(min-width:901px){
+  #shopify-section-{{ section.id }} .vanaya-blogger-shell{
+    position:relative!important;
+    max-width:1380px!important;
+    margin:0 auto!important;
+    padding:0 16px!important;
+    overflow:hidden!important;
+  }
+  #shopify-section-{{ section.id }} .vanaya-blog-grid{
+    display:flex!important;
+    gap:14px!important;
+    width:calc(125% + 3.5px)!important;
+    max-width:none!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:visible!important;
+    scroll-snap-type:none!important;
+    scroll-behavior:auto!important;
+    transition:transform .6s cubic-bezier(.22,.7,.18,1)!important;
+    will-change:transform;
+  }
+  #shopify-section-{{ section.id }} .vanaya-blog-grid>article{
+    flex:0 0 calc((80% - 42px)/4)!important;
+    width:calc((80% - 42px)/4)!important;
+    min-width:calc((80% - 42px)/4)!important;
+    max-width:calc((80% - 42px)/4)!important;
+  }
+  #shopify-section-{{ section.id }} .vanaya-blogger-arrow{
+    display:grid!important;
+    z-index:20!important;
+    top:50%!important;
+    width:18px!important;
+    min-width:18px!important;
+    max-width:18px!important;
+    height:18px!important;
+    min-height:18px!important;
+    max-height:18px!important;
+    padding:0!important;
+    border:1px solid rgba(65,56,45,.38)!important;
+    border-radius:50%!important;
+    background:#fffaf0!important;
+    color:#41382d!important;
+    font:700 11px/1 Arial,sans-serif!important;
+    box-shadow:none!important;
+  }
+  #shopify-section-{{ section.id }} .vanaya-blogger-arrow--prev{left:3px!important}
+  #shopify-section-{{ section.id }} .vanaya-blogger-arrow--next{right:3px!important}
+}
+</style>
+
 <script>
 (() => {
   const root = document.currentScript.previousElementSibling;
@@ -183,28 +235,51 @@
   let carouselIndex = 0;
   let carouselTimer = null;
 
-  const visibleCards = () => window.innerWidth <= 900 ? 1 : 4;
+  const isMobile = () => window.innerWidth <= 900;
+  const visibleCards = () => isMobile() ? 1 : 4;
   const maxCarouselIndex = () => Math.max(0, cards.length - visibleCards());
+
+  const desktopStep = () => {
+    if (cards.length < 2) return 0;
+    const first = cards[0].getBoundingClientRect();
+    const second = cards[1].getBoundingClientRect();
+    return second.left - first.left;
+  };
+
   const goToCarouselIndex = (nextIndex) => {
     if (!track || !cards.length) return;
     const max = maxCarouselIndex();
     carouselIndex = nextIndex > max ? 0 : nextIndex < 0 ? max : nextIndex;
-    const card = cards[carouselIndex];
-    if (card) track.scrollTo({ left: card.offsetLeft - (window.innerWidth <= 900 ? 20 : 0), behavior: 'smooth' });
+
+    if (isMobile()) {
+      track.style.transform = '';
+      const card = cards[carouselIndex];
+      if (card) track.scrollTo({ left: card.offsetLeft - 20, behavior: 'smooth' });
+    } else {
+      track.scrollLeft = 0;
+      track.style.transform = 'translate3d(-' + (carouselIndex * desktopStep()) + 'px,0,0)';
+    }
   };
+
   const restartCarousel = () => {
     clearInterval(carouselTimer);
     if (cards.length <= visibleCards()) return;
-    carouselTimer = setInterval(() => goToCarouselIndex(carouselIndex + 1), 4500);
+    carouselTimer = setInterval(() => goToCarouselIndex(carouselIndex + 1), 4200);
   };
 
   prevButton?.addEventListener('click', () => { goToCarouselIndex(carouselIndex - 1); restartCarousel(); });
   nextButton?.addEventListener('click', () => { goToCarouselIndex(carouselIndex + 1); restartCarousel(); });
-  track?.addEventListener('mouseenter', () => clearInterval(carouselTimer));
-  track?.addEventListener('mouseleave', restartCarousel);
-  track?.addEventListener('touchstart', () => clearInterval(carouselTimer), {passive:true});
-  track?.addEventListener('touchend', restartCarousel, {passive:true});
-  window.addEventListener('resize', () => { goToCarouselIndex(0); restartCarousel(); }, {passive:true});
+  track?.addEventListener('mouseenter', () => { if (!isMobile()) clearInterval(carouselTimer); });
+  track?.addEventListener('mouseleave', () => { if (!isMobile()) restartCarousel(); });
+  track?.addEventListener('touchstart', () => { if (isMobile()) clearInterval(carouselTimer); }, {passive:true});
+  track?.addEventListener('touchend', () => { if (isMobile()) restartCarousel(); }, {passive:true});
+  window.addEventListener('resize', () => {
+    carouselIndex = 0;
+    track.style.transform = '';
+    goToCarouselIndex(0);
+    restartCarousel();
+  }, {passive:true});
+  goToCarouselIndex(0);
   restartCarousel();
 
 
