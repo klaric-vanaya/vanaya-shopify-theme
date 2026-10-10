@@ -1417,6 +1417,43 @@
 })();
 </script>
 
+
+<style id="vanaya-mobile-search-label-fix">
+@media(max-width:1050px){
+  .vanaya-mobile-menu nav .vanaya-mobile-menu__search{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 24px!important;
+    align-items:center!important;
+    justify-content:stretch!important;
+    gap:12px!important;
+    width:100%!important;
+    min-height:54px!important;
+    padding:14px 8px!important;
+    text-align:left!important;
+  }
+  .vanaya-mobile-menu nav .vanaya-mobile-menu__search>span{
+    position:static!important;
+    display:block!important;
+    width:auto!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+    transform:none!important;
+    text-align:left!important;
+    white-space:nowrap!important;
+  }
+  .vanaya-mobile-menu nav .vanaya-mobile-menu__search>svg{
+    position:static!important;
+    display:block!important;
+    justify-self:end!important;
+    width:19px!important;
+    height:19px!important;
+    margin:0!important;
+    transform:none!important;
+  }
+}
+</style>
+
 {% schema %}
 {
   "name": "Header",
