@@ -167,7 +167,7 @@ body.template-index #root .v291-testimonial-dots button.is-active{
     margin-left:auto!important;
     margin-right:auto!important;
     display:grid!important;
-    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
     gap:14px!important;
     align-items:start!important;
   }
@@ -193,7 +193,7 @@ body.template-index #root .v291-testimonial-dots button.is-active{
 @media (min-width: 901px){
   .vanaya-blog-grid{
     display:grid!important;
-    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
     width:100%!important;
     max-width:1500px!important;
     gap:12px!important;
@@ -360,4 +360,106 @@ body.template-index #root .v291-testimonial-dots button.is-active{
   .template-index .vanaya-products--loved .vanaya-card-actions-v23{
     grid-template-columns:1fr!important;
   }
+}
+
+
+/* 2026-10-10 definitive homepage video/mobile fixes */
+.template-index #root .vanaya-video-hero .vanaya-sound,
+.template-index #root .vanaya-video-hero .video-control,
+.template-index #root .vanaya-video-hero .video-controls,
+.template-index #root .vanaya-video-hero button,
+.template-index #root .vanaya-video-hero [role="button"]{
+  display:none!important;
+}
+.template-index #root .vanaya-video-hero video{
+  pointer-events:none!important;
+}
+.template-index #root .vanaya-video-hero video::-webkit-media-controls,
+.template-index #root .vanaya-video-hero video::-webkit-media-controls-panel,
+.template-index #root .vanaya-video-hero video::-webkit-media-controls-play-button,
+.template-index #root .vanaya-video-hero video::-webkit-media-controls-start-playback-button{
+  display:none!important;
+  -webkit-appearance:none!important;
+}
+
+@media (min-width:901px){
+  .template-index #root .vanaya-blogger-shell{
+    position:relative!important;
+    max-width:1380px!important;
+    margin:0 auto!important;
+    overflow:visible!important;
+  }
+  .template-index #root .vanaya-blog-grid{
+    display:flex!important;
+    grid-template-columns:none!important;
+    width:100%!important;
+    max-width:none!important;
+    gap:14px!important;
+    margin:0!important;
+    padding:0!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    scroll-snap-type:x mandatory!important;
+    scrollbar-width:none!important;
+  }
+  .template-index #root .vanaya-blog-grid::-webkit-scrollbar{display:none!important}
+  .template-index #root .vanaya-blog-grid>article{
+    flex:0 0 calc((100% - 42px)/4)!important;
+    width:calc((100% - 42px)/4)!important;
+    min-width:calc((100% - 42px)/4)!important;
+    max-width:calc((100% - 42px)/4)!important;
+    margin:0!important;
+    scroll-snap-align:start!important;
+  }
+  .template-index #root .vanaya-blogger-arrow{
+    display:grid!important;
+    width:24px!important;
+    min-width:24px!important;
+    max-width:24px!important;
+    height:24px!important;
+    min-height:24px!important;
+    max-height:24px!important;
+    padding:0!important;
+    border:1px solid rgba(65,56,45,.34)!important;
+    border-radius:50%!important;
+    background:#fffaf0!important;
+    color:#41382d!important;
+    font:500 15px/1 Arial,sans-serif!important;
+    box-shadow:0 3px 10px rgba(45,38,30,.08)!important;
+  }
+  .template-index #root .vanaya-blogger-arrow--prev{left:-11px!important}
+  .template-index #root .vanaya-blogger-arrow--next{right:-11px!important}
+}
+
+@media (max-width:900px){
+  .template-index #root .vanaya-blogger-shell{
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    overflow:hidden!important;
+  }
+  .template-index #root .vanaya-blog-grid{
+    display:flex!important;
+    grid-template-columns:none!important;
+    width:auto!important;
+    max-width:none!important;
+    gap:12px!important;
+    margin:0!important;
+    padding:0 20px 12px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    scroll-snap-type:x mandatory!important;
+    scroll-padding-left:20px!important;
+    scrollbar-width:none!important;
+  }
+  .template-index #root .vanaya-blog-grid::-webkit-scrollbar{display:none!important}
+  .template-index #root .vanaya-blog-grid>article{
+    flex:0 0 82vw!important;
+    width:82vw!important;
+    min-width:82vw!important;
+    max-width:82vw!important;
+    margin:0!important;
+    scroll-snap-align:start!important;
+  }
+  .template-index #root .vanaya-blogger-arrow{display:none!important}
 }
