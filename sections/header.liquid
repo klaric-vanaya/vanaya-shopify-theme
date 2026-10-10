@@ -1318,7 +1318,7 @@
       <a href="/pages/wishlist">Wishlist <span data-wishlist-count></span></a>
       <a href="{{ routes.account_url }}">My Account</a>
       <details class="vanaya-native-search vanaya-native-search--mobile">
-        <summary class="vanaya-mobile-menu__search"><span>Search Vanaya</span><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><circle cx="11" cy="11" r="6.75" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="m16 16 4.25 4.25" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></summary>
+        <summary class="vanaya-mobile-menu__search"><span>Search Vanaya</span></summary>
         <form class="vanaya-native-search__panel" action="{{ routes.search_url }}" method="get" role="search">
           <label for="vanaya-native-search-mobile">Search products, ingredients and journal articles</label>
           <div><input id="vanaya-native-search-mobile" type="search" name="q" placeholder="Type here to search Vanaya" autocomplete="off" required><button type="submit">Search</button><button type="button" class="vanaya-native-search__close" aria-label="Close search" onclick="this.closest('details').removeAttribute('open')">×</button></div>
@@ -1450,6 +1450,47 @@
     height:19px!important;
     margin:0!important;
     transform:none!important;
+  }
+}
+</style>
+
+
+<style id="vanaya-mobile-search-final-fix">
+@media(max-width:1050px){
+  .vanaya-mobile-menu nav .vanaya-native-search--mobile{
+    width:100%!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  .vanaya-mobile-menu nav .vanaya-mobile-menu__search{
+    position:static!important;
+    display:flex!important;
+    width:100%!important;
+    min-height:58px!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    margin:0!important;
+    padding:14px 8px!important;
+    border:0!important;
+    border-bottom:1px solid rgba(46,41,31,.1)!important;
+    background:transparent!important;
+    color:#2e291f!important;
+    text-align:left!important;
+    font:600 12px/1.2 Arial,Helvetica,sans-serif!important;
+    letter-spacing:.1em!important;
+    text-transform:uppercase!important;
+    box-shadow:none!important;
+    transform:none!important;
+  }
+  .vanaya-mobile-menu nav .vanaya-mobile-menu__search span{
+    position:static!important;
+    display:block!important;
+    width:auto!important;
+    height:auto!important;
+    margin:0!important;
+    padding:0!important;
+    transform:none!important;
+    white-space:nowrap!important;
   }
 }
 </style>
