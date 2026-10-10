@@ -206,3 +206,158 @@ body.template-index #root .v291-testimonial-dots button.is-active{
     max-width:none!important;
   }
 }
+
+
+/* 2026-10-10 mobile homepage refinement */
+@media (max-width: 760px){
+  .template-index .vanaya-section{
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+
+  /* Most Loved */
+  .template-index .vanaya-products--loved{
+    padding-top:34px!important;
+    padding-bottom:34px!important;
+  }
+  .template-index .vanaya-products--loved .vanaya-heading{
+    margin-bottom:18px!important;
+  }
+  .template-index .vanaya-products--loved .vanaya-heading h2{
+    font-size:clamp(34px,10vw,46px)!important;
+    line-height:1.02!important;
+  }
+  .template-index .vanaya-products--loved .vanaya-product-track{
+    gap:10px!important;
+  }
+  .template-index .vanaya-products--loved .vanaya-card{
+    min-width:0!important;
+  }
+  .template-index .vanaya-products--loved .vanaya-card-copy{
+    padding:12px 10px 14px!important;
+  }
+  .template-index .vanaya-products--loved .vanaya-card-copy h3{
+    min-height:0!important;
+    font-size:14px!important;
+    line-height:1.25!important;
+  }
+
+  /* Hero formula / Sea Buckthorn */
+  .template-index .vanaya-seabuckthorn{
+    padding:38px 16px 42px!important;
+  }
+  .template-index .vanaya-seabuckthorn__inner{
+    gap:30px!important;
+  }
+  .template-index .vanaya-seabuckthorn__frame{
+    width:min(82vw,360px)!important;
+  }
+  .template-index .vanaya-seabuckthorn__seal{
+    width:82px!important;
+    height:82px!important;
+    right:4px!important;
+  }
+  .template-index .vanaya-seabuckthorn__seal span{
+    font-size:12px!important;
+  }
+  .template-index .vanaya-seabuckthorn__seal small{
+    bottom:14px!important;
+    font-size:5px!important;
+  }
+  .template-index .vanaya-seabuckthorn__content h2{
+    margin:8px 0 16px!important;
+    font-size:clamp(34px,10.5vw,48px)!important;
+    line-height:1.02!important;
+  }
+  .template-index .vanaya-seabuckthorn__lead{
+    margin-bottom:22px!important;
+    font-size:14px!important;
+    line-height:1.6!important;
+  }
+  .template-index .vanaya-seabuckthorn__benefits{
+    grid-template-columns:1fr!important;
+  }
+  .template-index .vanaya-seabuckthorn__benefits article{
+    min-height:0!important;
+    padding:16px 13px!important;
+  }
+  .template-index .vanaya-seabuckthorn__benefits h3{
+    font-size:18px!important;
+  }
+  .template-index .vanaya-seabuckthorn__benefits p{
+    font-size:12px!important;
+  }
+  .template-index .vanaya-seabuckthorn__content .vanaya-cta{
+    width:100%!important;
+    justify-content:center!important;
+    min-height:48px!important;
+  }
+
+  /* Explore the Range */
+  .template-index .vanaya-explore-collection{
+    padding:38px 0 42px!important;
+  }
+  .template-index .vanaya-explore-collection__head{
+    padding:0 18px!important;
+    margin-bottom:20px!important;
+  }
+  .template-index .vanaya-explore-collection__head h2{
+    font-size:clamp(36px,10.5vw,50px)!important;
+    line-height:1.02!important;
+    letter-spacing:-.04em!important;
+  }
+  .template-index .vanaya-explore-collection__subheading{
+    max-width:330px!important;
+    margin:10px auto 0!important;
+    font-size:14px!important;
+    line-height:1.55!important;
+  }
+  .template-index .vanaya-explore-collection__shell{
+    padding:0 10px!important;
+  }
+  .template-index .vanaya-explore-collection__track{
+    gap:10px!important;
+  }
+  .template-index .vanaya-explore-collection__card{
+    flex:0 0 calc((100% - 10px)/2)!important;
+    border-radius:4px 28px 4px 4px!important;
+  }
+  .template-index .vanaya-explore-collection__copy{
+    padding:12px 10px 14px!important;
+  }
+  .template-index .vanaya-explore-collection__copy h3{
+    min-height:36px!important;
+    margin-bottom:6px!important;
+    font-size:13px!important;
+    line-height:1.3!important;
+  }
+  .template-index .vanaya-explore-collection__price{
+    font-size:11px!important;
+  }
+  .template-index .vanaya-explore-collection__heart{
+    top:8px!important;
+    right:8px!important;
+    width:26px!important;
+    height:26px!important;
+  }
+  .template-index .vanaya-explore-collection__arrow{
+    width:30px!important;
+    min-width:30px!important;
+    max-width:30px!important;
+    height:30px!important;
+    min-height:30px!important;
+    max-height:30px!important;
+  }
+
+  /* General heading rhythm */
+  .template-index .vanaya-kicker{
+    font-size:10px!important;
+    letter-spacing:.22em!important;
+  }
+}
+
+@media (max-width: 420px){
+  .template-index .vanaya-products--loved .vanaya-card-actions-v23{
+    grid-template-columns:1fr!important;
+  }
+}
