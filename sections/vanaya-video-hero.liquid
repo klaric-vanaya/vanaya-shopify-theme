@@ -15,6 +15,27 @@
     <p>{{ section.settings.text }}</p>
   </div>
 </section>
+
+<style>
+  .vanaya-video-hero video{
+    pointer-events:none!important;
+  }
+  .vanaya-video-hero .vanaya-sound,
+  .vanaya-video-hero .video-control,
+  .vanaya-video-hero .video-controls,
+  .vanaya-video-hero button[aria-label*="Play"],
+  .vanaya-video-hero button[aria-label*="Pause"]{
+    display:none!important;
+  }
+  .vanaya-video-hero video::-webkit-media-controls,
+  .vanaya-video-hero video::-webkit-media-controls-panel,
+  .vanaya-video-hero video::-webkit-media-controls-play-button,
+  .vanaya-video-hero video::-webkit-media-controls-start-playback-button{
+    display:none!important;
+    -webkit-appearance:none!important;
+  }
+</style>
+
 {% schema %}
 {"name":"Vanaya video hero","settings":[
 {"type":"video","id":"video","label":"Shopify-hosted video","info":"Optional. The included Vanaya film is used until another video is selected."},
