@@ -86,6 +86,9 @@
     assign show_rating = settings.show_product_rating
     assign show_price = true
   endif
+  if request.page_type == 'cart'
+    assign show_vendor = false
+  endif
   if layout == 'list-compact'
     assign show_labels = false
     assign show_stock = false
