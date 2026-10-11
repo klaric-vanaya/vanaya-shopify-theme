@@ -48,4 +48,74 @@
 @media(max-width:850px){.vjournal-page__latest{grid-template-columns:1fr;margin:25px 14px 42px}.vjournal-page__latest-media{min-height:380px}.vjournal-page__latest-copy{padding:30px 22px}.vjournal-page__latest-copy h2{font-size:38px}}
 </style>
 
+
+<style id="vanaya-journal-latest-polish">
+.vjournal-page__latest{
+  width:min(1500px,calc(100% - 96px))!important;
+  max-width:none!important;
+  margin:42px auto 64px!important;
+  grid-template-columns:minmax(0,1.02fr) minmax(420px,.98fr)!important;
+  border:1px solid rgba(91,45,34,.12)!important;
+  border-radius:28px!important;
+  background:#fff9f1!important;
+  box-shadow:0 18px 50px rgba(73,45,31,.08)!important;
+  overflow:hidden!important;
+}
+.vjournal-page__latest-media{min-height:560px!important;background:#7f0f17!important}
+.vjournal-page__latest-media img{object-position:center center!important}
+.vjournal-page__latest-copy{
+  position:relative;
+  padding:clamp(46px,5vw,82px)!important;
+  background:
+    radial-gradient(circle at 100% 0,rgba(177,94,68,.08),transparent 34%),
+    linear-gradient(145deg,#fffaf2,#f8e9dc)!important;
+}
+.vjournal-page__latest-copy:before{
+  display:block;
+  width:52px;
+  height:1px;
+  margin-bottom:24px;
+  background:#9f6b4e;
+  content:"";
+}
+.vjournal-page__latest-copy h2{
+  max-width:650px;
+  margin:12px 0 22px!important;
+  font:400 clamp(42px,4.5vw,68px)/1.01 Georgia,serif!important;
+  letter-spacing:-.04em!important;
+}
+.vjournal-page__latest-copy>p:not(.vstory__kicker){
+  max-width:620px!important;
+  margin-bottom:26px!important;
+  font:15px/1.78 Georgia,serif!important;
+}
+.vjournal-page__latest-copy .vjournal-page__shop-link{
+  display:inline-flex!important;
+  width:max-content!important;
+  min-height:46px!important;
+  align-items:center!important;
+  padding:0 22px!important;
+  border:1px solid #6f5542!important;
+  border-radius:999px!important;
+  background:#d8d6b7!important;
+  color:#49392d!important;
+  font-size:9px!important;
+  font-weight:900!important;
+  letter-spacing:.12em!important;
+  text-decoration:none!important;
+  text-transform:uppercase!important;
+}
+@media(max-width:850px){
+  .vjournal-page__latest{
+    width:calc(100% - 28px)!important;
+    margin:24px auto 42px!important;
+    grid-template-columns:1fr!important;
+    border-radius:20px!important;
+  }
+  .vjournal-page__latest-media{min-height:0!important;aspect-ratio:4/5!important}
+  .vjournal-page__latest-copy{padding:30px 22px 34px!important}
+  .vjournal-page__latest-copy h2{font-size:38px!important;line-height:1.04!important}
+}
+</style>
+
 {% schema %}{"name":"Vanaya Journal Page","settings":[]}{% endschema %}
