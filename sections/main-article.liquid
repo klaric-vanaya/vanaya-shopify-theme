@@ -207,6 +207,15 @@
 {%- endfor -%}
 </div>
 
+
+<style id="vanaya-article-hide-empty-blogs">
+body.template-article .section-blog-posts,
+body.template-article [id*="blogs_row"],
+body.template-article [id*="blog-posts"]{
+  display:none!important;
+}
+</style>
+
 {% schema %}
 {
   "name": "t:main.article.name",
