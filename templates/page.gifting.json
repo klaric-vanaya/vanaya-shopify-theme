@@ -1,1 +1,11 @@
-{"sections":{"gifting":{"type":"vanaya-gifting","settings":{}}},"order":["gifting"]}
+{
+  "sections": {
+    "gifting": {
+      "type": "vanaya-gifting-diwali",
+      "settings": {}
+    }
+  },
+  "order": [
+    "gifting"
+  ]
+}
