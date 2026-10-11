@@ -119,12 +119,27 @@
 </style>
 
 
-<style id="vanaya-journal-section-spacing-fix">
-.vjournal-page__latest{margin-bottom:28px!important}
-.vjournal-page__cards{margin-top:0!important;padding-top:28px!important}
+
+
+
+<style id="vanaya-journal-final-alignment">
+.vjournal-page__latest{
+  width:min(1400px,calc(100% - 48px))!important;
+  margin:36px auto 20px!important;
+}
+.vjournal-page__cards{
+  width:min(1400px,calc(100% - 48px))!important;
+  max-width:1400px!important;
+  margin:0 auto!important;
+  padding:20px 0 0!important;
+}
 @media(max-width:850px){
-  .vjournal-page__latest{margin-bottom:18px!important}
-  .vjournal-page__cards{padding-top:18px!important}
+  .vjournal-page__latest,
+  .vjournal-page__cards{
+    width:calc(100% - 28px)!important;
+  }
+  .vjournal-page__latest{margin:22px auto 10px!important}
+  .vjournal-page__cards{padding-top:10px!important}
 }
 </style>
 
