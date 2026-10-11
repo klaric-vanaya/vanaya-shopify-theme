@@ -1,4 +1,8 @@
 {%- liquid
+  assign hide_empty_article_blog = false
+  if template.name == 'article' and blogs[section.settings.blog] == blank
+    assign hide_empty_article_blog = true
+  endif
   if blogs[section.settings.blog] != blank
     assign number_of_items = blogs[section.settings.blog].articles.size | at_most: section.settings.number_of_items
   else
@@ -41,6 +45,8 @@
     endif
   endcapture
 -%}
+{% unless hide_empty_article_blog %}
+
 
 {%- if link %}
   {%- capture link -%}
@@ -146,6 +152,8 @@
   }
 </style>
 
+
+{% endunless %}
 {% schema %}
 {
   "name": "t:sections.blog_posts.name",
