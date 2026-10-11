@@ -72,29 +72,10 @@
         "big_fontsize": true,
         "compact": true
       }
-    },
-    "blogs_row": {
-      "type": "section-blog-posts",
-      "settings": {
-        "blog": "",
-        "number_of_items": 3,
-        "text_alignment": "start",
-        "title": "<h1>Blog posts</h1>",
-        "link_text": "View all",
-        "link_url": "",
-        "show_link": false,
-        "show_image": true,
-        "show_date": true,
-        "show_author": true,
-        "show_excerpt": false,
-        "spacing_desktop": 50,
-        "spacing_mobile": 30
-      }
     }
   },
   "order": [
     "breadcrumbs",
-    "main-article",
-    "blogs_row"
+    "main-article"
   ]
 }
