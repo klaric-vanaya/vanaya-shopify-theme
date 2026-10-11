@@ -109,10 +109,14 @@ document.addEventListener('DOMContentLoaded', function(){
   function hideVanayaVendorLabels(){
     var cards=Array.from(dynamicList.querySelectorAll('.product-card'));
     cards.forEach(function(card){
+      var vendorSpan=card.querySelector('h3 > span.small:first-child');
+      if(vendorSpan){
+        vendorSpan.remove();
+      }
       Array.from(card.querySelectorAll('small,p,span,div')).forEach(function(el){
-        if(el.children.length===0 && (el.textContent||'').trim().toUpperCase()==='VANAYA NATURALS'){
-          el.style.setProperty('display','none','important');
-          el.setAttribute('aria-hidden','true');
+        var txt=(el.textContent||'').replace(/\s+/g,' ').trim().toUpperCase();
+        if(el.children.length===0 && txt.indexOf('VANAYA NATURALS')!==-1){
+          el.remove();
         }
       });
     });
@@ -197,6 +201,21 @@ document.addEventListener('DOMContentLoaded', function(){
       font-size:15px!important;
       line-height:1.3!important;
     }
+  }
+
+
+  /* Attention section: remove vendor line from dynamically rendered product cards */
+  #shopify-section-{{ section.id }} .l4cl .product-card h3 > span.small:first-child{
+    display:none!important;
+    visibility:hidden!important;
+    height:0!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    overflow:hidden!important;
+  }
+  #shopify-section-{{ section.id }} .l4cl .product-card h3 > span.small:first-child + a{
+    margin-top:0!important;
   }
 
 </style>
