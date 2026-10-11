@@ -1,33 +1,27 @@
-{% liquid
-  assign journal_blog = blogs['news']
-  assign latest_article = journal_blog.articles.first
-%}
 <main class="vjournal-page">
   <section class="vjournal-page__hero"><p>The Vanaya Journal</p><h1>Ingredient stories, ritual guidance and considered care.</h1><span>Read slowly. Return often.</span></section>
 
-  {% if latest_article != blank %}
-    <section class="vjournal-page__latest">
-      <div class="vjournal-page__latest-media">
-        <a href="{{ latest_article.url }}" aria-label="Read {{ latest_article.title }}">
-          {% if latest_article.image %}
-            {{ latest_article.image | image_url: width: 1600 | image_tag: loading: 'eager', widths: '600,900,1200,1600', sizes: '(min-width: 900px) 52vw, 100vw', alt: latest_article.image.alt | default: latest_article.title }}
-          {% endif %}
-        </a>
-      </div>
-      <div class="vjournal-page__latest-copy">
-        <p class="vstory__kicker">Latest Journal · Diwali Edit</p>
-        <h2><a href="{{ latest_article.url }}">{{ latest_article.title }}</a></h2>
-        {% if latest_article.excerpt != blank %}
-          <div>{{ latest_article.excerpt }}</div>
-        {% else %}
-          <p>{{ latest_article.content | strip_html | truncatewords: 42 }}</p>
-        {% endif %}
-        <a class="vjournal-page__shop-link" href="{{ latest_article.url }}">Read the Journal Story</a>
-      </div>
-    </section>
-  {% endif %}
+  <section class="vjournal-page__latest">
+    <div class="vjournal-page__latest-media">
+      <a href="/blogs/news/diwali-gifting-vanaya-ayurvedic-rituals" aria-label="Read Diwali Gifting, the Vanaya Way">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/vanaya-diwali-box-outer-red.jpg?v=1791662423"
+          width="1365"
+          height="2048"
+          loading="eager"
+          alt="Vanaya Diwali gift box surrounded by festive lotus flowers"
+        >
+      </a>
+    </div>
+    <div class="vjournal-page__latest-copy">
+      <p class="vstory__kicker">Latest Journal · Diwali Edit</p>
+      <h2><a href="/blogs/news/diwali-gifting-vanaya-ayurvedic-rituals">Diwali Gifting, the Vanaya Way: Five Rituals for a More Meaningful Celebration</a></h2>
+      <p>Thoughtful Diwali gifting can be more than a beautiful box. Discover how Vanaya brings together Ayurvedic facial oils, Kansa massage and festive presentation into rituals designed to be used, remembered and returned to.</p>
+      <a class="vjournal-page__shop-link" href="/blogs/news/diwali-gifting-vanaya-ayurvedic-rituals">Read the Journal Story</a>
+    </div>
+  </section>
 
-  <section class="vjournal-page__cards">
+<section class="vjournal-page__cards">
     {% assign kansa_wand = all_products['vanaya-kansa-sculpting-wand'] %}
     <a class="vjournal-page__card--festival" href="#kansa-wand">{% if kansa_wand.featured_image %}<img src="{{ kansa_wand.featured_image | image_url: width: 1400 }}" width="1400" height="900" loading="eager" alt="Vanaya Kansa Sculpting Wand for an Ayurvedic facial massage ritual">{% else %}<img src="{{ 'vanaya-banner-2-mirror.webp' | asset_url }}" width="1200" height="800" loading="eager" alt="A mindful Vanaya facial massage ritual">{% endif %}<small>Ritual Wisdom · 7 min read</small><h2>The art of Kansa facial massage</h2><p>Discover how this traditional metal wand can turn facial massage into a considered ritual for sculpting, relaxation and radiant-looking skin.</p></a>
     <a href="#sea-buckthorn"><img src="{{ 'vanaya-product-sea-buckthorn.webp' | asset_url }}" width="800" height="800" loading="eager" alt="Sea Buckthorn ritual"><small>Ingredient Notes · 6 min read</small><h2>The golden berry of Ladakh</h2><p>Why Sea Buckthorn has become one of Vanaya’s most treasured ritual oils.</p></a>
