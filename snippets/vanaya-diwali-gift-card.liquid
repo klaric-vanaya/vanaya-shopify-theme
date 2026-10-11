@@ -1,0 +1,91 @@
+{% liquid
+  assign selected_variant = product.selected_or_first_available_variant
+  assign card_image = product.images[image_index]
+  if card_image == blank
+    assign card_image = product.featured_image
+  endif
+%}
+<article class="vdiwali-card" data-diwali-card>
+  <div class="vdiwali-card__media">
+    <a href="{{ product.url }}" aria-label="View {{ product.title }}">
+      {% if card_image != blank %}
+        {{ card_image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '420,640,800,1000', sizes: '(min-width: 981px) 32vw, (min-width: 651px) 48vw, 92vw', alt: card_image.alt | default: product.title }}
+      {% endif %}
+    </a>
+    <span class="vdiwali-card__number">{{ number }}</span>
+    <span class="vdiwali-card__badge">{{ badge }}</span>
+  </div>
+  <div class="vdiwali-card__body">
+    <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    <p class="vdiwali-card__subtitle">{{ subtitle }}</p>
+
+    {% if show_variant_select and product.variants.size > 1 %}
+      <label class="vdiwali-card__select-label" for="gift-variant-{{ product.id }}">Choose 30 ml Oil</label>
+      <select class="vdiwali-card__select" id="gift-variant-{{ product.id }}" data-gift-variant-select>
+        {% for variant in product.variants %}
+          <option
+            value="{{ variant.id }}"
+            data-price="{{ variant.price | money }}"
+            data-compare="{{ variant.compare_at_price | money }}"
+            {% if variant.id == selected_variant.id %}selected{% endif %}
+          >
+            {{ variant.title }}
+          </option>
+        {% endfor %}
+      </select>
+    {% endif %}
+
+    <div class="vdiwali-card__price">
+      <strong data-gift-price>{{ selected_variant.price | money }}</strong>
+      {% if selected_variant.compare_at_price > selected_variant.price %}
+        <s data-gift-compare>{{ selected_variant.compare_at_price | money }}</s>
+      {% else %}
+        <s data-gift-compare hidden></s>
+      {% endif %}
+    </div>
+
+    {% form 'product', product, class: 'vdiwali-card__form' %}
+      <input type="hidden" name="id" value="{{ selected_variant.id }}" data-gift-variant-id>
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" {% unless selected_variant.available %}disabled{% endunless %}>
+        {% if selected_variant.available %}Add to Bag{% else %}Sold Out{% endif %}
+      </button>
+    {% endform %}
+  </div>
+</article>
+
+<style>
+.vdiwali-card{overflow:hidden;border:1px solid rgba(119,53,39,.14);border-radius:22px;background:#fffdf7;box-shadow:0 15px 45px rgba(92,37,26,.07)}
+.vdiwali-card__media{position:relative;aspect-ratio:1/1;overflow:hidden;background:#efd8c6}
+.vdiwali-card__media>a{display:block;width:100%;height:100%}.vdiwali-card__media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s ease}.vdiwali-card:hover .vdiwali-card__media img{transform:scale(1.025)}
+.vdiwali-card__number,.vdiwali-card__badge{position:absolute;top:14px;z-index:2;display:grid;place-items:center;background:#fff4e7;color:#681118;font-weight:900}
+.vdiwali-card__number{left:14px;width:38px;height:38px;border-radius:50%;font-size:13px}.vdiwali-card__badge{right:14px;min-height:38px;padding:0 11px;border-radius:20px;background:#8c1118;color:#fff4e7;font-size:10px;letter-spacing:.05em}
+.vdiwali-card__body{padding:20px}.vdiwali-card__body h3{margin:0 0 8px;font:400 clamp(25px,2.3vw,34px)/1.05 Georgia,serif}.vdiwali-card__body h3 a{color:#4e201c;text-decoration:none}.vdiwali-card__subtitle{min-height:42px;margin:0 0 16px;color:#705b50;font-size:12px;line-height:1.55}
+.vdiwali-card__select-label{display:block;margin:0 0 6px;color:#6f261f;font-size:9px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}.vdiwali-card__select{width:100%;height:44px;margin:0 0 15px;padding:0 11px;border:1px solid rgba(91,45,36,.24);border-radius:6px;background:#fff;color:#4d352d;font-size:12px}
+.vdiwali-card__price{display:flex;align-items:baseline;gap:10px;margin:8px 0 18px}.vdiwali-card__price strong{color:#a4141c;font-size:26px}.vdiwali-card__price s{color:#7d6d63;font-size:13px}
+.vdiwali-card__form{margin:0}.vdiwali-card__form input{display:none!important}.vdiwali-card__form button{display:flex!important;width:100%!important;min-height:48px!important;align-items:center!important;justify-content:center!important;margin:0!important;padding:0 16px!important;border:1px solid #8b1218!important;border-radius:6px!important;background:#8b1218!important;color:#fff9e9!important;font:900 10px/1 Arial,sans-serif!important;letter-spacing:.13em!important;text-transform:uppercase!important}
+@media(max-width:650px){.vdiwali-card__body{padding:17px}.vdiwali-card__body h3{font-size:29px}.vdiwali-card__subtitle{min-height:0}.vdiwali-card__price strong{font-size:24px}}
+</style>
+
+{% if show_variant_select and product.variants.size > 1 %}
+<script>
+(() => {
+  const card = document.currentScript.previousElementSibling;
+  if (!card || !card.matches('[data-diwali-card]')) return;
+  const select = card.querySelector('[data-gift-variant-select]');
+  const idInput = card.querySelector('[data-gift-variant-id]');
+  const price = card.querySelector('[data-gift-price]');
+  const compare = card.querySelector('[data-gift-compare]');
+  select?.addEventListener('change', () => {
+    const option = select.options[select.selectedIndex];
+    if (idInput) idInput.value = option.value;
+    if (price) price.textContent = option.dataset.price || '';
+    if (compare) {
+      const value = option.dataset.compare || '';
+      compare.textContent = value;
+      compare.hidden = !value;
+    }
+  });
+})();
+</script>
+{% endif %}
