@@ -713,6 +713,40 @@
   }
 </style>
 
+
+<style id="vanaya-footer-heading-fix">
+.vanaya-global-footer nav[aria-label="Explore"] h4,
+.vanaya-global-footer nav[aria-label="Support"] h4{
+  position:relative!important;
+  display:block!important;
+  margin:0 0 22px!important;
+  padding:0!important;
+  font-family:"Avenir Next",Avenir,Arial,sans-serif!important;
+  font-size:11px!important;
+  font-style:normal!important;
+  font-weight:800!important;
+  line-height:1.2!important;
+  letter-spacing:.2em!important;
+  text-transform:uppercase!important;
+  text-decoration:none!important;
+  -webkit-text-decoration:none!important;
+}
+.vanaya-global-footer nav[aria-label="Explore"] h4:before,
+.vanaya-global-footer nav[aria-label="Explore"] h4:after,
+.vanaya-global-footer nav[aria-label="Support"] h4:before,
+.vanaya-global-footer nav[aria-label="Support"] h4:after{
+  display:none!important;
+  content:none!important;
+}
+@media(max-width:700px){
+  .vanaya-global-footer nav[aria-label="Explore"] h4,
+  .vanaya-global-footer nav[aria-label="Support"] h4{
+    font-size:11px!important;
+    letter-spacing:.18em!important;
+  }
+}
+</style>
+
 {% schema %}
 {
   "name": "t:static_sections.footer.name",
