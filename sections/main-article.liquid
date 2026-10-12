@@ -16,34 +16,27 @@
       <div class="module-spacer" style="margin-bottom:{{ block.settings.height }}px;" {{ block.shopify_attributes }}></div>
     {%- when 'title' -%}
       {%- if block.settings.show_banner -%}
-        <div class="
-          m6fr
-          wide
-          mobile-text-center
-        " {{ block.shopify_attributes }}>
-          <article class="palette-{{ block.settings.color_palette }}
-          module-color-palette align-start">
-            <figure>
-              <span class="img-overlay" style="opacity:{{ block.settings.overlay_opacity | divided_by: 100.0 }}"></span>
+        <div class="m6fr wide vanaya-article-hero" {{ block.shopify_attributes }}>
+          <article class="palette-{{ block.settings.color_palette }} module-color-palette">
+            <figure class="vanaya-article-hero__image">
               <picture>
                 {%- if article.image -%}
                   <img
-                    src="{{ article.image | image_url: width: 100, height: 100, width: 1400 }}"
+                    src="{{ article.image | image_url: width: 1400 }}"
                     srcset="{% render 'image-srcset', image: article.image %}"
-                    sizes="
-                      100vw
-                    "
+                    sizes="100vw"
                     width="1400"
                     height="530"
                     alt="{{ article.image.alt | default: article.title | escape }}"
                     loading="{% if section.index > 2 %}lazy{% else %}eager{% endif %}"
                   >
                 {%- else -%}
-                    {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}
               </picture>
             </figure>
-            <div class="vanaya-article-banner-copy vanaya-article-banner-copy--desktop">
+
+            <header class="vanaya-article-hero__heading">
               <{{ block.settings.title_size }}>{{ article.title }}</{{ block.settings.title_size }}>
               {%- if block.settings.show_author or block.settings.show_date or block.settings.show_article_reading_time -%}
                 <p>
@@ -56,23 +49,8 @@
                   {%- endif -%}
                 </p>
               {%- endif -%}
-            </div>
+            </header>
           </article>
-
-          <div class="vanaya-article-mobile-heading">
-            <{{ block.settings.title_size }}>{{ article.title }}</{{ block.settings.title_size }}>
-            {%- if block.settings.show_author or block.settings.show_date or block.settings.show_article_reading_time -%}
-              <p>
-                {%- if block.settings.show_date and article.published_at -%}{{ article.published_at | time_tag: format: 'month_day_year' }}{%- endif -%}
-                {%- if block.settings.show_author and block.settings.show_date -%}, {% endif -%}
-                {%- if block.settings.show_author -%}{{ 'blog.written_by' | t }} {{ article.author }}{%- endif -%}
-                {%- if block.settings.show_article_reading_time -%}
-                  {%- if block.settings.show_author or block.settings.show_date -%}, {% endif -%}
-                  {{ 'blog.reading_time' | t: count: minutes, minutes: minutes }}
-                {%- endif -%}
-              </p>
-            {%- endif -%}
-          </div>
         </div>
       {%- else -%}
         <header {{ block.shopify_attributes }}>
@@ -232,18 +210,64 @@ body.template-article [id*="blog-posts"]{
 </style>
 
 
-<style id="vanaya-article-mobile-title-fix">
-.vanaya-article-mobile-heading{display:none}
+
+<style id="vanaya-article-hero-single-image">
+body.template-article .vanaya-article-hero{
+  margin:0!important;
+}
+body.template-article .vanaya-article-hero>article{
+  display:block!important;
+  background:#fff!important;
+}
+body.template-article .vanaya-article-hero__image{
+  margin:0!important;
+  width:100%!important;
+  overflow:hidden!important;
+}
+body.template-article .vanaya-article-hero__image picture,
+body.template-article .vanaya-article-hero__image img{
+  display:block!important;
+  width:100%!important;
+}
+body.template-article .vanaya-article-hero__image img{
+  height:auto!important;
+  max-height:none!important;
+  object-fit:cover!important;
+  object-position:center!important;
+}
+body.template-article .vanaya-article-hero__heading{
+  max-width:1100px!important;
+  margin:0 auto!important;
+  padding:30px 24px 20px!important;
+  background:#fff!important;
+  color:#352b25!important;
+  text-align:left!important;
+}
+body.template-article .vanaya-article-hero__heading h1,
+body.template-article .vanaya-article-hero__heading h2,
+body.template-article .vanaya-article-hero__heading h3,
+body.template-article .vanaya-article-hero__heading h4,
+body.template-article .vanaya-article-hero__heading h5{
+  margin:0 0 12px!important;
+  color:#352b25!important;
+  font:600 clamp(38px,4.2vw,66px)/1.04 "Avenir Next",Avenir,Arial,sans-serif!important;
+  letter-spacing:-.035em!important;
+}
+body.template-article .vanaya-article-hero__heading p{
+  margin:0!important;
+  color:#76665c!important;
+  font-size:14px!important;
+  line-height:1.55!important;
+}
 @media(max-width:760px){
   body.template-article .shopify-section-breadcrumbs{
-    position:relative!important;
-    z-index:1!important;
     margin:0!important;
-    padding:14px 16px 10px!important;
+    padding:12px 14px 8px!important;
     background:#fff!important;
     overflow:visible!important;
   }
-  body.template-article .shopify-section-breadcrumbs .n6br{
+  body.template-article .shopify-section-breadcrumbs .n6br,
+  body.template-article .shopify-section-breadcrumbs .n6br ol{
     margin:0!important;
     padding:0!important;
     overflow:visible!important;
@@ -252,72 +276,30 @@ body.template-article [id*="blog-posts"]{
     display:flex!important;
     flex-wrap:wrap!important;
     gap:4px 8px!important;
-    margin:0!important;
-    padding:0!important;
-    line-height:1.45!important;
-    overflow:visible!important;
   }
   body.template-article .shopify-section-breadcrumbs .n6br li{
     max-width:100%!important;
-    margin:0!important;
-    padding:0!important;
     white-space:normal!important;
     overflow:visible!important;
     text-overflow:clip!important;
   }
-
-  body.template-article .m6fr.wide{
-    margin:0!important;
-  }
-  body.template-article .m6fr.wide article{
-    display:block!important;
-    min-height:0!important;
-  }
-  body.template-article .m6fr.wide article figure{
-    position:relative!important;
-    min-height:0!important;
-    height:auto!important;
-    margin:0!important;
-  }
-  body.template-article .m6fr.wide article figure picture,
-  body.template-article .m6fr.wide article figure img{
-    display:block!important;
-    width:100%!important;
-    height:auto!important;
+  body.template-article .vanaya-article-hero__image img{
     aspect-ratio:4/3!important;
     object-fit:cover!important;
-    object-position:center!important;
   }
-  body.template-article .m6fr.wide article figure .img-overlay{
-    display:none!important;
+  body.template-article .vanaya-article-hero__heading{
+    padding:20px 18px 18px!important;
   }
-  body.template-article .vanaya-article-banner-copy--desktop{
-    display:none!important;
+  body.template-article .vanaya-article-hero__heading h1,
+  body.template-article .vanaya-article-hero__heading h2,
+  body.template-article .vanaya-article-hero__heading h3,
+  body.template-article .vanaya-article-hero__heading h4,
+  body.template-article .vanaya-article-hero__heading h5{
+    font-size:clamp(30px,8.5vw,40px)!important;
+    line-height:1.08!important;
   }
-  body.template-article .vanaya-article-mobile-heading{
-    display:block!important;
-    padding:22px 18px 18px!important;
-    background:#fff!important;
-    color:#342a24!important;
-    text-align:left!important;
-  }
-  body.template-article .vanaya-article-mobile-heading h1,
-  body.template-article .vanaya-article-mobile-heading h2,
-  body.template-article .vanaya-article-mobile-heading h3,
-  body.template-article .vanaya-article-mobile-heading h4,
-  body.template-article .vanaya-article-mobile-heading h5{
-    margin:0 0 12px!important;
-    color:#342a24!important;
-    font:600 clamp(30px,8.5vw,42px)/1.08 "Avenir Next",Avenir,Arial,sans-serif!important;
-    letter-spacing:-.03em!important;
-    text-align:left!important;
-  }
-  body.template-article .vanaya-article-mobile-heading p{
-    margin:0!important;
-    color:#76665c!important;
+  body.template-article .vanaya-article-hero__heading p{
     font-size:13px!important;
-    line-height:1.55!important;
-    text-align:left!important;
   }
 }
 </style>
