@@ -15,10 +15,27 @@
     {%- when 'spacer' -%}
       <div class="module-spacer" style="margin-bottom:{{ block.settings.height }}px;" {{ block.shopify_attributes }}></div>
     {%- when 'title' -%}
-      {%- if block.settings.show_banner -%}
-        <div class="m6fr wide vanaya-article-hero" {{ block.shopify_attributes }}>
-          <article class="palette-{{ block.settings.color_palette }} module-color-palette">
-            <figure class="vanaya-article-hero__image">
+      {%- if article.handle == 'diwali-gifting-vanaya-ayurvedic-rituals' -%}
+        <header class="vanaya-diwali-article-header" {{ block.shopify_attributes }}>
+          <p class="vanaya-diwali-article-header__eyebrow">VANAYA JOURNAL · DIWALI EDIT</p>
+          <{{ block.settings.title_size }}>{{ article.title }}</{{ block.settings.title_size }}>
+          {%- if block.settings.show_author or block.settings.show_date or block.settings.show_article_reading_time -%}
+            <p class="vanaya-diwali-article-header__meta">
+              {%- if block.settings.show_date and article.published_at -%}{{ article.published_at | time_tag: format: 'month_day_year' }}{%- endif -%}
+              {%- if block.settings.show_author and block.settings.show_date -%}, {% endif -%}
+              {%- if block.settings.show_author -%}{{ 'blog.written_by' | t }} {{ article.author }}{%- endif -%}
+              {%- if block.settings.show_article_reading_time -%}
+                {%- if block.settings.show_author or block.settings.show_date -%}, {% endif -%}
+                {{ 'blog.reading_time' | t: count: minutes, minutes: minutes }}
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+        </header>
+      {%- elsif block.settings.show_banner -%}
+        <div class="m6fr wide mobile-text-center" {{ block.shopify_attributes }}>
+          <article class="palette-{{ block.settings.color_palette }} module-color-palette align-start">
+            <figure>
+              <span class="img-overlay" style="opacity:{{ block.settings.overlay_opacity | divided_by: 100.0 }}"></span>
               <picture>
                 {%- if article.image -%}
                   <img
@@ -35,22 +52,21 @@
                 {%- endif -%}
               </picture>
             </figure>
+            <div>
+              <{{ block.settings.title_size }}>{{ article.title }}</{{ block.settings.title_size }}>
+              {%- if block.settings.show_author or block.settings.show_date or block.settings.show_article_reading_time -%}
+                <p>
+                  {%- if block.settings.show_date and article.published_at -%}{{ article.published_at | time_tag: format: 'month_day_year' }}{%- endif -%}
+                  {%- if block.settings.show_author and block.settings.show_date -%}, {% endif -%}
+                  {%- if block.settings.show_author -%}{{ 'blog.written_by' | t }} {{ article.author }}{%- endif -%}
+                  {%- if block.settings.show_article_reading_time -%}
+                    {%- if block.settings.show_author or block.settings.show_date -%}, {% endif -%}
+                    {{ 'blog.reading_time' | t: count: minutes, minutes: minutes }}
+                  {%- endif -%}
+                </p>
+              {%- endif -%}
+            </div>
           </article>
-
-          <header class="vanaya-article-hero__heading">
-            <{{ block.settings.title_size }}>{{ article.title }}</{{ block.settings.title_size }}>
-            {%- if block.settings.show_author or block.settings.show_date or block.settings.show_article_reading_time -%}
-              <p>
-                {%- if block.settings.show_date and article.published_at -%}{{ article.published_at | time_tag: format: 'month_day_year' }}{%- endif -%}
-                {%- if block.settings.show_author and block.settings.show_date -%}, {% endif -%}
-                {%- if block.settings.show_author -%}{{ 'blog.written_by' | t }} {{ article.author }}{%- endif -%}
-                {%- if block.settings.show_article_reading_time -%}
-                  {%- if block.settings.show_author or block.settings.show_date -%}, {% endif -%}
-                  {{ 'blog.reading_time' | t: count: minutes, minutes: minutes }}
-                {%- endif -%}
-              </p>
-            {%- endif -%}
-          </header>
         </div>
       {%- else -%}
         <header {{ block.shopify_attributes }}>
@@ -68,6 +84,7 @@
         </header>
       {%- endif -%}
     {%- when 'featured_image' -%}
+      {%- unless article.handle == 'diwali-gifting-vanaya-ayurvedic-rituals' -%}
       {%- if article.image -%}
         <figure class="lead" {{ block.shopify_attributes }}>
           <picture>
@@ -89,6 +106,7 @@
           </picture>
         </figure>
       {%- endif -%}
+      {%- endunless -%}
     {%- when 'excerpt' -%}
       {%- if article.excerpt -%}
         <p {{ block.shopify_attributes }}>{{ article.excerpt | strip_html }}</p>
@@ -201,116 +219,6 @@
 </div>
 
 
-<style id="vanaya-article-hide-empty-blogs">
-body.template-article .section-blog-posts,
-body.template-article [id*="blogs_row"],
-body.template-article [id*="blog-posts"]{
-  display:none!important;
-}
-</style>
-
-
-
-
-<style id="vanaya-article-hero-single-image-v2">
-body.template-article .vanaya-article-hero{
-  display:block!important;
-  margin:0!important;
-  padding:0!important;
-}
-body.template-article .vanaya-article-hero>article{
-  display:block!important;
-  position:relative!important;
-  min-height:0!important;
-  margin:0!important;
-  padding:0!important;
-  background:transparent!important;
-}
-body.template-article .vanaya-article-hero__image{
-  display:block!important;
-  position:relative!important;
-  width:100%!important;
-  height:auto!important;
-  min-height:0!important;
-  margin:0!important;
-  padding:0!important;
-  overflow:hidden!important;
-}
-body.template-article .vanaya-article-hero__image picture,
-body.template-article .vanaya-article-hero__image img{
-  display:block!important;
-  width:100%!important;
-  height:auto!important;
-  margin:0!important;
-  padding:0!important;
-}
-body.template-article .vanaya-article-hero__image img{
-  object-fit:cover!important;
-  object-position:center!important;
-}
-body.template-article .vanaya-article-hero__heading{
-  display:block!important;
-  position:static!important;
-  inset:auto!important;
-  transform:none!important;
-  width:min(1100px,calc(100% - 48px))!important;
-  max-width:1100px!important;
-  margin:0 auto!important;
-  padding:30px 0 20px!important;
-  background:#fff!important;
-  color:#352b25!important;
-  text-align:left!important;
-  opacity:1!important;
-  visibility:visible!important;
-  z-index:auto!important;
-}
-body.template-article .vanaya-article-hero__heading h1,
-body.template-article .vanaya-article-hero__heading h2,
-body.template-article .vanaya-article-hero__heading h3,
-body.template-article .vanaya-article-hero__heading h4,
-body.template-article .vanaya-article-hero__heading h5{
-  position:static!important;
-  margin:0 0 12px!important;
-  padding:0!important;
-  color:#352b25!important;
-  font:600 clamp(38px,4.2vw,66px)/1.04 "Avenir Next",Avenir,Arial,sans-serif!important;
-  letter-spacing:-.035em!important;
-  text-align:left!important;
-  text-shadow:none!important;
-}
-body.template-article .vanaya-article-hero__heading p{
-  position:static!important;
-  margin:0!important;
-  padding:0!important;
-  color:#76665c!important;
-  font-size:14px!important;
-  line-height:1.55!important;
-  text-align:left!important;
-  text-shadow:none!important;
-}
-@media(max-width:760px){
-  body.template-article .vanaya-article-hero__image img{
-    aspect-ratio:4/3!important;
-    object-fit:cover!important;
-  }
-  body.template-article .vanaya-article-hero__heading{
-    width:calc(100% - 36px)!important;
-    padding:20px 0 18px!important;
-  }
-  body.template-article .vanaya-article-hero__heading h1,
-  body.template-article .vanaya-article-hero__heading h2,
-  body.template-article .vanaya-article-hero__heading h3,
-  body.template-article .vanaya-article-hero__heading h4,
-  body.template-article .vanaya-article-hero__heading h5{
-    font-size:clamp(30px,8.5vw,40px)!important;
-    line-height:1.08!important;
-  }
-  body.template-article .vanaya-article-hero__heading p{
-    font-size:13px!important;
-  }
-}
-</style>
-
 {% if article.handle == 'diwali-gifting-vanaya-ayurvedic-rituals' %}
 <style id="vanaya-diwali-article-cleanup">
 body.template-article .shopify-section-breadcrumbs{
@@ -318,6 +226,57 @@ body.template-article .shopify-section-breadcrumbs{
 }
 </style>
 {% endif %}
+
+
+<style id="vanaya-diwali-article-header-style">
+body.template-article .vanaya-diwali-article-header{
+  width:min(1120px,calc(100% - 48px))!important;
+  margin:0 auto!important;
+  padding:54px 0 34px!important;
+  text-align:left!important;
+}
+body.template-article .vanaya-diwali-article-header__eyebrow{
+  margin:0 0 14px!important;
+  color:#8a5f47!important;
+  font:800 10px/1.2 "Avenir Next",Avenir,Arial,sans-serif!important;
+  letter-spacing:.22em!important;
+  text-transform:uppercase!important;
+}
+body.template-article .vanaya-diwali-article-header h1,
+body.template-article .vanaya-diwali-article-header h2,
+body.template-article .vanaya-diwali-article-header h3,
+body.template-article .vanaya-diwali-article-header h4,
+body.template-article .vanaya-diwali-article-header h5{
+  max-width:980px!important;
+  margin:0!important;
+  padding:0!important;
+  color:#342820!important;
+  font:500 clamp(42px,5.4vw,76px)/1.01 Georgia,serif!important;
+  letter-spacing:-.04em!important;
+  text-align:left!important;
+}
+body.template-article .vanaya-diwali-article-header__meta{
+  margin:18px 0 0!important;
+  color:#77675c!important;
+  font-size:13px!important;
+  line-height:1.55!important;
+  text-align:left!important;
+}
+@media(max-width:760px){
+  body.template-article .vanaya-diwali-article-header{
+    width:calc(100% - 36px)!important;
+    padding:34px 0 24px!important;
+  }
+  body.template-article .vanaya-diwali-article-header h1,
+  body.template-article .vanaya-diwali-article-header h2,
+  body.template-article .vanaya-diwali-article-header h3,
+  body.template-article .vanaya-diwali-article-header h4,
+  body.template-article .vanaya-diwali-article-header h5{
+    font-size:clamp(34px,10vw,46px)!important;
+    line-height:1.04!important;
+  }
+}
+</style>
 
 {% schema %}
 {
