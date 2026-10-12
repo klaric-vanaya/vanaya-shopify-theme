@@ -35,22 +35,22 @@
                 {%- endif -%}
               </picture>
             </figure>
-
-            <header class="vanaya-article-hero__heading">
-              <{{ block.settings.title_size }}>{{ article.title }}</{{ block.settings.title_size }}>
-              {%- if block.settings.show_author or block.settings.show_date or block.settings.show_article_reading_time -%}
-                <p>
-                  {%- if block.settings.show_date and article.published_at -%}{{ article.published_at | time_tag: format: 'month_day_year' }}{%- endif -%}
-                  {%- if block.settings.show_author and block.settings.show_date -%}, {% endif -%}
-                  {%- if block.settings.show_author -%}{{ 'blog.written_by' | t }} {{ article.author }}{%- endif -%}
-                  {%- if block.settings.show_article_reading_time -%}
-                    {%- if block.settings.show_author or block.settings.show_date -%}, {% endif -%}
-                    {{ 'blog.reading_time' | t: count: minutes, minutes: minutes }}
-                  {%- endif -%}
-                </p>
-              {%- endif -%}
-            </header>
           </article>
+
+          <header class="vanaya-article-hero__heading">
+            <{{ block.settings.title_size }}>{{ article.title }}</{{ block.settings.title_size }}>
+            {%- if block.settings.show_author or block.settings.show_date or block.settings.show_article_reading_time -%}
+              <p>
+                {%- if block.settings.show_date and article.published_at -%}{{ article.published_at | time_tag: format: 'month_day_year' }}{%- endif -%}
+                {%- if block.settings.show_author and block.settings.show_date -%}, {% endif -%}
+                {%- if block.settings.show_author -%}{{ 'blog.written_by' | t }} {{ article.author }}{%- endif -%}
+                {%- if block.settings.show_article_reading_time -%}
+                  {%- if block.settings.show_author or block.settings.show_date -%}, {% endif -%}
+                  {{ 'blog.reading_time' | t: count: minutes, minutes: minutes }}
+                {%- endif -%}
+              </p>
+            {%- endif -%}
+          </header>
         </div>
       {%- else -%}
         <header {{ block.shopify_attributes }}>
@@ -211,84 +211,91 @@ body.template-article [id*="blog-posts"]{
 
 
 
-<style id="vanaya-article-hero-single-image">
+
+<style id="vanaya-article-hero-single-image-v2">
 body.template-article .vanaya-article-hero{
+  display:block!important;
   margin:0!important;
+  padding:0!important;
 }
 body.template-article .vanaya-article-hero>article{
   display:block!important;
-  background:#fff!important;
+  position:relative!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
 }
 body.template-article .vanaya-article-hero__image{
-  margin:0!important;
+  display:block!important;
+  position:relative!important;
   width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
   overflow:hidden!important;
 }
 body.template-article .vanaya-article-hero__image picture,
 body.template-article .vanaya-article-hero__image img{
   display:block!important;
   width:100%!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
 }
 body.template-article .vanaya-article-hero__image img{
-  height:auto!important;
-  max-height:none!important;
   object-fit:cover!important;
   object-position:center!important;
 }
 body.template-article .vanaya-article-hero__heading{
+  display:block!important;
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+  width:min(1100px,calc(100% - 48px))!important;
   max-width:1100px!important;
   margin:0 auto!important;
-  padding:30px 24px 20px!important;
+  padding:30px 0 20px!important;
   background:#fff!important;
   color:#352b25!important;
   text-align:left!important;
+  opacity:1!important;
+  visibility:visible!important;
+  z-index:auto!important;
 }
 body.template-article .vanaya-article-hero__heading h1,
 body.template-article .vanaya-article-hero__heading h2,
 body.template-article .vanaya-article-hero__heading h3,
 body.template-article .vanaya-article-hero__heading h4,
 body.template-article .vanaya-article-hero__heading h5{
+  position:static!important;
   margin:0 0 12px!important;
+  padding:0!important;
   color:#352b25!important;
   font:600 clamp(38px,4.2vw,66px)/1.04 "Avenir Next",Avenir,Arial,sans-serif!important;
   letter-spacing:-.035em!important;
+  text-align:left!important;
+  text-shadow:none!important;
 }
 body.template-article .vanaya-article-hero__heading p{
+  position:static!important;
   margin:0!important;
+  padding:0!important;
   color:#76665c!important;
   font-size:14px!important;
   line-height:1.55!important;
+  text-align:left!important;
+  text-shadow:none!important;
 }
 @media(max-width:760px){
-  body.template-article .shopify-section-breadcrumbs{
-    margin:0!important;
-    padding:12px 14px 8px!important;
-    background:#fff!important;
-    overflow:visible!important;
-  }
-  body.template-article .shopify-section-breadcrumbs .n6br,
-  body.template-article .shopify-section-breadcrumbs .n6br ol{
-    margin:0!important;
-    padding:0!important;
-    overflow:visible!important;
-  }
-  body.template-article .shopify-section-breadcrumbs .n6br ol{
-    display:flex!important;
-    flex-wrap:wrap!important;
-    gap:4px 8px!important;
-  }
-  body.template-article .shopify-section-breadcrumbs .n6br li{
-    max-width:100%!important;
-    white-space:normal!important;
-    overflow:visible!important;
-    text-overflow:clip!important;
-  }
   body.template-article .vanaya-article-hero__image img{
     aspect-ratio:4/3!important;
     object-fit:cover!important;
   }
   body.template-article .vanaya-article-hero__heading{
-    padding:20px 18px 18px!important;
+    width:calc(100% - 36px)!important;
+    padding:20px 0 18px!important;
   }
   body.template-article .vanaya-article-hero__heading h1,
   body.template-article .vanaya-article-hero__heading h2,
@@ -303,6 +310,14 @@ body.template-article .vanaya-article-hero__heading p{
   }
 }
 </style>
+
+{% if article.handle == 'diwali-gifting-vanaya-ayurvedic-rituals' %}
+<style id="vanaya-diwali-article-cleanup">
+body.template-article .shopify-section-breadcrumbs{
+  display:none!important;
+}
+</style>
+{% endif %}
 
 {% schema %}
 {
