@@ -1,3 +1,4 @@
+{% unless template.name == 'article' and article.handle == 'diwali-gifting-vanaya-ayurvedic-rituals' %}
 {% doc %}
   Renders breadcrumb navigation showing the current page's location within the site hierarchy. Automatically adapts to different page types (products, collections, articles, etc.) with proper SEO and accessibility markup.
 
@@ -111,3 +112,5 @@
     </p>
   {%- endif -%}
 </nav>
+
+{% endunless %}
