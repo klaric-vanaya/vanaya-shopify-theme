@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "vanaya_video": {
@@ -10,13 +19,23 @@
         "text": ""
       }
     },
+    "vanaya_complete_ritual_offer": {
+      "type": "vanaya-complete-ritual-offer",
+      "settings": {
+        "eyebrow": "Build Your Ritual & Save",
+        "heading": "More Rituals. More Savings.",
+        "text": "Enjoy up to 20% off eligible items. Your discount applies automatically in the cart and at checkout.",
+        "link": "/collections/all",
+        "link_text": "Shop & Save"
+      }
+    },
     "vanaya_new": {
       "type": "vanaya-product-carousel",
       "blocks": {
         "p1": {
           "type": "product",
           "settings": {
-            "product": "the-glow-essentials-gift-box",
+            "product": "customizable-diwali-gift-box-3-kansa-any-30-ml-oil",
             "fallback_asset": "",
             "fallback_hover_asset": "",
             "badge": "The Edit",
@@ -29,7 +48,7 @@
         "p2": {
           "type": "product",
           "settings": {
-            "product": "kesar-kumkumadi-resurfacing-mask",
+            "product": "diwali-gift-box-1-kansa-5-ml-oil-duo-mirror",
             "fallback_asset": "vanaya-product-resurfacing.webp",
             "fallback_hover_asset": "",
             "badge": "The Edit",
@@ -42,7 +61,7 @@
         "p3": {
           "type": "product",
           "settings": {
-            "product": "ratri-glow-night-cream",
+            "product": "diwali-gift-box-2-kansa-sea-buckthorn-10-ml",
             "fallback_asset": "vanaya-product-ratri.webp",
             "fallback_hover_asset": "",
             "badge": "Bestseller",
@@ -55,7 +74,7 @@
         "p4": {
           "type": "product",
           "settings": {
-            "product": "sea-buckthorn-oil-30ml",
+            "product": "the-glow-essentials-gift-box",
             "fallback_asset": "vanaya-product-sea-buckthorn.webp",
             "fallback_hover_asset": "",
             "badge": "The Edit",
@@ -134,6 +153,13 @@
         "heading": "Most Loved"
       }
     },
+    "vanaya_diwali": {
+      "type": "vanaya-promo-carousel-v2",
+      "settings": {
+        "gift_link": "",
+        "interval": 4
+      }
+    },
     "vanaya_story": {
       "type": "vanaya-philosophy",
       "settings": {
@@ -151,7 +177,6 @@
         "v1": {
           "type": "video",
           "settings": {
-            "video": "",
             "external_url": "",
             "legacy_slot": 1
           }
@@ -159,7 +184,6 @@
         "v2": {
           "type": "video",
           "settings": {
-            "video": "",
             "external_url": "",
             "legacy_slot": 4
           }
@@ -167,7 +191,6 @@
         "v3": {
           "type": "video",
           "settings": {
-            "video": "",
             "external_url": "https://cdn.shopify.com/videos/c/o/v/e6a9ed13a777479b9297ce8bcf9370fe.mp4",
             "legacy_slot": 0
           }
@@ -175,7 +198,6 @@
         "v4": {
           "type": "video",
           "settings": {
-            "video": "",
             "external_url": "https://cdn.shopify.com/videos/c/o/v/1752d61e02ff4ea080a439ba57a654fe.mp4",
             "legacy_slot": 0
           }
@@ -183,7 +205,6 @@
         "v5": {
           "type": "video",
           "settings": {
-            "video": "",
             "external_url": "https://cdn.shopify.com/videos/c/o/v/86e9b7b675124456980e67cacfc1b4a4.mp4",
             "legacy_slot": 0
           }
@@ -361,22 +382,6 @@
     "vanaya_journal": {
       "type": "vanaya-journal",
       "settings": {}
-    },
-    "vanaya_complete_ritual_offer": {
-      "type": "vanaya-complete-ritual-offer",
-      "settings": {
-        "eyebrow": "Build Your Ritual & Save",
-        "heading": "More Rituals. More Savings.",
-        "text": "Enjoy up to 20% off eligible items. Your discount applies automatically in the cart and at checkout.",
-        "link": "/collections/all",
-        "link_text": "Shop & Save"
-      }
-    },
-    "vanaya_diwali": {
-      "type": "vanaya-promo-carousel-v2",
-      "settings": {
-        "interval": 4
-      }
     }
   },
   "order": [
