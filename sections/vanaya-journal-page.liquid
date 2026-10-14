@@ -2,9 +2,9 @@
   <section class="vjournal-page__hero"><p>The Vanaya Journal</p><h1>Ingredient stories, ritual guidance and considered care.</h1><span>Read slowly. Return often.</span></section>
 
   {% for journal_article in blogs['news'].articles limit: 6 %}
-    {% unless journal_article.handle == 'diwali-gifting-vanaya-ayurvedic-rituals' %}
+    {% unless journal_article.handle contains 'diwali-gifting-vanaya-ayurvedic-rituals' %}
       {% assign journal_image = journal_article.image %}
-      {% if journal_article.handle == 'the-sea-buckthorn-ritual-a-thoughtful-guide-to-facial-oils' %}
+      {% if journal_article.handle contains 'the-sea-buckthorn-ritual-a-thoughtful-guide-to-facial-oils' %}
         {% assign journal_image = all_products['sea-buckthorn-oil-30ml'].featured_image %}
       {% endif %}
       <section class="vjournal-page__latest">

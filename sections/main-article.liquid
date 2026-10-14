@@ -15,7 +15,7 @@
     {%- when 'spacer' -%}
       <div class="module-spacer" style="margin-bottom:{{ block.settings.height }}px;" {{ block.shopify_attributes }}></div>
     {%- when 'title' -%}
-      {%- if article.handle == 'the-sea-buckthorn-ritual-a-thoughtful-guide-to-facial-oils' -%}
+      {%- if article.handle contains 'the-sea-buckthorn-ritual-a-thoughtful-guide-to-facial-oils' -%}
         {% assign sea_ritual_image = all_products['sea-buckthorn-oil-30ml'].featured_image %}
         {% if sea_ritual_image != blank %}
           <div class="vanaya-sea-article-image">{{ sea_ritual_image | image_url: width: 1200 | image_tag: loading: 'eager', widths: '480,750,1000,1200', sizes: '(max-width: 940px) 100vw, 940px', alt: sea_ritual_image.alt }}</div>
