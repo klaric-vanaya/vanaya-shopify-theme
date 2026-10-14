@@ -1,6 +1,30 @@
 <main class="vjournal-page">
   <section class="vjournal-page__hero"><p>The Vanaya Journal</p><h1>Ingredient stories, ritual guidance and considered care.</h1><span>Read slowly. Return often.</span></section>
 
+  {% for journal_article in blogs['news'].articles limit: 6 %}
+    {% unless journal_article.handle == 'diwali-gifting-vanaya-ayurvedic-rituals' %}
+      {% assign journal_image = journal_article.image %}
+      {% if journal_article.handle == 'the-sea-buckthorn-ritual-a-thoughtful-guide-to-facial-oils' %}
+        {% assign journal_image = all_products['sea-buckthorn-oil-30ml'].featured_image %}
+      {% endif %}
+      <section class="vjournal-page__latest">
+        <div class="vjournal-page__latest-media">
+          <a href="{{ journal_article.url }}" aria-label="{{ journal_article.title | escape }}">
+            {% if journal_image != blank %}
+              {{ journal_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '480,750,1000,1400', sizes: '(max-width: 850px) 100vw, 50vw', alt: journal_image.alt }}
+            {% endif %}
+          </a>
+        </div>
+        <div class="vjournal-page__latest-copy">
+          <p class="vstory__kicker">{{ 'vanaya_journal.latest' | t }} · {{ journal_article.published_at | date: '%d %B %Y' }}</p>
+          <h2><a href="{{ journal_article.url }}">{{ journal_article.title | escape }}</a></h2>
+          <p>{{ journal_article.excerpt_or_content | strip_html | truncatewords: 42 }}</p>
+          <a class="vjournal-page__shop-link" href="{{ journal_article.url }}">{{ 'vanaya_journal.read_story' | t }}</a>
+        </div>
+      </section>
+    {% endunless %}
+  {% endfor %}
+
   <section class="vjournal-page__latest">
     <div class="vjournal-page__latest-media">
       <a href="/blogs/news/diwali-gifting-vanaya-ayurvedic-rituals" aria-label="Read Diwali Gifting, the Vanaya Way">

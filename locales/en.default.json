@@ -628,5 +628,10 @@
     "diwali_2_alt": "This Diwali, let Vanaya bring out your glow",
     "diwali_3_alt": "This Diwali, the gift is for you — introducing the Vanaya Diwali Edit",
     "diwali_4_alt": "Roshni ka Tyohaar — Vanaya Diwali gifting"
+  },
+  "vanaya_journal": {
+    "latest": "Latest journal",
+    "read_story": "Read the journal story",
+    "ingredient_notes": "Vanaya Journal · Ingredient Notes"
   }
 }

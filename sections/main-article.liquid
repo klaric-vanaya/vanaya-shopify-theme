@@ -15,7 +15,27 @@
     {%- when 'spacer' -%}
       <div class="module-spacer" style="margin-bottom:{{ block.settings.height }}px;" {{ block.shopify_attributes }}></div>
     {%- when 'title' -%}
-      {%- if article.handle == 'diwali-gifting-vanaya-ayurvedic-rituals' -%}
+      {%- if article.handle == 'the-sea-buckthorn-ritual-a-thoughtful-guide-to-facial-oils' -%}
+        {% assign sea_ritual_image = all_products['sea-buckthorn-oil-30ml'].featured_image %}
+        {% if sea_ritual_image != blank %}
+          <div class="vanaya-sea-article-image">{{ sea_ritual_image | image_url: width: 1200 | image_tag: loading: 'eager', widths: '480,750,1000,1200', sizes: '(max-width: 940px) 100vw, 940px', alt: sea_ritual_image.alt }}</div>
+        {% endif %}
+        <header class="vanaya-diwali-article-header" {{ block.shopify_attributes }}>
+          <p class="vanaya-diwali-article-header__eyebrow">{{ 'vanaya_journal.ingredient_notes' | t }}</p>
+          <{{ block.settings.title_size }}>{{ article.title }}</{{ block.settings.title_size }}>
+          {%- if block.settings.show_author or block.settings.show_date or block.settings.show_article_reading_time -%}
+            <p class="vanaya-diwali-article-header__meta">
+              {%- if block.settings.show_date and article.published_at -%}{{ article.published_at | time_tag: format: 'month_day_year' }}{%- endif -%}
+              {%- if block.settings.show_author and block.settings.show_date -%}, {% endif -%}
+              {%- if block.settings.show_author -%}{{ 'blog.written_by' | t }} {{ article.author }}{%- endif -%}
+              {%- if block.settings.show_article_reading_time -%}
+                {%- if block.settings.show_author or block.settings.show_date -%}, {% endif -%}
+                {{ 'blog.reading_time' | t: count: minutes, minutes: minutes }}
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+        </header>
+      {%- elsif article.handle == 'diwali-gifting-vanaya-ayurvedic-rituals' -%}
         <header class="vanaya-diwali-article-header" {{ block.shopify_attributes }}>
           <p class="vanaya-diwali-article-header__eyebrow">VANAYA JOURNAL · DIWALI EDIT</p>
           <{{ block.settings.title_size }}>{{ article.title }}</{{ block.settings.title_size }}>
@@ -478,3 +498,8 @@ body.template-article .vanaya-diwali-article-header__meta{
   ]
 }
 {% endschema %}
+
+{% stylesheet %}
+.vanaya-sea-article-image { padding: 24px 20px 0; }
+.vanaya-sea-article-image img { display: block; width: 100%; height: auto; max-height: 440px; object-fit: contain; }
+{% endstylesheet %}
