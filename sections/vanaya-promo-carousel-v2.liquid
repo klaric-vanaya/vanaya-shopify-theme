@@ -1,12 +1,17 @@
 <section class="vanaya-promo-v2" data-vanaya-promo-v2 data-interval="{{ section.settings.interval | times: 1000 }}" aria-label="Vanaya promotional banners">
   <div class="vanaya-promo-v2__viewport">
     <div class="vanaya-promo-v2__track">
-      <a class="vanaya-promo-v2__slide" href="{{ section.settings.offer_link | default: routes.all_products_collection_url }}">
-        {% if section.settings.offer_image != blank %}
-          {{ section.settings.offer_image | image_url: width: 2200 | image_tag: loading: 'lazy', widths: '640,960,1440,2048', sizes: '100vw', alt: section.settings.offer_image.alt }}
-        {% else %}
-          <img src="https://cdn.shopify.com/s/files/1/0844/1449/7011/files/vanaya-quantity-discount-banner.jpg?v=1791287206" width="2048" height="692" loading="lazy" alt="Vanaya special offer">
-        {% endif %}
+      <a class="vanaya-promo-v2__slide" href="{{ section.settings.gift_link | default: '/pages/gifting' }}">
+        <img src="{{ 'vanaya-diwali-2026-1.webp' | asset_url }}" width="2048" height="853" loading="lazy" alt="{{ 'vanaya_promo.diwali_1_alt' | t }}">
+      </a>
+      <a class="vanaya-promo-v2__slide" href="{{ section.settings.gift_link | default: '/pages/gifting' }}">
+        <img src="{{ 'vanaya-diwali-2026-2.webp' | asset_url }}" width="2048" height="853" loading="lazy" alt="{{ 'vanaya_promo.diwali_2_alt' | t }}">
+      </a>
+      <a class="vanaya-promo-v2__slide" href="{{ section.settings.gift_link | default: '/pages/gifting' }}">
+        <img src="{{ 'vanaya-diwali-2026-3.webp' | asset_url }}" width="2048" height="853" loading="lazy" alt="{{ 'vanaya_promo.diwali_3_alt' | t }}">
+      </a>
+      <a class="vanaya-promo-v2__slide" href="{{ section.settings.gift_link | default: '/pages/gifting' }}">
+        <img src="{{ 'vanaya-diwali-2026-4.webp' | asset_url }}" width="2048" height="853" loading="lazy" alt="{{ 'vanaya_promo.diwali_4_alt' | t }}">
       </a>
       <a class="vanaya-promo-v2__slide" href="{{ section.settings.gift_link | default: '/pages/gifting' }}">
         {% if section.settings.gift_image != blank %}
@@ -27,7 +32,7 @@
 #shopify-section-{{ section.id }} .vanaya-promo-v2__viewport{width:100%;overflow:hidden}
 #shopify-section-{{ section.id }} .vanaya-promo-v2__track{display:flex;width:100%;transform:translate3d(0,0,0);transition:transform .6s ease;will-change:transform}
 #shopify-section-{{ section.id }} .vanaya-promo-v2__slide{display:block;flex:0 0 100%;width:100%;min-width:100%}
-#shopify-section-{{ section.id }} .vanaya-promo-v2__slide img{display:block;width:100%;height:auto;aspect-ratio:2048/692;object-fit:contain}
+#shopify-section-{{ section.id }} .vanaya-promo-v2__slide img{display:block;width:100%;height:auto;aspect-ratio:2048/853;object-fit:contain}
 #shopify-section-{{ section.id }} .vanaya-promo-v2__arrow{
   position:absolute;top:50%;z-index:5;display:grid;place-items:center;
   width:10px!important;min-width:10px!important;max-width:10px!important;
@@ -90,8 +95,6 @@
 {
   "name":"Vanaya Promo Carousel V2",
   "settings":[
-    {"type":"image_picker","id":"offer_image","label":"Offer banner"},
-    {"type":"url","id":"offer_link","label":"Offer banner link","default":"/collections/all"},
     {"type":"image_picker","id":"gift_image","label":"Diwali banner"},
     {"type":"url","id":"gift_link","label":"Diwali banner link"},
     {"type":"range","id":"interval","label":"Seconds between banners","min":4,"max":12,"step":1,"default":4}
