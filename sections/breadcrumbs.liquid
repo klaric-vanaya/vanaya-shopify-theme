@@ -1,5 +1,34 @@
 {%- render 'breadcrumbs', hide_mobile: section.settings.hide_mobile %}
 
+{% stylesheet %}
+body.template-article #root #content > .shopify-section-breadcrumbs:first-child > .n6br:first-child {
+  margin: 0 auto !important;
+  padding: 20px 24px 12px;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+body.template-article .shopify-section-breadcrumbs .n6br ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+body.template-article .shopify-section-breadcrumbs .n6br li {
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  body.template-article #root #content > .shopify-section-breadcrumbs:first-child > .n6br:first-child {
+    padding: 18px 18px 12px;
+  }
+}
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:static_sections.breadcrumbs.name",
