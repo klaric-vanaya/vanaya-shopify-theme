@@ -433,5 +433,161 @@
     }
   </style>
   <!-- /Vanaya floating WhatsApp chat -->
+
+{% if template.name == 'article' and article.handle == 'diwali-gifting-vanaya-ayurvedic-rituals' %}
+<style id="vanaya-diwali-article-final-layout">
+  /* Hide breadcrumb/garbage strip only on this Diwali article */
+  body.template-article .shopify-section-breadcrumbs,
+  body.template-article .n6br{
+    display:none!important;
+  }
+
+  /* Keep one clean banner image */
+  body.template-article .m6fr.wide{
+    margin:0!important;
+    padding:0!important;
+  }
+  body.template-article .m6fr.wide > article{
+    display:block!important;
+    position:relative!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    background:#fff!important;
+  }
+  body.template-article .m6fr.wide > article > figure{
+    position:relative!important;
+    display:block!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    overflow:hidden!important;
+  }
+  body.template-article .m6fr.wide > article > figure .img-overlay{
+    display:none!important;
+  }
+  body.template-article .m6fr.wide > article > figure picture,
+  body.template-article .m6fr.wide > article > figure img{
+    display:block!important;
+    width:100%!important;
+    height:auto!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  /* Any old title overlay inside the image is suppressed after JS moves the text */
+  body.template-article .m6fr.wide > article > div:not(.vanaya-diwali-title-below){
+    display:none!important;
+  }
+
+  /* Normal editorial heading below image */
+  body.template-article .vanaya-diwali-title-below{
+    display:block!important;
+    position:static!important;
+    inset:auto!important;
+    transform:none!important;
+    width:min(1100px,calc(100% - 48px))!important;
+    max-width:1100px!important;
+    margin:0 auto!important;
+    padding:28px 0 22px!important;
+    background:#fff!important;
+    color:#332923!important;
+    text-align:left!important;
+    opacity:1!important;
+    visibility:visible!important;
+  }
+  body.template-article .vanaya-diwali-title-below h1,
+  body.template-article .vanaya-diwali-title-below h2,
+  body.template-article .vanaya-diwali-title-below h3,
+  body.template-article .vanaya-diwali-title-below h4,
+  body.template-article .vanaya-diwali-title-below h5{
+    position:static!important;
+    margin:0 0 12px!important;
+    padding:0!important;
+    color:#332923!important;
+    font:500 clamp(38px,4.5vw,68px)/1.04 Georgia,serif!important;
+    letter-spacing:-.035em!important;
+    text-align:left!important;
+    text-shadow:none!important;
+  }
+  body.template-article .vanaya-diwali-title-below p{
+    position:static!important;
+    margin:0!important;
+    padding:0!important;
+    color:#78685d!important;
+    font-size:14px!important;
+    line-height:1.55!important;
+    text-align:left!important;
+    text-shadow:none!important;
+  }
+
+  @media(max-width:760px){
+    body.template-article .m6fr.wide{
+      overflow:visible!important;
+    }
+    body.template-article .m6fr.wide > article > figure img{
+      aspect-ratio:4/3!important;
+      object-fit:cover!important;
+      object-position:center center!important;
+    }
+    body.template-article .vanaya-diwali-title-below{
+      width:calc(100% - 36px)!important;
+      padding:20px 0 18px!important;
+    }
+    body.template-article .vanaya-diwali-title-below h1,
+    body.template-article .vanaya-diwali-title-below h2,
+    body.template-article .vanaya-diwali-title-below h3,
+    body.template-article .vanaya-diwali-title-below h4,
+    body.template-article .vanaya-diwali-title-below h5{
+      font-size:clamp(30px,8.5vw,40px)!important;
+      line-height:1.08!important;
+    }
+    body.template-article .vanaya-diwali-title-below p{
+      font-size:13px!important;
+    }
+  }
+</style>
+
+<script id="vanaya-diwali-article-final-script">
+document.addEventListener('DOMContentLoaded', function () {
+  var hero = document.querySelector('body.template-article .m6fr.wide');
+  if (!hero) return;
+
+  var article = hero.querySelector(':scope > article');
+  if (!article) return;
+
+  /* Remove any breadcrumb strip if theme/app re-inserts it */
+  document.querySelectorAll('.shopify-section-breadcrumbs, .n6br').forEach(function(el){
+    el.remove();
+  });
+
+  /* Find any existing title/meta block that is still positioned over the image */
+  var titleBlock =
+    article.querySelector(':scope > div') ||
+    hero.querySelector('.vanaya-article-hero__heading') ||
+    hero.querySelector('.vanaya-article-mobile-heading') ||
+    hero.querySelector('.vanaya-diwali-article-header');
+
+  /* If no reusable title block exists, create one from the article title */
+  if (!titleBlock) {
+    titleBlock = document.createElement('header');
+    titleBlock.innerHTML =
+      '<h1>{{ article.title | escape }}</h1>' +
+      '<p>{% if article.published_at %}{{ article.published_at | date: "%B %d, %Y" }}{% endif %}{% if article.author != blank %}{% if article.published_at %}, {% endif %}by {{ article.author | escape }}{% endif %}</p>';
+  }
+
+  titleBlock.classList.add('vanaya-diwali-title-below');
+  titleBlock.removeAttribute('style');
+
+  /* Move heading completely outside the image/article overlay container */
+  if (titleBlock.parentNode !== hero || titleBlock.previousElementSibling !== article) {
+    hero.insertBefore(titleBlock, article.nextSibling);
+  }
+});
+</script>
+{% endif %}
+
 </body>
 </html>
