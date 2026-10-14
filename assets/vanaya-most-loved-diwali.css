@@ -1,0 +1,54 @@
+html body.template-index #root .vanaya-products--diwali {
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(90px, 7.5vw, 130px) 9.8% clamp(90px, 7vw, 125px) !important;
+  background: #fff7e7 var(--vanaya-diwali-art) center / 100% 100% no-repeat !important;
+}
+html body.template-index #root .vanaya-products--diwali .vanaya-heading,
+html body.template-index #root .vanaya-products--diwali .vanaya-product-window {
+  position: relative;
+  z-index: 1;
+}
+html body.template-index #root .vanaya-products--diwali .vanaya-heading h2 {
+  color: #42241b;
+}
+html body.template-index #root .vanaya-products--diwali .vanaya-kicker {
+  color: #8b571e;
+}
+html body.template-index #root .vanaya-products--diwali .vanaya-card {
+  background: linear-gradient(145deg, #fffdf7, #f5efdf);
+}
+@media (max-width: 800px) {
+  html body.template-index #root .vanaya-products--diwali {
+    padding: 105px 18px 115px !important;
+    background: linear-gradient(110deg, #fae8c9, #fff9ed 22%, #fff9ed 78%, #fae8c9) !important;
+    box-shadow: inset 0 0 0 1px #c89e60;
+  }
+  html body.template-index #root .vanaya-products--diwali::before,
+  html body.template-index #root .vanaya-products--diwali::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    pointer-events: none;
+    background-image: var(--vanaya-diwali-art);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+  }
+  html body.template-index #root .vanaya-products--diwali::before {
+    top: 0;
+    background-position: center top;
+    mask-image: linear-gradient(#000 80%, transparent);
+  }
+  html body.template-index #root .vanaya-products--diwali::after {
+    bottom: 0;
+    background-position: center bottom;
+    mask-image: linear-gradient(transparent, #000 25%);
+  }
+}

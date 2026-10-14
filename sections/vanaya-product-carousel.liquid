@@ -2,7 +2,7 @@
 {% if section.settings.heading == 'Most Loved' %}{% assign visible_count = 4 %}{% endif %}
 {% assign is_most_loved = false %}
 {% if section.settings.heading == 'Most Loved' %}{% assign is_most_loved = true %}{% endif %}
-<section class="vanaya-section vanaya-products{% if section.settings.heading == 'Explore the Range' %} vanaya-products--explore{% else %} vanaya-products--loved{% endif %}{% if is_most_loved %} vanaya-products--static{% endif %}" id="{{ section.settings.anchor | handle }}"{% unless is_most_loved %} data-vanaya-products data-product-autoplay="true" data-scroll-mode="item"{% endunless %}>
+<section class="vanaya-section vanaya-products{% if section.settings.heading == 'Explore the Range' %} vanaya-products--explore{% else %} vanaya-products--loved{% endif %}{% if is_most_loved %} vanaya-products--static vanaya-products--diwali{% endif %}" id="{{ section.settings.anchor | handle }}"{% if is_most_loved %} style="--vanaya-diwali-art: url('{{ 'vanaya-most-loved-diwali-2026.webp' | asset_url }}')"{% endif %}{% unless is_most_loved %} data-vanaya-products data-product-autoplay="true" data-scroll-mode="item"{% endunless %}>
   <div class="vanaya-heading">
     <div><p class="vanaya-kicker">{{ section.settings.eyebrow }}</p><h2>{{ section.settings.heading }}</h2></div>
     {% if visible_count > 1 and is_most_loved == false %}
@@ -35,6 +35,8 @@
                   {% if ml_primary != blank %}
                     <img
                       class="vanaya-card-image-primary"
+                      width="{{ ml_primary.width }}"
+                      height="{{ ml_primary.height }}"
                       src="{{ ml_primary | image_url: width: 1000 }}"
                       srcset="{{ ml_primary | image_url: width: 400 }} 400w, {{ ml_primary | image_url: width: 600 }} 600w, {{ ml_primary | image_url: width: 800 }} 800w, {{ ml_primary | image_url: width: 1000 }} 1000w"
                       sizes="(max-width: 800px) 50vw, 25vw"
@@ -110,6 +112,7 @@
 </section>
 
 {% if is_most_loved %}
+{{ 'vanaya-most-loved-diwali.css' | asset_url | stylesheet_tag }}
 <style>
   /* Dedicated Most Loved badge: isolated from the theme's shared badge rules. */
   .template-index #root .vanaya-products--loved .vanaya-card-media--loved{
