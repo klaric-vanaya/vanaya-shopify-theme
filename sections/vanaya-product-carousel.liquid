@@ -1,7 +1,7 @@
 {% assign visible_count = section.blocks.size %}
-{% if section.settings.heading == 'Most Loved' %}{% assign visible_count = 4 %}{% endif %}
+{% if section.settings.anchor == 'the-vanaya-edit' %}{% assign visible_count = 4 %}{% endif %}
 {% assign is_most_loved = false %}
-{% if section.settings.heading == 'Most Loved' %}{% assign is_most_loved = true %}{% endif %}
+{% if section.settings.anchor == 'the-vanaya-edit' %}{% assign is_most_loved = true %}{% endif %}
 <section class="vanaya-section vanaya-products{% if section.settings.heading == 'Explore the Range' %} vanaya-products--explore{% else %} vanaya-products--loved{% endif %}{% if is_most_loved %} vanaya-products--static vanaya-products--diwali{% endif %}" id="{{ section.settings.anchor | handle }}"{% if is_most_loved %} style="--vanaya-diwali-art: url('{{ 'vanaya-most-loved-diwali-2026.webp' | asset_url }}')"{% endif %}{% unless is_most_loved %} data-vanaya-products data-product-autoplay="true" data-scroll-mode="item"{% endunless %}>
   <div class="vanaya-heading">
     <div><p class="vanaya-kicker">{{ section.settings.eyebrow }}</p><h2>{{ section.settings.heading }}</h2></div>
@@ -18,7 +18,7 @@
       {% for block in section.blocks %}
         {% if forloop.index0 < visible_count %}
           {% assign product = block.settings.product %}
-          <article class="vanaya-card{% if section.settings.heading == 'Most Loved' %} vanaya-card--double{% endif %}" data-product-card {{ block.shopify_attributes }}>
+          <article class="vanaya-card{% if section.settings.anchor == 'the-vanaya-edit' %} vanaya-card--double{% endif %}" data-product-card {{ block.shopify_attributes }}>
             {% if product != blank %}<button type="button" class="v29-wishlist-btn" data-v29-wishlist data-handle="{{ product.handle }}" data-title="{{ product.title | escape }}" data-url="{{ product.url }}" data-image="{{ product.featured_image | image_url: width: 700 }}" data-price="{{ product.price | money | escape }}" data-variant-id="{{ product.selected_or_first_available_variant.id }}" aria-label="Save {{ product.title | escape }} to wishlist" aria-pressed="false">♡</button>{% endif %}
             <a class="vanaya-card-media{% if is_most_loved %} vanaya-card-media--loved{% endif %}" href="{% if product != blank %}{{ product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">
               <span class="vanaya-card-image-stack">
