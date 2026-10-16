@@ -12,6 +12,7 @@
     "vanaya_video": {
       "type": "vanaya-video-hero",
       "settings": {
+        "video": "shopify://files/videos/Influencer Video.mp4",
         "loading_text": "Preparing your ritual",
         "eyebrow": "",
         "heading_line_1": "Not Reinventing Skincare,",
