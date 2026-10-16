@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "t:static_sections.header.name",
@@ -8,21 +17,13 @@
         "announcement-block-1": {
           "type": "announcement",
           "settings": {
-            "text": "Complimentary shipping on ₹499 & above | Flat 10% Instant Discount on Major Credit Cards above 999/-",
-            "image_height": 55
-          }
-        },
-        "announcement-international": {
-          "type": "announcement",
-          "settings": {
-            "text": "International Shipping Available | Shipping rates cover 1 box only",
+            "text": "Free Shipping on ₹499 & above | Flat 10% Instant Discount on Major Credit Cards above 999/- | International Shipping Available",
             "image_height": 55
           }
         }
       },
       "block_order": [
-        "announcement-block-1",
-        "announcement-international"
+        "announcement-block-1"
       ],
       "settings": {
         "text_alignment": "center",
@@ -34,7 +35,7 @@
         "show_cursor": true,
         "default_no_nav": false,
         "autoplay_enabled": true,
-        "autoplay_seconds": 5,
+        "autoplay_seconds": 6,
         "gap": 30,
         "show_separators": false,
         "separator": "dot",
