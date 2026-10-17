@@ -1,3 +1,6 @@
+{%- comment -%}Shopify native Product structured data includes live variant offer availability.{%- endcomment -%}
+{{ product | structured_data }}
+
 {% liquid
   assign current_variant = product.selected_variant
   if current_variant == blank
