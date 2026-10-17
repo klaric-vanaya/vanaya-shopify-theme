@@ -1,5 +1,7 @@
 {%- comment -%}Shopify native Product structured data includes live variant offer availability.{%- endcomment -%}
-{{ product | structured_data }}
+<script type="application/ld+json">
+  {{ product | structured_data }}
+</script>
 
 {% liquid
   assign current_variant = product.selected_variant
