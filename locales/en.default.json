@@ -633,5 +633,22 @@
     "latest": "Latest journal",
     "read_story": "Read the journal story",
     "ingredient_notes": "Vanaya Journal · Ingredient Notes"
+  },
+  "vanaya_deletion": {
+    "eyebrow": "VANAYA – Luxury Ayurveda · VANAYA NATURALS PRIVATE LIMITED",
+    "form_title": "Request account and data deletion",
+    "form_intro": "You can submit this request without signing in or reinstalling the app. We will verify account ownership before taking action.",
+    "name": "Your name (optional)",
+    "account": "Account email address or registered mobile number (required)",
+    "account_help": "Enter the email address or mobile number used for your VANAYA account.",
+    "email": "Email address for our reply (required)",
+    "message": "Your request",
+    "default_message": "Please delete my VANAYA – Luxury Ayurveda account and the associated personal data that is eligible for deletion.",
+    "confirm": "I request deletion of my VANAYA account and associated personal data. I understand that ownership verification is required and some records may need to be retained as explained above.",
+    "submit": "Send deletion request",
+    "success": "Your deletion request has been received. Our team will contact you to verify account ownership. Your account has not been deleted yet.",
+    "no_secrets": "Do not include passwords, OTPs, payment card details or identity documents.",
+    "email_alternative": "Alternatively, email your deletion request to",
+    "footer": "Delete account"
   }
 }

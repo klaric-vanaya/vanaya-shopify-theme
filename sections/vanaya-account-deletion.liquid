@@ -1,0 +1,55 @@
+<section class="vanaya-deletion">
+  <header>
+    <p class="vanaya-deletion__eyebrow">{{ 'vanaya_deletion.eyebrow' | t }}</p>
+    <h1>{{ page.title | escape }}</h1>
+  </header>
+  <div class="vanaya-deletion__content">{{ page.content }}</div>
+  <div class="vanaya-deletion__form" id="request-deletion">
+    <h2>{{ 'vanaya_deletion.form_title' | t }}</h2>
+    <p>{{ 'vanaya_deletion.form_intro' | t }}</p>
+    {% form 'contact', id: 'VanayaDeletionForm' %}
+      {% if form.posted_successfully? %}
+        <p class="vanaya-deletion__success" role="status" tabindex="-1">{{ 'vanaya_deletion.success' | t }}</p>
+      {% else %}
+        {% if form.errors %}<div role="alert">{{ form.errors | default_errors }}</div>{% endif %}
+        <input type="hidden" name="contact[request_type]" value="VANAYA app account and personal data deletion request">
+        <label for="DeletionName">{{ 'vanaya_deletion.name' | t }}</label>
+        <input id="DeletionName" name="contact[name]" type="text" autocomplete="name" value="{{ form.name | escape }}">
+        <label for="DeletionAccount">{{ 'vanaya_deletion.account' | t }}</label>
+        <input id="DeletionAccount" name="contact[account_identifier]" type="text" required aria-describedby="DeletionAccountHelp">
+        <p id="DeletionAccountHelp" class="vanaya-deletion__help">{{ 'vanaya_deletion.account_help' | t }}</p>
+        <label for="DeletionEmail">{{ 'vanaya_deletion.email' | t }}</label>
+        <input id="DeletionEmail" name="contact[email]" type="email" autocomplete="email" required value="{{ form.email | escape }}">
+        <label for="DeletionBody">{{ 'vanaya_deletion.message' | t }}</label>
+        <textarea id="DeletionBody" name="contact[body]" rows="4" required>{% if form.body %}{{ form.body | escape }}{% else %}{{ 'vanaya_deletion.default_message' | t }}{% endif %}</textarea>
+        <label class="vanaya-deletion__confirm" for="DeletionConfirm">
+          <input id="DeletionConfirm" name="contact[deletion_requested]" type="checkbox" value="Yes" required>
+          <span>{{ 'vanaya_deletion.confirm' | t }}</span>
+        </label>
+        <button type="submit">{{ 'vanaya_deletion.submit' | t }}</button>
+        <p class="vanaya-deletion__help">{{ 'vanaya_deletion.no_secrets' | t }}</p>
+      {% endif %}
+    {% endform %}
+    <p>{{ 'vanaya_deletion.email_alternative' | t }} <a href="mailto:sales@vanayaveda.com?subject=VANAYA%20account%20deletion%20request">sales@vanayaveda.com</a>.</p>
+  </div>
+</section>
+{% stylesheet %}
+.vanaya-deletion{max-width:900px;margin:0 auto;padding:60px 24px 80px;color:#42382d;line-height:1.7}
+.vanaya-deletion h1{font-size:clamp(32px,5vw,52px);line-height:1.15;margin:12px 0 30px}
+.vanaya-deletion h2{font-size:26px;line-height:1.3;margin-top:30px}
+.vanaya-deletion__eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#80643e}
+.vanaya-deletion a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.vanaya-deletion__form{margin-top:36px;padding:30px;border:1px solid #c9c3a7;background:#f7f4e9;border-radius:8px;scroll-margin-top:160px}
+.vanaya-deletion__form form>label:not(.vanaya-deletion__confirm){display:block;margin:18px 0 6px;font-weight:600}
+.vanaya-deletion__form input:not([type=hidden]):not([type=checkbox]),.vanaya-deletion__form textarea{display:block;box-sizing:border-box;width:100%;padding:12px;border:1px solid #a9a38e;border-radius:3px;background:#fffdf7;color:#30291f;font:inherit}
+.vanaya-deletion__form :focus-visible{outline:2px solid #685435;outline-offset:3px}
+.vanaya-deletion__confirm{display:flex;align-items:flex-start;gap:10px;margin:22px 0}
+.vanaya-deletion__confirm input{width:18px;height:18px;flex-shrink:0;margin-top:5px;accent-color:#655139}
+.vanaya-deletion__form button{padding:14px 24px;min-height:48px;background:#594634;color:#fff;border:1px solid #594634;border-radius:3px;font:inherit;cursor:pointer}
+.vanaya-deletion__help{font-size:13px;margin-top:8px}
+.vanaya-deletion__success{padding:18px;background:#e5ecd8;border:1px solid #78875c}
+@media(max-width:600px){.vanaya-deletion{padding:35px 18px 55px}.vanaya-deletion__form{padding:20px}.vanaya-deletion__form button{width:100%}}
+{% endstylesheet %}
+{% schema %}
+{"name":"Account deletion","settings":[],"presets":[{"name":"Account deletion"}]}
+{% endschema %}
