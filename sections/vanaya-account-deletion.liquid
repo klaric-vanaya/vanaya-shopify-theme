@@ -34,6 +34,8 @@
   </div>
 </section>
 {% stylesheet %}
+html:has(.vanaya-deletion),body:has(.vanaya-deletion){overflow-y:auto!important;height:auto!important}
+html:has(.vanaya-deletion) #iframe-kp,html:has(.vanaya-deletion) .vanaya-welcome{display:none!important;visibility:hidden!important;pointer-events:none!important}
 .vanaya-deletion{max-width:900px;margin:0 auto;padding:60px 24px 80px;color:#42382d;line-height:1.7}
 .vanaya-deletion h1{font-size:clamp(32px,5vw,52px);line-height:1.15;margin:12px 0 30px}
 .vanaya-deletion h2{font-size:26px;line-height:1.3;margin-top:30px}
