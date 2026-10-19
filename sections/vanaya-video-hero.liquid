@@ -36,6 +36,26 @@
   }
 </style>
 
+{% stylesheet %}
+  .vanaya-video-hero .vanaya-video-copy {
+    width: min(640px, calc(100vw - 48px));
+  }
+  .vanaya-video-hero .vanaya-video-copy h2 span {
+    white-space: nowrap;
+  }
+  .vanaya-video-hero .vanaya-video-copy h2 span:nth-child(2) {
+    text-align: right;
+  }
+  @media (max-width: 600px) {
+    .vanaya-video-hero .vanaya-video-copy {
+      width: auto;
+    }
+    .vanaya-video-hero .vanaya-video-copy h2 {
+      font-size: clamp(16px, 5vw, 26px) !important;
+    }
+  }
+{% endstylesheet %}
+
 {% schema %}
 {"name":"Vanaya video hero","settings":[
 {"type":"video","id":"video","label":"Shopify-hosted video","info":"Optional. The included Vanaya film is used until another video is selected."},
