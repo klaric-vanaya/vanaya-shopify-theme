@@ -24,11 +24,11 @@
 %}
 
 <section class="vgift-premium">
-  <header class="vgift-premium__hero">
-    <p class="vgift-premium__kicker">The Vanaya Gifting Collection</p>
-    <h1>Give a ritual.<br><em>Leave a feeling.</em></h1>
-    <p>Curated Ayurvedic skincare rituals, presented for meaningful celebrations, elevated corporate gifting and the people you want to honour beautifully.</p>
-    <a href="#vanaya-gift-collection">Discover the collection <span>↓</span></a>
+  <header class="vgift-premium__hero vgift-premium__hero--banner">
+    <h1 class="vgift-premium__accessible-title">{{ 'vanaya_gifting.title' | t }}</h1>
+    <a href="#vanaya-gift-collection">
+      <img src="{{ 'vanaya-diwali-2026-1.webp' | asset_url }}" width="2048" height="853" alt="{{ 'vanaya_gifting.banner_alt' | t | escape }}" loading="eager" fetchpriority="high">
+    </a>
   </header>
 
   <div class="vgift-premium__introduction" id="vanaya-gift-collection">
@@ -106,5 +106,6 @@
 
 <style>
 .vgift-premium__hero{min-height:440px!important;padding:64px 24px!important}.vgift-premium__introduction{padding:55px 22px 28px!important}.vgift-premium__introduction h2{margin-bottom:24px!important}@media(max-width:700px){.vgift-premium__hero{min-height:390px!important;padding:52px 16px!important}.vgift-premium__introduction{padding:45px 14px 24px!important}}
+.vgift-premium .vgift-premium__hero--banner{display:block;min-height:0!important;padding:0!important;background:none}.vgift-premium__hero--banner:before,.vgift-premium__hero--banner:after{display:none}.vgift-premium__hero--banner>a{display:block;margin:0;padding:0;border:0}.vgift-premium__hero--banner img{display:block;width:100%;height:auto}.vgift-premium__hero--banner .vgift-premium__accessible-title{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 </style>
 {% schema %}{"name":"Vanaya premium gifting","settings":[],"presets":[{"name":"Vanaya premium gifting"}]}{% endschema %}
