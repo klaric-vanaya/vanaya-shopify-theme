@@ -1,6 +1,11 @@
-{%- comment -%}Shopify native Product structured data includes live variant offer availability.{%- endcomment -%}
+{%- assign product_schema = product | structured_data -%}
+{%- if product.handle == 'customizable-diwali-gift-box-3-kansa-any-30-ml-oil' -%}
+  {%- assign schema_description = product.description | strip_html | strip | default: product.title -%}
+  {%- capture variant_type_with_description -%}"@type":"Product","description":{{ schema_description | json }},{%- endcapture -%}
+  {%- assign product_schema = product_schema | replace: '"@type":"Product",', variant_type_with_description -%}
+{%- endif -%}
 <script type="application/ld+json">
-  {{ product | structured_data }}
+  {{ product_schema }}
 </script>
 
 {% liquid
