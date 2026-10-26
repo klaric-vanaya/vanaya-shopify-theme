@@ -136,7 +136,9 @@
     grid-template-columns:1fr!important;
     border-radius:20px!important;
   }
-  .vjournal-page__latest-media{min-height:0!important;aspect-ratio:4/5!important}
+  .vjournal-page__latest-media{min-height:0!important;height:auto!important;aspect-ratio:auto!important;background:#fff9f1!important}
+  .vjournal-page__latest-media a{height:auto!important;line-height:0}
+  .vjournal-page__latest-media img{width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important}
   .vjournal-page__latest-copy{padding:30px 22px 34px!important}
   .vjournal-page__latest-copy h2{font-size:38px!important;line-height:1.04!important}
 }
@@ -164,6 +166,16 @@
   }
   .vjournal-page__latest{margin:22px auto 10px!important}
   .vjournal-page__cards{padding-top:10px!important}
+}
+</style>
+
+<style id="vanaya-journal-mobile-heading">
+@media(max-width:850px){
+  .vjournal-page{min-width:0;overflow-x:clip}
+  .vjournal-page__hero{position:relative;height:auto!important;min-height:0!important;padding:48px 20px 40px!important;overflow:visible!important}
+  .vjournal-page__hero>p{display:block!important;margin:0 0 16px!important;font-size:11px!important;line-height:1.5!important}
+  .vjournal-page__hero h1{max-width:600px;margin:0 auto 18px!important;font-size:clamp(28px,7.2vw,38px)!important;line-height:1.16!important;overflow-wrap:break-word}
+  .vjournal-page__hero>span{display:block;font-size:14px;line-height:1.6}
 }
 </style>
 
