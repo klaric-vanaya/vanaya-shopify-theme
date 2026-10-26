@@ -1,5 +1,5 @@
 {%- assign product_schema = product | structured_data -%}
-{%- if product.handle == 'customizable-diwali-gift-box-3-kansa-any-30-ml-oil' -%}
+{%- if product_schema contains '"hasVariant":' -%}
   {%- assign schema_description = product.description | strip_html | strip | default: product.title -%}
   {%- capture variant_type_with_description -%}"@type":"Product","description":{{ schema_description | json }},{%- endcapture -%}
   {%- assign product_schema = product_schema | replace: '"@type":"Product",', variant_type_with_description -%}
