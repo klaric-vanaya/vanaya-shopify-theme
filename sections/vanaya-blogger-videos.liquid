@@ -257,7 +257,7 @@
       if (card) track.scrollTo({ left: card.offsetLeft - 20, behavior: 'smooth' });
     } else {
       track.scrollLeft = 0;
-      track.style.transform = 'translate3d(-' + (carouselIndex * desktopStep()) + 'px,0,0)';
+      track.style.setProperty('transform', 'translate3d(-' + (carouselIndex * desktopStep()) + 'px,0,0)', 'important');
     }
   };
 
@@ -269,8 +269,6 @@
 
   prevButton?.addEventListener('click', () => { goToCarouselIndex(carouselIndex - 1); restartCarousel(); });
   nextButton?.addEventListener('click', () => { goToCarouselIndex(carouselIndex + 1); restartCarousel(); });
-  track?.addEventListener('mouseenter', () => { if (!isMobile()) clearInterval(carouselTimer); });
-  track?.addEventListener('mouseleave', () => { if (!isMobile()) restartCarousel(); });
   track?.addEventListener('touchstart', () => { if (isMobile()) clearInterval(carouselTimer); }, {passive:true});
   track?.addEventListener('touchend', () => { if (isMobile()) restartCarousel(); }, {passive:true});
   window.addEventListener('resize', () => {
@@ -294,6 +292,7 @@
     lightbox.classList.remove('is-open');
     lightbox.setAttribute('aria-hidden', 'true');
     document.documentElement.style.overflow = '';
+    restartCarousel();
   };
 
   const openModal = (card) => {
@@ -303,6 +302,7 @@
     const src = sourceVideo.currentSrc || sourceVideo.getAttribute('src');
     if (!src) return;
 
+    clearInterval(carouselTimer);
     const video = document.createElement('video');
     video.src = src;
     video.controls = true;
