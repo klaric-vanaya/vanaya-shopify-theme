@@ -180,21 +180,22 @@
   #shopify-section-{{ section.id }} .vanaya-blog-grid{
     display:flex!important;
     gap:14px!important;
-    width:calc(125% + 3.5px)!important;
+    width:100%!important;
     max-width:none!important;
     padding:0!important;
     margin:0!important;
-    overflow:visible!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
     scroll-snap-type:none!important;
     scroll-behavior:auto!important;
     transition:transform .6s cubic-bezier(.22,.7,.18,1)!important;
     will-change:transform;
   }
   #shopify-section-{{ section.id }} .vanaya-blog-grid>article{
-    flex:0 0 calc((80% - 42px)/4)!important;
-    width:calc((80% - 42px)/4)!important;
-    min-width:calc((80% - 42px)/4)!important;
-    max-width:calc((80% - 42px)/4)!important;
+    flex:0 0 calc((100% - 42px)/4)!important;
+    width:calc((100% - 42px)/4)!important;
+    min-width:calc((100% - 42px)/4)!important;
+    max-width:calc((100% - 42px)/4)!important;
   }
   #shopify-section-{{ section.id }} .vanaya-blogger-arrow{
     display:grid!important;
@@ -256,8 +257,8 @@
       const card = cards[carouselIndex];
       if (card) track.scrollTo({ left: card.offsetLeft - 20, behavior: 'smooth' });
     } else {
-      track.scrollLeft = 0;
-      track.style.setProperty('transform', 'translate3d(-' + (carouselIndex * desktopStep()) + 'px,0,0)', 'important');
+      track.style.setProperty('transform', 'none', 'important');
+      track.scrollTo({ left: carouselIndex * desktopStep(), behavior: 'smooth' });
     }
   };
 
