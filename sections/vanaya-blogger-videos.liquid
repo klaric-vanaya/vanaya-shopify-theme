@@ -221,7 +221,7 @@
 
 <script>
 (() => {
-  const root = document.currentScript.previousElementSibling;
+  const root = document.currentScript.closest('.shopify-section')?.querySelector('[data-vanaya-bloggers]');
   if (!root || !root.matches('[data-vanaya-bloggers]')) return;
 
   const lightbox = root.querySelector('[data-vanaya-video-lightbox]');
