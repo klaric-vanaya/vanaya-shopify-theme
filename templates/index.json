@@ -210,7 +210,7 @@
             "legacy_slot": 0
           }
         },
-        "v_original_first": {
+        "v6": {
           "type": "video",
           "settings": {
             "external_url": "",
@@ -220,7 +220,7 @@
       },
       "block_order": [
         "v1",
-        "v_original_first",
+        "v6",
         "v2",
         "v3",
         "v4",
