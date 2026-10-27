@@ -209,10 +209,18 @@
             "external_url": "https://cdn.shopify.com/videos/c/o/v/86e9b7b675124456980e67cacfc1b4a4.mp4",
             "legacy_slot": 0
           }
+        },
+        "v_original_first": {
+          "type": "video",
+          "settings": {
+            "external_url": "",
+            "legacy_slot": 1
+          }
         }
       },
       "block_order": [
         "v1",
+        "v_original_first",
         "v2",
         "v3",
         "v4",
