@@ -178,8 +178,8 @@
         "v1": {
           "type": "video",
           "settings": {
-            "external_url": "",
-            "legacy_slot": 1
+            "external_url": "https://cdn.shopify.com/videos/c/o/v/1f3e845f3e774323ab55f74e36806e1e.mp4",
+            "legacy_slot": 0
           }
         },
         "v2": {
