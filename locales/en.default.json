@@ -612,7 +612,7 @@
     "buy_four": "Buy 4 or more items",
     "buy_items": "Buy {{ count }} items",
     "eligible_items": "On eligible items",
-    "terms": "Automatic discount · Highest eligible offer applies · No code needed · Excludes already discounted items and promotional sets · Cannot combine with other offers",
+    "terms": "Automatic discount · Highest eligible offer applies · No code needed · Applies to eligible products, including Diwali gift boxes · Cannot combine with other offers",
     "cart_eyebrow": "Build your ritual & save",
     "cart_count": "Eligible items in your cart: {{ count }}",
     "cart_qualified": "Your cart qualifies for {{ percent }}% off.",
