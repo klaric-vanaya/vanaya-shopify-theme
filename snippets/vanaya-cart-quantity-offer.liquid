@@ -1,15 +1,15 @@
 {% doc %}
-  Displays the quantity offer using the variants configured in the Shopify automatic discounts.
+  Displays the quantity offer using the products configured in the Shopify automatic discounts.
   @param {object} cart - The current shopping cart.
 {% enddoc %}
 
 {% liquid
-  assign eligible_ids = '49981744742643,49996749209843,49996794593523,49996861538547,50757096276211,50757096308979,50757362614515,50757362647283,50757454233843,50757454266611,50757399707891,50757399740659,50508649365747,50508779487475,50508786303219,50508794265843' | split: ','
+  assign eligible_product_ids = '9688758780147,9689308397811,9689309217011,9689309774067,9696567460083,9696575455475,9702181830899,9702187794675,9732901372147,9732934107379,9732934795507,9732936892659,9902401716467,9902403846387,9931339006195,9962912383219,15422841684211,15422841815283,15422841946355' | split: ','
   assign eligible_count = 0
   assign legacy_gift = false
   for item in cart.items
-    assign variant_id = item.variant.id | append: ''
-    if eligible_ids contains variant_id
+    assign product_id = item.product.id | append: ''
+    if eligible_product_ids contains product_id
       assign eligible_count = eligible_count | plus: item.quantity
     endif
     if item.properties['_vanaya_free_gift'] == 'true'
